@@ -1,0 +1,1486 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Follow Your Ears | Froot Loops case study, editorial edition</title>
+<meta name="description" content="How Froot Loops turned 1,000+ hip-hop name-drops into a participatory brand platform. A strategy case study.">
+<script>document.documentElement.className='js';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Sour+Gummy:wdth,wght@100..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Archivo:wdth,wght@62..100,400..900&display=swap">
+<style>
+:root{
+  --milk:#F6F7FB; --skim:#E8EDF7; --paper:#FFFFFF;
+  --ink:#0A1240; --ink-2:#2B3262; --ink-3:#575E8C;
+  --toucan:#0B63E5; --toucan-2:#0750C9; --navy:#04114F;
+  --red:#ff0000; --yellow:#ffe700; --green:#7cff00; --purple:#c900ff; --cyan:#00dfff;
+  --display:"Ultra","Rockwell Extra Bold",Rockwell,Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4vw,48px);
+  --max:1240px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;background:var(--milk);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--purple);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gutter);position:relative;z-index:1}
+
+/* ---------- grain over everything */
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.2;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .04  0 0 0 0 .07  0 0 0 0 .25  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ---------- top bar */
+.topbar{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gutter)}
+.topbar a{text-decoration:none}
+.sig{font-family:var(--display);font-size:20px;line-height:1}
+.topbar nav{display:flex;gap:clamp(14px,2vw,26px);font-stretch:80%;font-weight:700;font-size:16px}
+.topbar nav a{padding:7px 12px;border-radius:999px;background:rgba(246,247,251,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.topbar nav a:hover{background:var(--yellow)}
+
+/* ---------- hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px}
+.stage{position:relative;height:100%;overflow:hidden;background:var(--hero-bg)}
+.hero-copy{position:absolute;left:var(--gutter);top:clamp(78px,12vh,128px);z-index:2}
+.client{margin:0 0 .9em;font-stretch:80%;font-weight:700;font-size:clamp(15px,1.3vw,18px);color:var(--ink-2)}
+.hero-title{position:relative;margin:0;line-height:0;width:max-content}
+.lockup{display:block;height:clamp(230px,calc(100vh - 470px),540px);height:clamp(230px,calc(100svh - 470px),540px);width:auto;border-radius:clamp(14px,1.8vw,24px);
+  box-shadow:0 0 0 clamp(5px,.55vw,8px) #fff,clamp(8px,1vw,14px) clamp(10px,1.2vw,16px) 0 clamp(5px,.55vw,8px) var(--ink);transform:rotate(-2.4deg)}
+.js .lockup{opacity:0}
+.loaded .lockup{animation:stick .7s .1s cubic-bezier(.2,1.5,.4,1) forwards}
+@keyframes stick{from{opacity:0;transform:rotate(-9deg) scale(1.16)}to{opacity:1;transform:rotate(-2.4deg) scale(1)}}
+.hero-title .spark{font-size:clamp(110px,13vw,190px)}
+
+/* chrome, iced-out display type */
+.chrome{position:relative;display:block;width:max-content;color:transparent;white-space:nowrap}
+.chrome::before,.chrome::after{content:attr(data-text);position:absolute;left:0;top:0;white-space:nowrap;pointer-events:none}
+.chrome::before{color:var(--navy);-webkit-text-stroke:.1em var(--navy);
+  text-shadow:0 .02em 0 var(--toucan),.008em .04em 0 var(--toucan-2),.016em .06em 0 var(--navy),.024em .08em 0 var(--navy),0 .1em .2em rgba(4,17,79,.35),0 0 .55em rgba(0,223,255,.5)}
+.chrome::after{color:transparent;-webkit-text-stroke:.012em rgba(255,255,255,.9);
+  background-image:
+   linear-gradient(105deg,transparent 0 42%,rgba(255,255,255,.95) 50%,transparent 58% 100%),
+   linear-gradient(90deg,rgba(0,223,255,.2),rgba(201,0,255,.1) 35%,rgba(255,231,0,.14) 65%,rgba(0,223,255,.18)),
+   linear-gradient(180deg,#ffffff 0%,#f4f7fc 16%,#aebbd1 36%,#3d4a68 47%,#141d3a 50%,#7487a8 52.5%,#d6deeb 62%,#ffffff 72%,#c3cddd 84%,#8794ad 94%,#dfe5f0 100%);
+  background-size:300% 100%,100% 100%,100% 100%;background-position:0 0,0 0,0 0;background-repeat:no-repeat;
+  -webkit-background-clip:text;background-clip:text}
+.loaded .hero-title .chrome::after{animation:sheen 1.9s .55s cubic-bezier(.3,.6,.2,1) both}
+.chrome:hover::after{animation:sheen 1.4s cubic-bezier(.3,.6,.2,1) both}
+@keyframes sheen{from{background-position:100% 0,0 0,0 0}to{background-position:0% 0,0 0,0 0}}
+.spark{position:absolute;width:.17em;height:.17em;color:#fff;z-index:3;pointer-events:none;
+  filter:drop-shadow(0 0 .05em #fff) drop-shadow(0 0 .12em rgba(0,223,255,.95));animation:tw 3.2s ease-in-out infinite;animation-delay:var(--d,0s)}
+.spark svg{width:100%;height:100%;display:block}
+@keyframes tw{0%,100%{transform:scale(.25) rotate(0);opacity:.25}50%{transform:scale(1) rotate(45deg);opacity:1}}
+
+/* necklace: the actual Kites & Ice piece */
+.necklace{position:absolute;left:55%;top:10%;width:40vw;z-index:3;pointer-events:none;will-change:transform}
+.js .necklace{transform:translate3d(0,-130vh,0)}
+.necklace img{position:relative;z-index:1;display:block;width:100%;height:auto;filter:drop-shadow(0 26px 30px rgba(4,17,79,.32))}
+.aura{position:absolute;left:52%;top:70%;width:200%;aspect-ratio:1;z-index:0;transform:translate(-50%,-50%) rotate(var(--spin,0deg));
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,0) 0deg 8deg,rgba(0,223,255,.3) 8deg 10deg,rgba(255,255,255,0) 10deg 18deg,rgba(255,231,0,.38) 18deg 20deg,rgba(255,255,255,0) 20deg 28deg,rgba(201,0,255,.24) 28deg 30deg);
+  -webkit-mask:radial-gradient(circle,#000 14%,rgba(0,0,0,.55) 28%,transparent 58%);mask:radial-gradient(circle,#000 14%,rgba(0,0,0,.55) 28%,transparent 58%)}
+.necklace .spark{z-index:2;font-size:clamp(90px,9vw,150px)}
+
+.hl{position:absolute;z-index:1;background:center/contain no-repeat;will-change:transform;pointer-events:none}
+.hl.near{z-index:5}
+
+.hero-foot{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(54px,8vh,86px);z-index:4;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.dek{margin:0;max-width:40ch;font-size:clamp(17px,1.45vw,21px);line-height:1.45;font-weight:500;color:var(--ink)}
+.role{margin:.75em 0 0;font-stretch:80%;font-weight:700;font-size:15px;color:var(--ink-2)}
+/* ---------- shout-out tickers */
+.tickers{position:relative;z-index:6;margin-top:-30px;padding:0 0 8px}
+.tickers--crew{margin:clamp(64px,8vw,112px) 0 -34px;padding:0;z-index:4}
+.tape{position:relative;width:112vw;margin-left:-6vw;overflow:hidden;box-shadow:0 12px 26px rgba(10,18,64,.18)}
+.tape--yellow{background:var(--yellow);color:var(--ink);transform:rotate(-1.8deg)}
+.tape--ink{background:var(--ink);color:var(--milk);transform:rotate(-1.2deg)}
+.tape-track{display:flex;width:max-content;animation:tick 52s linear infinite}
+.tape--ink .tape-track{animation-direction:reverse;animation-duration:64s}
+.tape-group{display:flex;align-items:center;flex:none}
+.tape-item{white-space:nowrap;font-stretch:72%;font-weight:800;font-size:clamp(22px,2.5vw,34px);line-height:1;padding:17px 0 15px}
+.tape-item.is-label{font-family:var(--display);font-weight:400;font-stretch:100%;font-size:clamp(18px,2vw,26px)}
+.tape--ink .tape-item.is-label{color:var(--yellow)}
+.tape-dot{flex:none;width:clamp(22px,2.2vw,30px);height:clamp(22px,2.2vw,30px);margin:0 clamp(14px,1.6vw,24px);background:center/contain no-repeat}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- sections */
+.sec{position:relative;padding:clamp(88px,11vw,160px) 0;isolation:isolate}
+[id]{scroll-margin-top:24px}
+.track{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-stretch:80%;font-weight:700;font-size:16px;color:var(--ink-3)}
+.track i{width:24px;height:24px;flex:none;background:center/contain no-repeat}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(40px,6vw,86px);line-height:.95;letter-spacing:-.01em;margin:0;max-width:13ch;text-wrap:balance}
+h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.8vw,38px);line-height:1.04;margin:0;text-wrap:balance}
+.tag{display:inline-block;margin:24px 0 0;background:var(--yellow);color:var(--ink);font-stretch:68%;font-weight:800;font-size:15px;line-height:1;padding:10px 15px 9px;
+  transform:rotate(var(--rot,-2deg));clip-path:polygon(0 10%,2% 0,98% 6%,100% 0,99% 90%,100% 100%,2% 95%,0 100%)}
+.js .slap{opacity:0;transform:rotate(var(--rot,-2deg)) scale(1.4)}
+.js .slap.in{animation:slap .5s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes slap{to{opacity:1;transform:rotate(var(--rot,-2deg)) scale(1)}}
+.split{display:grid;grid-template-columns:minmax(0,5.4fr) minmax(0,6.6fr);gap:clamp(36px,5vw,88px);align-items:start}
+.split h2{font-size:clamp(34px,3.9vw,58px)}
+.prose p{margin:0 0 1em;max-width:60ch;color:var(--ink-2)}
+.prose p.lead{font-size:clamp(19px,1.6vw,22px);line-height:1.5;color:var(--ink);font-weight:500}
+.points{list-style:none;padding:0;margin:1.5em 0;display:grid;gap:14px;max-width:60ch}
+.points li{position:relative;padding-left:40px;color:var(--ink-2)}
+.points li::before{content:"";position:absolute;left:0;top:.18em;width:25px;height:25px;background:var(--bullet,var(--loop-0)) center/contain no-repeat}
+.points b{color:var(--ink);font-weight:700}
+.prose .shows,.shows{margin:30px 0 0;max-width:58ch;padding:18px 22px;background:var(--paper);border:2px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--accent,var(--cyan));font-weight:500;color:var(--ink)}
+.shows b{font-weight:800}
+.prose .callout{font-family:var(--display);font-size:clamp(24px,2.4vw,34px);line-height:1.14;margin:1.2em 0;max-width:24ch;color:var(--ink);text-wrap:balance}
+figure{margin:0}
+figcaption{margin-top:14px;font-size:15px;line-height:1.45;color:var(--ink-3);max-width:70ch}
+figcaption b{color:var(--ink);font-weight:800}
+.js .iris{clip-path:circle(var(--iris,8%) at 50% 50%)}
+.js .iris.open{clip-path:none}
+
+/* intro / liner notes */
+.liner{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(36px,6vw,96px);align-items:start;margin-top:clamp(36px,5vw,64px)}
+.credits{margin:0;border-bottom:2px solid var(--ink)}
+.credits div{display:grid;grid-template-columns:7.5em 1fr;gap:20px;padding:16px 0;border-top:2px solid var(--ink)}
+.credits dt{font-stretch:75%;font-weight:800;font-size:16px;padding-top:3px}
+.credits dd{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.4;font-weight:500}
+.stats{list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 32px}
+.stats li{font-size:16px;line-height:1.35;color:var(--ink-2)}
+.stats strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(44px,4.6vw,64px);line-height:1;color:var(--ink);margin-bottom:8px}
+.tracklist{background:var(--paper);border:2px solid var(--ink);border-radius:28px;padding:clamp(22px,3vw,34px);box-shadow:10px 10px 0 var(--purple);transform:rotate(1deg)}
+.tracklist h3{font-size:clamp(28px,2.6vw,36px);margin-bottom:14px}
+.tracklist ol{list-style:none;margin:0;padding:0}
+.tracklist a{display:grid;grid-template-columns:4.4em 1fr;gap:8px;padding:11px 0;text-decoration:none;border-top:1.5px dashed rgba(10,18,64,.28)}
+.tracklist li:first-child a{border-top:0}
+.tracklist .n{font-family:var(--display);font-size:18px;line-height:1.3}
+.tracklist .t{font-weight:700;line-height:1.3}
+.tracklist .t small{display:block;font-weight:400;font-size:15px;color:var(--ink-3);margin-top:2px}
+.tracklist a:hover .t{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+
+/* insight */
+.prose .stat-big{display:flex;align-items:center;font-family:var(--display);font-size:clamp(76px,10vw,156px);line-height:.9;margin:0 0 6px;color:var(--ink);text-shadow:.04em .04em 0 var(--cyan)}
+.stat-big .o{display:inline-block;width:.78em;height:.78em;margin:0 -.015em;background:center/contain no-repeat;flex:none}
+.prose .stat-cap{margin:0 0 clamp(28px,4vw,48px);font-stretch:80%;font-weight:700;font-size:18px}
+.fig-wide{margin-top:clamp(56px,8vw,112px)}
+.fig-wide img{width:100%;border-radius:clamp(18px,2.5vw,32px)}
+
+/* leap (blue) */
+.leap{background:var(--toucan);color:#fff;overflow:hidden;padding-bottom:clamp(88px,9vw,128px)}
+.leap::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(55% 45% at 50% 18%,rgba(0,223,255,.38),transparent 70%),radial-gradient(40% 40% at 90% 85%,rgba(201,0,255,.32),transparent 70%),radial-gradient(35% 35% at 5% 70%,rgba(4,17,79,.55),transparent 70%)}
+.leap .track{color:rgba(255,255,255,.86);justify-content:center}
+.leap-title{font-family:var(--display);font-weight:400;font-size:clamp(36px,12.2vw,168px);line-height:.92;margin:0 auto;max-width:none;text-align:center}
+.leap-title .chrome{margin:0 auto}
+.swap{position:relative;display:block;width:max-content;margin:.06em auto 0}
+.ears{position:absolute;left:50%;top:50%;z-index:3;font-size:.86em;line-height:1;color:var(--ink);background:var(--yellow);padding:.1em .34em .18em;border-radius:.18em;white-space:nowrap;
+  box-shadow:0 0 0 .065em #fff,0 .14em .3em rgba(4,17,79,.5);transform:translate(-50%,-52%) rotate(-6deg) scale(1.9);opacity:0;transition:transform .55s cubic-bezier(.2,1.55,.35,1),opacity .18s}
+.swap.on .ears{opacity:1;transform:translate(-50%,-52%) rotate(-6deg) scale(1)}
+.leap .tag{--rot:2deg}
+.leap .prose p,.leap .points li{color:rgba(255,255,255,.9)}
+.leap .points b{color:#fff}
+.leap .prose .shows{color:var(--ink)}
+.leap-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,6vw,96px);margin-top:clamp(56px,7vw,96px)}
+.leap-cols h3{margin-top:4px}
+.throughline{margin:clamp(72px,9vw,128px) auto 0;text-align:center}
+.throughline p{margin:0 auto;font-family:var(--display);font-size:clamp(28px,3.9vw,56px);line-height:1.08;max-width:24ch;text-wrap:balance}
+.throughline span{display:block;margin-top:22px;font-stretch:80%;font-weight:700;font-size:16px;color:rgba(255,255,255,.8)}
+
+/* activation */
+.journey{list-style:none;margin:clamp(56px,7vw,88px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2.4vw,32px);position:relative}
+.journey::before{content:"";position:absolute;left:3%;right:3%;top:30px;height:34px;background:var(--chain) 0 50%/auto 100% repeat-x;z-index:0}
+.journey li{position:relative;z-index:1}
+.journey .v{display:inline-block;font-family:var(--display);font-size:clamp(30px,3vw,42px);line-height:1;background:var(--milk);padding:12px 16px 14px;border:2px solid var(--ink);border-radius:999px;box-shadow:5px 5px 0 var(--c)}
+.journey h4{margin:22px 0 6px;font-size:19px;line-height:1.3;font-weight:800}
+.journey p{margin:0;color:var(--ink-2);font-size:17px;line-height:1.5}
+.fence{position:relative;margin-top:0;padding:clamp(64px,8vw,112px) 0;background-color:#EDF0F6;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='46' height='46'><path d='M0 23 23 0 46 23 23 46Z' fill='none' stroke='%2399a4bb' stroke-width='1.7'/><path d='M0 23 23 0 46 23 23 46Z' fill='none' stroke='%23ffffff' stroke-width='.7' transform='translate(-.8 -.8)'/></svg>");background-size:46px 46px;
+  border-top:6px solid var(--ink);border-bottom:6px solid var(--ink)}
+.fence-head{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4.2fr) minmax(0,2.5fr);gap:clamp(24px,3.6vw,56px);align-items:center}
+.fence-head .paper{background:var(--milk);padding:clamp(22px,3vw,36px);border-radius:6px;transform:rotate(-.6deg);box-shadow:0 14px 30px rgba(10,18,64,.16)}
+.quote{margin:0;background:var(--ink);color:#fff;padding:clamp(22px,3vw,34px);border-radius:26px;transform:rotate(-1.4deg);box-shadow:8px 8px 0 var(--green)}
+.quote p{margin:0;font-family:var(--display);font-size:clamp(22px,2.2vw,30px);line-height:1.18}
+.quote footer{margin-top:16px;font-stretch:80%;font-weight:700;font-size:15px;color:rgba(255,255,255,.8)}
+.posters{list-style:none;margin:clamp(48px,6vw,80px) 0 0;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,30px);max-width:1440px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.poster{transform:rotate(var(--r,0deg)) translateY(var(--y,0));}
+.poster .pin{position:relative}
+.poster .pin::before,.poster .pin::after{content:"";position:absolute;top:-12px;width:64px;height:24px;background:rgba(255,231,0,.82);z-index:2;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.poster .pin::before{left:-14px;transform:rotate(-24deg)}
+.poster .pin::after{right:-14px;transform:rotate(22deg)}
+.poster img{width:100%;box-shadow:0 18px 30px rgba(10,18,64,.28)}
+.pcap{display:inline-block;margin-top:16px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:9px 13px 10px;box-shadow:4px 4px 0 var(--c);--rot:-2deg}
+.pcap b{display:block;font-family:var(--display);font-weight:400;font-size:19px;line-height:1.1}
+.pcap span{display:block;font-size:14px;line-height:1.35;color:var(--ink-2)}
+
+/* clips */
+.phone{margin:0}
+.phone video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:clamp(18px,2vw,28px);border:6px solid var(--ink);background:var(--ink);box-shadow:8px 8px 0 var(--c,var(--yellow))}
+.phone--cuff video{aspect-ratio:716/892}
+
+/* the prize: a display case */
+.vault{position:relative;margin-top:clamp(72px,9vw,128px);padding:clamp(64px,8vw,112px) 0;color:#fff;
+  background:radial-gradient(55% 50% at 85% 0%,rgba(201,0,255,.24),transparent 70%),radial-gradient(50% 50% at 0% 100%,rgba(0,223,255,.18),transparent 70%),var(--ink)}
+.vault .track{color:rgba(255,255,255,.8)}
+.vault-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,80px);align-items:center}
+.vault h3{font-size:clamp(32px,4vw,56px);max-width:14ch}
+.vault-dek{margin:18px 0 0;max-width:54ch;color:rgba(255,255,255,.88);font-size:clamp(17px,1.4vw,20px);line-height:1.55}
+.kl{width:100%;max-width:400px;justify-self:end;transform:rotate(-4deg);filter:drop-shadow(0 12px 22px rgba(0,0,0,.4))}
+.vault-grid{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);gap:clamp(18px,2.5vw,32px);margin-top:clamp(40px,5vw,64px);align-items:start}
+.case img{width:100%;border-radius:clamp(16px,2vw,26px);box-shadow:0 0 0 2px rgba(255,255,255,.12),0 24px 40px rgba(0,0,0,.35)}
+.vault figcaption{color:rgba(255,255,255,.74)}
+.vault figcaption b{color:#fff}
+.maker{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(0,.5fr);gap:clamp(22px,3.4vw,52px);align-items:center;margin-top:clamp(56px,7vw,96px)}
+.maker-photo img{width:100%;border-radius:clamp(16px,2vw,26px);transform:rotate(-1.5deg);box-shadow:8px 8px 0 var(--yellow)}
+.vault .kites{margin:0}
+.vault .kites p{color:#fff}
+.vault .kites footer{color:rgba(255,255,255,.75)}
+
+/* brief */
+.facts{background:#fff;color:#000;border:2px solid #000;padding:12px 16px 14px;max-width:470px;transform:rotate(-1.3deg);box-shadow:12px 12px 0 var(--cyan);margin-top:clamp(36px,4vw,52px)}
+.facts h3{font-family:var(--sans);font-stretch:62%;font-weight:900;font-size:clamp(44px,4.6vw,60px);line-height:.92;letter-spacing:-.01em;margin:0 0 6px}
+.facts .serv{margin:0;padding-bottom:10px;border-bottom:13px solid #000;font-size:16px;line-height:1.35}
+.facts .serv b{font-weight:800}
+.facts dl{margin:0}
+.facts .row{padding:11px 0 12px;border-top:1.5px solid #000}
+.facts .row:first-child{border-top:0}
+.facts dt{font-weight:800;font-size:16px;line-height:1.3}
+.facts dd{margin:3px 0 0;font-size:17px;line-height:1.42}
+.facts .ft{margin:0;padding-top:9px;border-top:7px solid #000;font-size:13.5px;line-height:1.4}
+.brief-fig .phone{max-width:470px;margin-left:auto}
+.kites{margin:clamp(28px,3vw,40px) 0 0;padding:0;border:0}
+.kites p{margin:0;font-family:var(--display);font-size:clamp(21px,2vw,28px);line-height:1.2;max-width:26ch}
+.kites footer{margin-top:12px;font-stretch:80%;font-weight:700;font-size:15px;color:var(--ink-3)}
+.prize{margin:22px 0 0;max-width:52ch;color:var(--ink-2)}
+
+/* proof */
+.scores{list-style:none;margin:clamp(48px,6vw,80px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px)}
+.scores li{position:relative}
+.scores .ring{width:64px;height:64px;background:center/contain no-repeat;margin-bottom:16px}
+.scores h3{margin-bottom:10px}
+.scores p{margin:0;color:var(--ink-2);max-width:34ch}
+.note{margin:clamp(48px,6vw,72px) 0 0;max-width:70ch;font-size:15px;line-height:1.55;color:var(--ink-3);padding-top:18px;border-top:2px solid var(--ink)}
+.note b{color:var(--ink)}
+.giant{position:absolute;right:calc(min(56vw,700px) * -.64);top:56%;width:min(56vw,700px);aspect-ratio:1;z-index:0;background:center/contain no-repeat;opacity:.95;pointer-events:none;}
+
+/* outro */
+.skills{list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0}
+.skills li{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr) auto;gap:clamp(16px,3vw,40px);align-items:baseline;padding:22px 0;border-top:2px solid var(--ink)}
+.skills li:last-child{border-bottom:2px solid var(--ink)}
+.skills b{font-family:var(--display);font-weight:400;font-size:clamp(24px,2.5vw,34px);line-height:1.08}
+.skills span{color:var(--ink-2);font-size:clamp(17px,1.4vw,19px)}
+.skills a{font-stretch:80%;font-weight:800;font-size:15px;text-decoration:none;padding:7px 13px;border:2px solid var(--ink);border-radius:999px;white-space:nowrap;background:var(--paper)}
+.skills a:hover{background:var(--yellow)}
+
+/* press: the closing bonus track */
+.press{color:#fff;padding-bottom:clamp(96px,12vw,170px);
+  background:radial-gradient(50% 45% at 10% 0%,rgba(0,223,255,.4),transparent 70%),radial-gradient(45% 50% at 100% 100%,rgba(201,0,255,.38),transparent 70%),var(--toucan)}
+.press .track{color:rgba(255,255,255,.86)}
+.press-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
+.press h2{font-size:clamp(84px,15vw,230px);line-height:.8;max-width:none;letter-spacing:-.02em;text-shadow:.035em .045em 0 var(--navy)}
+.press-dek{margin:0 0 .4em;font-size:clamp(19px,1.7vw,24px);line-height:1.45;max-width:32ch;color:rgba(255,255,255,.93);font-weight:500}
+.press-grid{list-style:none;margin:clamp(48px,6vw,84px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:dense;gap:clamp(16px,2vw,26px)}
+.pc{position:relative;display:flex;flex-direction:column;gap:12px;min-height:230px;padding:clamp(20px,2.2vw,28px);background:var(--milk);color:var(--ink);border:2px solid var(--ink);border-radius:22px;box-shadow:8px 8px 0 var(--c,var(--yellow));transition:transform .18s ease,box-shadow .18s ease}
+.pc:hover,.pc:focus-within{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--c,var(--yellow))}
+.pc--lead{grid-column:span 2;grid-row:span 2}
+.pc--wide{grid-column:span 2}
+.pk{align-self:flex-start;background:var(--yellow);color:var(--ink);font-stretch:68%;font-weight:800;font-size:14px;line-height:1;padding:8px 12px 7px;transform:rotate(-2deg);clip-path:polygon(0 10%,2% 0,98% 6%,100% 0,99% 90%,100% 100%,2% 95%,0 100%)}
+.po{font-family:var(--display);font-weight:400;font-size:clamp(22px,1.75vw,28px);line-height:1.04;overflow-wrap:anywhere}
+.pc--lead .po{font-size:clamp(34px,3.6vw,56px)}
+.pc .main{color:inherit;text-decoration:none;font-size:17px;line-height:1.4;font-weight:600}
+.pc .main::after{content:"";position:absolute;inset:0;border-radius:20px}
+.pc .main:focus-visible{outline:none}
+.pc:has(.main:focus-visible){outline:3px solid var(--yellow);outline-offset:4px}
+.pc--lead .main{font-size:clamp(20px,1.8vw,26px);line-height:1.3}
+.pthumb{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:14px;margin-top:6px}
+.pd{margin-top:auto;font-stretch:80%;font-weight:700;font-size:14px;color:var(--ink-3)}
+.pd a{position:relative;z-index:1;color:var(--ink)}
+
+/* ---------- responsive */
+@media (max-width:899px){
+  .split,.liner,.fence-head,.leap-cols,.press-head{grid-template-columns:minmax(0,1fr)}
+  .press-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fence-head .phone{max-width:300px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+  .journey{grid-template-columns:minmax(0,1fr);gap:30px}
+  .journey::before{left:6px;right:auto;top:10px;bottom:10px;width:34px;height:auto;background:var(--chain-v) 50% 0/100% auto repeat-y}
+  .journey li{padding-left:62px}
+  .posters{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:22px;padding:24px var(--gutter) 28px;-webkit-overflow-scrolling:touch}
+  .poster{flex:0 0 68vw;scroll-snap-align:center}
+  .scores{grid-template-columns:minmax(0,1fr)}
+  .skills li{grid-template-columns:minmax(0,1fr);gap:8px}
+  .skills a{justify-self:start}
+  .hero-foot{flex-direction:column;align-items:flex-start;gap:10px}
+  .tracklist{transform:none}
+  .lockup{height:min(34vh,34svh,92vw)}
+  .dek{font-size:16px}
+  .vault-head,.vault-grid,.maker{grid-template-columns:minmax(0,1fr)}
+  .maker .phone{max-width:300px}
+  .kl{justify-self:start;max-width:260px}
+  .brief-fig .phone{margin:0 auto}
+  .giant{width:72vw;right:-46vw;top:2%}
+}
+@media (max-width:520px){
+  body{font-size:17px}
+  .topbar nav a.hide-s{display:none}
+  .facts{transform:none}
+  .press-grid{grid-template-columns:minmax(0,1fr)}
+  .pc--lead,.pc--wide{grid-column:auto;grid-row:auto}
+}
+
+/* ================= editorial edition ================= */
+:root{--display:"Bagel Fat One","Cooper Black",Georgia,serif;--label:"Sour Gummy","Archivo",system-ui,sans-serif;--serif:"Newsreader",Georgia,"Times New Roman",serif}
+body{font-family:var(--serif);font-size:20px;line-height:1.62;font-optical-sizing:auto}
+.topbar nav,.client,.role,.tape-item,.credits dt,.tracklist .t,.stat-cap,.journey h4,.pcap span,.quote footer,.kites footer,.throughline span,.pk,.pd,.skills a,figcaption b,.shows b,.maker figcaption,.vault .track{font-family:var(--label);font-stretch:100%}
+.topbar nav{font-weight:700}
+.sig{font-family:var(--display);font-size:24px}
+.client{display:flex;align-items:center;gap:14px;font-weight:600}
+.fl-logo{height:clamp(52px,7vh,78px);width:auto;filter:drop-shadow(0 6px 10px rgba(10,18,64,.18))}
+.lockup{height:clamp(220px,calc(100vh - 400px),560px);height:clamp(220px,calc(100svh - 400px),560px)}
+.dek{font-family:var(--serif);font-weight:450;font-size:clamp(18px,1.5vw,22px)}
+.role{font-weight:600}
+.tape-item{font-weight:700}
+h2{line-height:.92;letter-spacing:-.005em}
+.track{font-family:var(--serif);font-style:italic;font-weight:400;font-size:19px;color:var(--ink-2);padding-top:14px;border-top:2px solid var(--ink);gap:12px}
+.leap .track,.press .track{border-color:rgba(255,255,255,.6);color:#fff}
+.leap .track{max-width:440px;margin-left:auto;margin-right:auto}
+.vault .track{border-color:rgba(255,255,255,.35)}
+.tag{font-family:var(--label);font-stretch:100%;font-weight:700;font-size:16px;background:none;color:var(--ink);padding:0 0 0 32px;clip-path:none;position:relative}
+.tag::before{content:"";position:absolute;left:0;top:50%;width:24px;height:24px;margin-top:-12px;background:var(--loop-1) center/contain no-repeat}
+.js .tag.slap,.js .tag.slap.in{opacity:1;transform:none;animation:none}
+.leap .tag{color:#fff}
+.prose p.lead{font-size:clamp(21px,1.8vw,25px);line-height:1.45;font-weight:450}
+.split .prose>p.lead:first-child::first-letter{float:left;font-family:var(--display);font-size:4.4em;line-height:.78;padding:.08em .1em 0 0;color:var(--red)}
+.prose .callout{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(28px,2.8vw,40px);line-height:1.16;max-width:24ch;border-left:6px solid var(--red);padding-left:24px}
+.prose .shows,.shows{background:none;border:0;border-left:4px solid var(--accent,var(--cyan));border-radius:0;box-shadow:none;padding:4px 0 4px 20px;font-style:italic;font-weight:400;color:var(--ink-2)}
+.shows b{font-style:normal;font-weight:700;color:var(--ink)}
+.leap .prose .shows{color:rgba(255,255,255,.92)}
+.leap .prose .shows b{color:#fff}
+.throughline p{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(32px,4.2vw,62px);line-height:1.1;max-width:22ch}
+.quote p,.vault .kites p,.kites p{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(24px,2.3vw,34px);line-height:1.22}
+.chrome::after{background:none;color:#FFF6E3;-webkit-text-stroke:0}
+.chrome::before{-webkit-text-stroke:.07em var(--navy);text-shadow:0 .03em 0 var(--navy),.01em .06em 0 var(--navy),.02em .09em 0 var(--navy),0 .14em .26em rgba(4,17,79,.4)}
+.leap-title{font-size:clamp(44px,12.6vw,186px)}
+.tracklist{background:none;border:0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);border-radius:0;box-shadow:none;transform:none;padding:22px 0}
+.tracklist .t{font-weight:700}
+.tracklist .t small{font-family:var(--serif);font-style:italic;font-weight:400;font-size:16px}
+.credits dt{font-weight:700;padding-top:4px}
+.credits dd{font-family:var(--serif);font-size:clamp(19px,1.6vw,22px)}
+.brandmark{display:block;height:64px;width:auto;margin:0 0 8px}
+.stats li{font-size:17px}
+.journey h4{font-weight:700;font-size:20px}
+figcaption{font-style:italic;font-size:16px}
+figcaption b{font-style:normal}
+.pcap span{font-weight:600}
+.press h2{font-size:clamp(96px,16vw,250px)}
+.pc{box-shadow:none;border-radius:8px;border-top:12px solid var(--c,var(--yellow))}
+.pc:hover,.pc:focus-within{transform:none;box-shadow:none;background:#fff}
+.pc:hover .main{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.pk{background:none;clip-path:none;transform:none;padding:0;font-weight:700;font-size:15px;color:var(--ink-3)}
+.pc .main{font-family:var(--serif);font-weight:500;font-size:19px}
+.pc--lead .main{font-size:clamp(22px,2vw,28px)}
+.giant{display:none}
+.flyer{position:absolute;z-index:0;right:max(8px,calc((100vw - 1240px) / 2 - 30px));top:5%;height:min(88%,780px);width:auto;pointer-events:none;filter:drop-shadow(0 20px 26px rgba(10,18,64,.18))}
+@media (min-width:900px){#proof .wrap{padding-right:max(var(--gutter),min(30vw,400px))}}
+.topbar{justify-content:flex-end}
+/* section heads: small label, large title */
+.sec-head{margin:0 0 clamp(40px,5vw,72px)}
+.sec-head .track{margin-bottom:clamp(14px,1.6vw,22px)}
+.sec-head h2,#outro h2{font-size:clamp(52px,7.6vw,116px);line-height:.9;max-width:14ch}
+.track{font-size:17px}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:start}
+@media (min-width:900px){.split>.prose:only-child{grid-column:2}}
+.side .callout{margin:0;border-left:6px solid var(--red);padding-left:24px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(28px,2.7vw,40px);line-height:1.16;max-width:20ch;text-wrap:balance}
+.side .stat-big{display:flex;align-items:center;margin:0;font-family:var(--display);font-size:clamp(64px,6.6vw,100px);line-height:1;padding-bottom:.2em;color:var(--ink);text-shadow:.04em .04em 0 var(--cyan)}
+.side .stat-big .o{display:inline-block;width:.8em;height:.8em;margin:0 -.01em;background:center/contain no-repeat;flex:none}
+.side .stat-cap{margin:0;font-family:var(--label);font-weight:700;font-size:18px;color:var(--ink-2)}
+.brief-dek{margin:0 0 8px;max-width:44ch;color:var(--ink-2)}
+.split--brief .facts{margin-top:clamp(28px,3vw,40px)}
+/* liner notes */
+.intro-grid{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(32px,5vw,80px);align-items:center}
+.intro-logo{width:100%;max-width:340px;justify-self:center;transform:rotate(-4deg);filter:drop-shadow(0 14px 22px rgba(10,18,64,.2))}
+.intro .stats{margin-top:clamp(56px,6vw,88px);gap:28px}
+.intro .stats li{padding-left:20px;border-left:2px solid var(--ink)}
+@media (min-width:900px){.intro .stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* tracklist band */
+.tl-band{--box:#E4002B;position:relative;display:block;padding:clamp(72px,9vw,128px) 0;background:var(--box);color:#fff}
+.tl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(32px,4vw,56px)}
+.tl-band h2{margin:0;color:#fff;font-size:clamp(56px,8vw,124px);line-height:.9;max-width:none;text-shadow:.035em .045em 0 var(--navy)}
+.tl{list-style:none;margin:0;padding:0;columns:2;column-gap:clamp(32px,5vw,88px)}
+.tl li{break-inside:avoid}
+.tl a{display:grid;grid-template-columns:6.4rem minmax(0,1fr);column-gap:14px;padding:18px 0 20px;border-top:2px solid rgba(255,255,255,.4);color:#fff;text-decoration:none}
+.tl .n{grid-row:span 2;font-family:var(--display);font-size:clamp(22px,1.9vw,28px);line-height:1.05;color:var(--yellow)}
+.tl .t{font-family:var(--label);font-weight:700;font-size:clamp(20px,1.8vw,26px);line-height:1.2}
+.tl small{margin-top:4px;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.4;color:rgba(255,255,255,.88)}
+.tl a:hover .t{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.tl a:focus-visible{outline-color:var(--yellow)}
+@media (max-width:899px){
+  .split{grid-template-columns:minmax(0,1fr)}
+  .intro-grid{grid-template-columns:minmax(0,1fr)}
+  .intro-logo{order:-1;max-width:200px;justify-self:start}
+  .tl{columns:1}
+  .side .callout{max-width:none}
+  .flyer{position:relative;display:block;height:auto;width:min(70vw,320px);margin:48px auto 0;right:auto;top:auto}
+  .lockup{height:min(31vh,31svh,86vw)}
+  .fl-logo{height:46px}
+  .split h2{font-size:clamp(36px,10vw,52px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .pc{transition:none}
+  .loaded .hero-title .chrome::after,.chrome:hover::after{animation:none}
+  .js .slap{opacity:1;transform:rotate(var(--rot,-2deg))}
+  .js .slap.in{animation:none}
+  .js .iris{clip-path:none}
+  .js .lockup{opacity:1}
+  .loaded .lockup{animation:none}
+  .ears{transition:none}
+}
+
+/* journey steps stand alone, no chain connector */
+.journey::before{content:none}
+@media (max-width:899px){.journey li{padding-left:0}}
+
+/* prize renders float without their backgrounds */
+.vault-grid{align-items:center}
+.case{position:relative;isolation:isolate}
+.case::before{content:"";position:absolute;left:50%;top:46%;width:86%;aspect-ratio:1.6;z-index:-1;transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(0,223,255,.26),rgba(201,0,255,.12) 55%,transparent 100%)}
+.case img{width:100%;height:auto;border-radius:0;box-shadow:none;filter:drop-shadow(0 0 1px rgba(255,255,255,.35)) drop-shadow(0 28px 32px rgba(0,0,0,.5))}
+.js .case img.iris{clip-path:none}
+.case figcaption{margin-top:18px}
+
+/* ================= round 4 ================= */
+:root{--hero-bg:#0B63E5}
+.hero .dek{color:#fff}
+.hero .hl.near{opacity:.9}
+.award{display:inline-flex;align-items:center;gap:10px;margin:18px 0 0;padding:11px 20px 10px;border-radius:999px;background:var(--yellow);color:var(--ink);
+  font-family:var(--label);font-weight:800;font-size:clamp(13px,1vw,15px);letter-spacing:.12em;text-transform:uppercase;line-height:1.2;box-shadow:0 10px 24px rgba(4,17,79,.28)}
+.award span{font-size:1.25em;letter-spacing:0}
+.award--big{font-size:clamp(14px,1.15vw,17px);padding:13px 22px 12px;margin-top:26px}
+/* necklace glint */
+.necklace .glint{position:absolute;inset:0;z-index:2;pointer-events:none;
+  -webkit-mask:var(--neck) center/100% 100% no-repeat;mask:var(--neck) center/100% 100% no-repeat;
+  background:linear-gradient(118deg,transparent 0 46%,rgba(255,255,255,.9) 50%,transparent 54% 100%) no-repeat;
+  background-size:300% 300%;mix-blend-mode:screen;animation:glint 4.6s cubic-bezier(.45,0,.25,1) infinite}
+@keyframes glint{0%{background-position:100% 100%}55%,100%{background-position:0% 0%}}
+.necklace .spark{font-size:clamp(70px,7vw,120px)}
+/* tickers keep moving */
+.tape-track{animation-duration:36s}
+.tape--ink .tape-track{animation-duration:44s}
+.tape:hover .tape-track{animation-play-state:paused}
+/* challenge: its own dark section */
+#challenge{background:#1B0F4E;color:#fff}
+#challenge .track{color:rgba(255,255,255,.86);border-color:rgba(255,255,255,.4)}
+#challenge h2,#challenge .prose p.lead,#challenge .side .callout{color:#fff}
+#challenge .side .callout{border-color:var(--yellow)}
+#challenge .split .prose>p.lead:first-child::first-letter{color:var(--yellow)}
+#insight{background:var(--milk)}
+.brief{background:#FFF6D6}
+.phone--creator{max-width:300px;margin-top:clamp(28px,3vw,40px)}
+.phone .gif{display:block;width:100%;height:auto;aspect-ratio:340/604;object-fit:cover;border-radius:clamp(18px,2vw,28px);border:6px solid var(--ink);background:var(--ink);box-shadow:8px 8px 0 var(--c,var(--yellow))}
+.phone--cuff .gif{aspect-ratio:440/548}
+.credits .rec dd b{color:#D4002A;font-weight:700}
+/* leap: Follow Your sits clear of the sticker */
+.leap-title .swap{margin-top:.42em}
+/* throughline */
+.through{background:var(--yellow);color:var(--ink);padding:clamp(80px,10vw,150px) 0}
+.through .track{color:var(--ink);border-color:var(--ink)}
+.through-q{margin:clamp(18px,2vw,28px) 0 0}
+.through-q p{margin:0;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(34px,5.2vw,80px);line-height:1.06;max-width:21ch;text-wrap:balance}
+/* kites & ice logo with depth */
+.kl{filter:drop-shadow(1px 1px 0 #6f8fae) drop-shadow(1px 1px 0 #5b7b9c) drop-shadow(2px 2px 0 #46668a) drop-shadow(2px 2px 0 #335274) drop-shadow(3px 3px 0 #213b5c) drop-shadow(0 22px 26px rgba(0,0,0,.6))}
+/* sticker + print */
+.maker{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px)}
+.sticker{margin:0}
+.sticker img{width:100%;max-width:560px;height:auto;transform:rotate(-3deg);filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)) drop-shadow(0 20px 26px rgba(0,0,0,.5))}
+.sticker figcaption{margin-top:16px;color:rgba(255,255,255,.75)}
+.maker-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:clamp(28px,5vw,72px);align-items:center;max-width:860px;margin:clamp(56px,7vw,96px) auto 0}
+.print{position:relative;margin:0;background:#fff;padding:12px 12px 14px;transform:rotate(2.4deg);box-shadow:0 26px 44px rgba(0,0,0,.5)}
+.print::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:28px;margin-left:-55px;background:rgba(255,231,0,.85);transform:rotate(-4deg)}
+.print img{display:block;width:100%;height:auto}
+.print figcaption{margin-top:10px;color:var(--ink);font-family:var(--label);font-style:normal;font-weight:700;font-size:15px}
+/* ================= press: card stack ================= */
+.press{position:relative;padding:0;color:#fff;background:var(--toucan)}
+.press-stage{position:relative;padding:clamp(88px,10vw,140px) 0;
+  background:radial-gradient(50% 45% at 10% 0%,rgba(0,223,255,.4),transparent 70%),radial-gradient(45% 50% at 100% 100%,rgba(201,0,255,.38),transparent 70%),var(--toucan)}
+.press-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center}
+.press-intro .track{color:#fff;border-color:rgba(255,255,255,.6)}
+.press-intro h2{margin:0;color:#fff;font-size:clamp(84px,11vw,170px);line-height:.82;max-width:none;letter-spacing:-.02em;text-shadow:.035em .045em 0 var(--navy)}
+.press-intro .press-dek{margin:18px 0 0;max-width:34ch;font-family:var(--serif);font-size:clamp(18px,1.5vw,22px);line-height:1.45;color:rgba(255,255,255,.93)}
+.press-meter{display:flex;align-items:center;gap:16px;margin-top:clamp(28px,3vw,40px);max-width:440px}
+.press-rail{position:relative;flex:1;height:24px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden}
+.press-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--chain) 0 50%/auto 100% repeat-x}
+.press-count{flex:none;font-family:var(--label);font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
+.deck{position:relative;width:100%;max-width:480px;justify-self:center}
+.press-list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.press .pc{position:relative;display:flex;flex-direction:column;gap:6px;min-height:0;padding:20px 24px 18px;background:var(--milk);color:var(--ink);border:0;border-top:10px solid var(--c,var(--yellow));border-radius:12px;box-shadow:0 18px 40px rgba(4,17,79,.32)}
+.press .pc::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--navy);opacity:var(--dim,0);pointer-events:none;z-index:2}
+.press .pk{font-family:var(--label);font-weight:700;font-size:14px;color:var(--ink-3);background:none;padding:0;transform:none;clip-path:none}
+.press .po{font-size:clamp(26px,2.2vw,34px);line-height:1}
+.press .pc .main{font-family:var(--serif);font-weight:500;font-size:clamp(19px,1.5vw,22px);line-height:1.3;margin-top:2px}
+.press .pd{margin-top:8px;font-family:var(--label);font-weight:700;font-size:13px;color:var(--ink-3)}
+.press .pthumb{aspect-ratio:16/7;margin-top:6px}
+.press .pc--award{background:var(--yellow)}
+.press .pc--award .pk,.press .pc--award .pd{color:var(--ink-2)}
+.press .pc--award .po::before{content:"★ ";}
+.press .pc:hover .main,.press .pc:focus-within .main{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.press--stack .press-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding:0;overflow:clip}
+.press--stack .press-layout{width:100%}
+.press--stack .press-list{display:block;position:relative;padding-top:64px}
+.press--stack .pc{position:absolute;left:0;right:0;will-change:transform,opacity;transform-origin:50% 100%;pointer-events:none}
+.press--stack .pc.is-top{pointer-events:auto}
+@media (max-width:899px){
+  .press-layout{grid-template-columns:minmax(0,1fr);gap:24px}
+  .press--stack .press-intro h2{font-size:clamp(64px,19vw,96px)}
+  .press--stack .press-intro .press-dek{display:none}
+  .press--stack .award--big{margin-top:14px}
+  .press--stack .press-meter{margin-top:16px}
+  .press--stack .press-list{padding-top:40px}
+  .maker,.maker-2{grid-template-columns:minmax(0,1fr)}
+  .maker-2 .phone{max-width:300px}
+  .sticker img{max-width:420px}
+  .award{letter-spacing:.08em}
+}
+
+/* ================= press: sideways strip ================= */
+.press{position:relative;color:#fff;background:var(--toucan)}
+.press .pp{position:relative}
+.press .pp-pad{width:100%;max-width:1240px;margin:0 auto;padding:clamp(80px,9vw,128px) var(--gutter)}
+.pp-intro{background:radial-gradient(50% 45% at 10% 0%,rgba(0,223,255,.4),transparent 70%),var(--toucan)}
+.pp-intro .track{color:#fff;border-color:rgba(255,255,255,.6)}
+.pp-intro h2{margin:0;color:#fff;font-size:clamp(96px,17vw,250px);line-height:.8;max-width:none;letter-spacing:-.02em;text-shadow:.035em .045em 0 var(--navy)}
+.pp-intro .press-dek{margin:20px 0 0;max-width:34ch;font-family:var(--serif);font-size:clamp(19px,1.6vw,23px);line-height:1.45;color:rgba(255,255,255,.93)}
+.pp-stack{background:linear-gradient(90deg,var(--toucan),#3A2BD8 60%,#4B1FB8)}
+.pp-stack-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center}
+.pp-side h3{margin:0;color:#fff;font-size:clamp(40px,4.6vw,72px);line-height:.95}
+.pp-side p{margin:16px 0 0;max-width:30ch;font-family:var(--serif);font-size:clamp(18px,1.4vw,21px);color:rgba(255,255,255,.9)}
+.pp-side .pp-count{margin-top:24px;font-family:var(--display);font-size:clamp(40px,4vw,64px);line-height:1;color:var(--yellow);font-variant-numeric:tabular-nums}
+.press .deck{position:relative;width:100%;max-width:480px;justify-self:center}
+.pp-award{background:var(--yellow);color:var(--ink)}
+.pp-award .track{color:var(--ink);border-color:var(--ink)}
+.aw-star{margin:10px 0 0;font-size:clamp(60px,7vw,110px);line-height:1;color:var(--red);text-shadow:.04em .05em 0 var(--navy)}
+.aw-title{margin:10px 0 0;color:var(--ink);font-size:clamp(44px,6.4vw,104px);line-height:.92;max-width:14ch}
+.aw-sub{margin:20px 0 0;font-family:var(--serif);font-size:clamp(19px,1.6vw,24px)}
+.aw-link{display:inline-block;margin-top:28px;padding:12px 20px;border-radius:999px;background:var(--ink);color:#fff;font-family:var(--label);font-weight:700;text-decoration:none}
+.aw-link:hover{background:var(--red)}
+/* without the script: panels simply stack */
+.press:not(.press--h) .press-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.press:not(.press--h) .deck{max-width:none}
+.press:not(.press--h) .pp-count,.press:not(.press--h) .press-meter{display:none}
+/* with the script: pinned stage, sideways strip */
+.press--h .press-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;padding:0;background:none}
+.press--h .press-strip{display:flex;height:100%;width:max-content;will-change:transform}
+.press--h .pp{flex:none;height:100%;display:flex;align-items:center;overflow:hidden}
+.press--h .pp-inner{flex:none;height:100%;display:flex;align-items:center;will-change:transform}
+.press--h .press-list{display:block;position:relative}
+.press--h .pc{position:absolute;left:0;right:0;will-change:transform,opacity;transform-origin:50% 100%;pointer-events:none}
+.press--h .pc.is-top{pointer-events:auto}
+.press-meter{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(20px,4vh,40px);z-index:5;max-width:1240px;margin:0 auto}
+.press-meter .press-rail{display:block;height:22px;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}
+.press-meter .press-fill{display:block;height:100%;width:0;background:var(--chain) 0 50%/auto 100% repeat-x}
+@media (max-width:899px){
+  .pp-stack-grid{grid-template-columns:minmax(0,1fr);gap:18px;align-content:center}
+  .press--h .pp-pad{padding-top:56px;padding-bottom:72px}
+  .pp-side h3{font-size:40px}
+  .pp-side p:not(.pp-count){display:none}
+  .pp-side .pp-count{margin-top:6px;font-size:34px}
+  .press .deck{max-width:min(88vw,440px)}
+}
+
+/* outro: its own dark block */
+.outro{background:var(--ink);color:#fff}
+.outro .track{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.4)}
+.outro h2,.outro .skills b{color:#fff}
+.outro .skills li{border-color:rgba(255,255,255,.35)}
+.outro .skills span{color:rgba(255,255,255,.82)}
+.outro .skills a{background:transparent;color:#fff;border-color:#fff}
+.outro .skills a:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+
+.leap .fig-wide{margin-top:clamp(56px,7vw,96px)}
+.leap .fig-wide img{box-shadow:0 30px 60px rgba(4,17,79,.45)}
+.leap figcaption{color:rgba(255,255,255,.85)}
+.leap figcaption b{color:#fff}
+
+/* challenge: tighter block */
+#challenge{padding:clamp(52px,5.5vw,84px) 0}
+#challenge .sec-head{margin-bottom:clamp(24px,2.6vw,40px)}
+#challenge .split{align-items:center}
+
+/* labels sit clean above headlines, no rule */
+.track,.sec-head .track,.leap .track,.press .track,.pp-intro .track,.pp-award .track,.vault .track,.through .track,#challenge .track,.outro .track{border-top:0;padding-top:0}
+
+/* insight: stat box, text, payoff video in one row */
+.insight-row{display:grid;grid-template-columns:minmax(0,4.2fr) minmax(0,5fr) minmax(0,2.8fr);gap:clamp(28px,4vw,60px);align-items:center}
+.stat-box{background:#fff;border:2px solid var(--ink);border-radius:24px;padding:clamp(22px,2.4vw,34px) clamp(20px,2.2vw,30px) clamp(20px,2.2vw,28px);box-shadow:10px 10px 0 var(--cyan)}
+.stat-box .stat-big{display:flex;align-items:center;margin:0;font-family:var(--display);font-size:clamp(48px,4.9vw,74px);line-height:1;padding-bottom:.14em;color:var(--ink);text-shadow:.04em .04em 0 var(--cyan)}
+.stat-box .stat-big .o{display:inline-block;width:.8em;height:.8em;margin:0 -.01em;background:center/contain no-repeat;flex:none}
+.stat-box .stat-cap{margin:6px 0 0;font-family:var(--label);font-weight:700;font-size:17px;line-height:1.3;color:var(--ink-2)}
+.insight-row .prose p.lead{margin:0}
+.insight-row .phone--creator{margin:0;max-width:280px;justify-self:end;width:100%}
+@media (max-width:899px){
+  .insight-row{grid-template-columns:minmax(0,1fr);gap:28px}
+  .stat-box{justify-self:start}
+  .insight-row .phone--creator{justify-self:end;max-width:240px}
+}
+
+/* every section fills the frame, content centered like the header */
+.sec,.tl-band,.vault{display:flex;flex-direction:column;justify-content:center}
+.sec>.wrap,.tl-band>.wrap,.vault>.wrap{width:100%}
+.vault{margin-top:0}
+
+/* activation: dek sits right under the headline, touchpoints in their own boxes */
+#activation .sec-head{margin-bottom:clamp(18px,2vw,28px)}
+.act-dek{max-width:62ch}
+.act-dek p.lead{margin:0 0 .6em}
+.act-dek p.lead::first-letter{float:none;font:inherit;color:inherit;padding:0}
+.act-dek p{margin:0}
+#activation .journey{margin-top:clamp(36px,4vw,56px);align-items:stretch}
+#activation .journey li{display:flex;flex-direction:column;padding:clamp(20px,2vw,28px);background:#fff;border:2px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--c)}
+#activation .journey .v{align-self:flex-start;box-shadow:none;background:var(--milk)}
+#activation .journey h4{margin:18px 0 6px}
+@media (max-width:899px){
+  #activation .journey{grid-template-columns:minmax(0,1fr);gap:22px}
+  #activation .journey li{padding:20px}
+}
+
+/* edge to edge: every section uses the hero's gutter, no centered column */
+:root{--max:none}
+.press .pp-pad{max-width:none}
+.press-meter{max-width:none}
+.leap .track{max-width:none;margin-left:0;margin-right:0;justify-content:center}
+/* measurement: the toucan fills the frame top to bottom */
+#proof{overflow:hidden}
+@media (min-width:900px){
+  #proof .flyer{top:clamp(16px,2vw,32px);bottom:clamp(16px,2vw,32px);right:var(--gutter);height:calc(100% - clamp(32px,4vw,64px));width:min(36vw,600px);object-fit:contain;object-position:50% 50%;max-height:none}
+  #proof .wrap{padding-right:calc(min(36vw,600px) + var(--gutter) * 2)}
+}
+
+/* coverage: lead story on its own, the rest stack beside it at one size */
+.pp-stack-grid{grid-template-columns:minmax(0,2.4fr) minmax(0,4fr) minmax(0,4fr)}
+.pp-side h3{font-size:clamp(36px,3.6vw,58px)}
+.lead-slot{position:relative}
+.press .pc-lead{position:relative;transform:rotate(-1.6deg);box-shadow:0 26px 50px rgba(4,17,79,.4)}
+.press .pc-lead .po{font-size:clamp(30px,2.6vw,40px)}
+.press .press-list .pc .pd{margin-top:auto}
+.pp-lead{display:none}
+.press--h.press--small .pp-lead{display:flex}
+.lead-slot-m .pc-lead{max-width:440px;margin:0 auto}
+@media (max-width:899px){
+  .pp-stack-grid{grid-template-columns:minmax(0,1fr)}
+  .lead-slot{display:none}
+}
+
+/* edge to edge: every section uses the hero's gutter, no centered column */
+:root{--max:none}
+.press .pp-pad{max-width:none}
+.press-meter{max-width:none}
+.leap .track{max-width:none;margin-left:0;margin-right:0;justify-content:center}
+/* measurement: the toucan fills the frame top to bottom */
+#proof{overflow:hidden}
+@media (min-width:900px){
+  #proof .flyer{top:clamp(16px,2vw,32px);bottom:clamp(16px,2vw,32px);right:var(--gutter);height:calc(100% - clamp(32px,4vw,64px));width:min(36vw,600px);object-fit:contain;object-position:50% 50%;max-height:none}
+  #proof .wrap{padding-right:calc(min(36vw,600px) + var(--gutter) * 2)}
+}
+
+/* liner notes: larger, centered logo */
+@media (min-width:900px){.intro-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center}}
+.intro-logo{width:100%;max-width:520px;justify-self:center;align-self:center;transform:none;margin:0 auto}
+@media (max-width:899px){.intro-grid{grid-template-columns:minmax(0,1fr)}.intro-logo{max-width:300px;justify-self:center}}
+
+/* tighter top and bottom on every block */
+.sec{padding:clamp(56px,6.5vw,104px) 0}
+.tl-band,.vault{padding:clamp(56px,6.5vw,104px) 0}
+.through{padding:clamp(64px,7vw,112px) 0}
+#challenge{padding:clamp(52px,5.5vw,84px) 0}
+.sec-head{margin-bottom:clamp(28px,3.4vw,52px)}
+.fence{padding:clamp(56px,6.5vw,96px) 0}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C12.9 8.6 15.4 11.1 24 12 15.4 12.9 12.9 15.4 12 24 11.1 15.4 8.6 12.9 0 12 8.6 11.1 11.1 8.6 12 0Z"/></symbol>
+</svg>
+
+<main>
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="stage">
+    <div class="hero-copy">
+      <h1 class="hero-title" id="hero-title">
+        <img class="lockup" src="assets/lockup.webp" alt="Follow Your Ears" width="1140" height="1310" decoding="async">
+        <span class="spark" style="left:-4%;top:-3%;--d:.3s" aria-hidden="true"><svg><use href="#spark"/></svg></span>
+        <span class="spark" style="left:88%;top:44%;--d:1.6s" aria-hidden="true"><svg><use href="#spark"/></svg></span>
+      </h1>
+    </div>
+
+    <div class="necklace" role="img" aria-label="The Kites and Ice necklace: clear puffed links strung with Froot Loops and a swirl pendant set in a studded black bezel">
+      <img src="assets/necklace.webp" alt="" width="761" height="913" decoding="async">
+      <span class="glint" aria-hidden="true"></span>
+      <span class="spark" style="left:30%;top:58%;--d:.8s"><svg><use href="#spark"/></svg></span>
+      <span class="spark" style="left:62%;top:66%;--d:1.5s"><svg><use href="#spark"/></svg></span>
+      <span class="spark" style="left:84%;top:79%;--d:2.4s"><svg><use href="#spark"/></svg></span>
+      <span class="spark" style="left:12%;top:20%;--d:3.1s"><svg><use href="#spark"/></svg></span>
+    </div>
+
+    <div class="hero-foot">
+      <div>
+        <p class="dek">Froot Loops had been name-dropped in 1,000+ hip-hop tracks for decades, a connection the brand owned but never activated. This is the strategy that turned a cultural footnote into a platform people could play.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tickers" aria-label="Shout-outs">
+  <p class="sr-only">Froot Loops has been name-dropped by artists including Flo Milli, Cardi B and Offset.</p>
+  <div class="tape tape--yellow" aria-hidden="true"><div class="tape-track" id="tape-names"></div></div>
+</div>
+
+<!-- I. Intro -->
+<section class="sec intro" id="intro" aria-labelledby="intro-h">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="0"></i>Track I: The Intro</p>
+      <h2 id="intro-h">Liner Notes</h2>
+    </header>
+    <div class="intro-grid">
+      <dl class="credits">
+        <div><dt>Role</dt><dd>Associate Strategy Director, from brand diagnosis to creative brief</dd></div>
+        <div><dt>Brand</dt><dd>WK Kellogg Co, Froot Loops</dd></div>
+        <div><dt>Challenge</dt><dd>Rebuild cultural relevance and affinity for a heritage brand</dd></div>
+        <div><dt>Idea</dt><dd>Follow Your Ears: activate the brand’s existing place in hip-hop</dd></div>
+        <div><dt>Scope</dt><dd>Platform and integrated activation across five cities</dd></div>
+      </dl>
+      <img class="intro-logo" src="assets/fl_logo.webp" alt="Kellogg’s Froot Loops" width="900" height="771" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- Tracklist -->
+<nav class="tl-band" id="tracklist" aria-labelledby="tracklist-h">
+  <div class="wrap">
+    <div class="tl-head">
+      <h2 id="tracklist-h">Tracklist</h2>
+    </div>
+    <ol class="tl">
+          <li><a href="#challenge"><span class="n">II</span><span class="t">The Challenge</span><small>Not lost awareness. Lost relevance.</small></a></li>
+          <li><a href="#insight"><span class="n">III</span><span class="t">The Insight</span><small>The culture was already talking.</small></a></li>
+          <li><a href="#brief"><span class="n">IV</span><span class="t">The Creative Brief</span><small>Strategy, translated into direction.</small></a></li>
+          <li><a href="#leap"><span class="n">V</span><span class="t">The Strategic Leap</span><small>From Follow Your Nose to Follow Your Ears.</small></a></li>
+          <li><a href="#activation"><span class="n">VI</span><span class="t">The Activation</span><small>One mechanic, four touchpoints.</small></a></li>
+          <li><a href="#proof"><span class="n">VII</span><span class="t">Proof and Reflection</span><small>The scorecard I’d hold it to.</small></a></li>
+          <li><a href="#outro"><span class="n">Outro</span><span class="t">What This Case Demonstrates</span><small>Each move, mapped to the skill it proves.</small></a></li>
+          <li><a href="#press"><span class="n">Bonus</span><span class="t">Press</span><small>The coverage, and the award.</small></a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- II. Challenge -->
+<section class="sec" id="challenge" aria-labelledby="challenge-h">
+<div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="1"></i>Track II: The Challenge</p>
+      <h2 id="challenge-h">Not Lost Awareness. Lost Relevance.</h2>
+    </header>
+  </div>
+  <div class="wrap split">
+    <div class="side">
+      <p class="callout">Not “nobody knows us,” but “we’ve stopped mattering to the people and culture that once claimed us.”</p>
+    </div>
+    <div class="prose">
+      <p class="lead">Froot Loops was never short on recognition. Everyone knows Toucan Sam. The erosion was emotional and cultural: a heritage cereal drifting from a brand people choose today toward a childhood memory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- III. Insight -->
+<section class="sec" id="insight" aria-labelledby="insight-h">
+<div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="2"></i>Track III: The Insight</p>
+      <h2 id="insight-h">The Culture Was Already Talking.</h2>
+    </header>
+  </div>
+  <div class="wrap insight-row">
+    <div class="stat-box">
+      <p class="stat-big" aria-label="1,000 plus">1,<i class="o" data-loop="0"></i><i class="o" data-loop="1"></i><i class="o" data-loop="4"></i>+</p>
+      <p class="stat-cap">hip-hop tracks name-drop Froot Loops</p>
+    </div>
+    <div class="prose">
+      <p class="lead">The brand didn’t need to buy its way into hip-hop. It was already there. Froot Loops shows up in more than 1,000 tracks, where the circular O doubles as slang for chain links, watches and jewelry.</p>
+    </div>
+    <figure class="phone phone--creator" style="--c:var(--yellow)">
+      <img class="gif" src="assets/gif_creator.gif" alt="Creator video: Froot Loops cereal under the caption Froot Loops has been name dropped in over 1,000 hip hop tracks, then a creator holding up a single loop" width="340" height="604" loading="lazy" decoding="async">
+      <figcaption>Creators carried the stat to TikTok.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- V. Strategic leap -->
+<section class="sec leap" id="leap" aria-labelledby="leap-h">
+  <div class="wrap">
+    <p class="track"><i data-loop="4"></i>Track V: The Strategic Leap</p>
+    <h2 class="leap-title" id="leap-h" aria-label="From Follow Your Nose to Follow Your Ears">
+      <span class="chrome" data-text="Follow Your" aria-hidden="true">Follow Your</span>
+      <span class="swap" aria-hidden="true">
+        <span class="chrome" data-text="Nose">Nose</span>
+        <span class="ears">Ears</span>
+      </span>
+    </h2>
+    <div class="leap-cols">
+      <div class="prose">
+        <p class="lead" style="margin-top:24px">The platform earns its power by bending an owned brand asset instead of inventing a new one. Toucan Sam’s 60-year catchphrase pivots one sense over, from nose to ears.</p>
+        <p>It signals the shift (we’re listening to culture now) while staying unmistakably Froot Loops.</p>
+        <ul class="points">
+          <li style="--bullet:var(--loop-1)"><b>Continuity buys permission.</b> A heritage brand changing lanes is credible only when it’s visibly still itself.</li>
+          <li style="--bullet:var(--loop-2)"><b>A new sense, a new role.</b> It reframes the brand from something you smell and eat to something you hear, which puts it inside the culture.</li>
+        </ul>
+      </div>
+      <div class="prose">
+        <h3 style="margin-top:24px">Participation Over Broadcast</h3>
+        <p style="margin-top:18px">Authenticity came from making people act, not watch. The risk with borrowed culture is looking like a tourist. The answer was a discovery mechanic, guess the lyric, that rewards fluency in the culture instead of lecturing about it.</p>
+        <ul class="points">
+          <li style="--bullet:var(--loop-0)"><b>One job everywhere.</b> Every touchpoint hides a clue, invites a guess and rewards the knowing.</li>
+          <li style="--bullet:var(--loop-3)"><b>Host, not claimant.</b> Participation lets the brand convene the culture instead of appropriating it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap fig-wide">
+    <figure>
+      <picture><source media="(max-width:700px)" srcset="assets/keyart_tall.webp"><img class="iris" id="keyart" src="assets/keyart.webp" alt="Toucan Sam in blue fur wearing a Kristopher Kites necklace of clear links and Froot Loops, with a swirl pendant, beside the Froot Loops and Kites and Ice logos" width="1800" height="1012" loading="lazy" decoding="async"></picture>
+      <figcaption><b>Fig. 2.</b> The literal proof of the insight: the Froot Loop reimagined as a gem-set pendant by Chicago jeweler Kristopher Kites.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- IV. Brief -->
+<section class="sec brief" id="brief" aria-labelledby="brief-h">
+<div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="4"></i>Track IV: The Creative Brief</p>
+      <h2 id="brief-h">Strategy, Translated Into Direction.</h2>
+    </header>
+  </div>
+  <div class="wrap split split--brief">
+    <div>
+      <p class="brief-dek">The compressed brief handed to creative, and the proof that the insight could move into executable direction.</p>
+      <div class="facts">
+        <h3>Brief Facts</h3>
+        <p class="serv"><b>Serving size</b> 1 lyric<br><b>Servings per campaign</b> 5 cities</p>
+        <dl>
+          <div class="row"><dt>Single-minded proposition</dt><dd>Froot Loops has always been in the music. Now you can follow it.</dd></div>
+          <div class="row"><dt>Role for the audience</dt><dd>Decode the lyric, prove you know the culture, win the artifact.</dd></div>
+          <div class="row"><dt>Guardrails</dt><dd>Celebrate the culture’s craft; never caption or explain it. Local first, always.</dd></div>
+          <div class="row"><dt>Success looks like</dt><dd>Fans treat it as a game they want to win, not an ad they were served.</dd></div>
+        </dl>
+        <p class="ft">Ingredients: one owned catchphrase, five cities, one jeweler, zero explaining.</p>
+      </div>
+    </div>
+    <div class="brief-fig">
+      <figure class="phone phone--cuff" style="--c:var(--cyan)">
+        <img class="gif" src="assets/gif_cuff.gif" alt="the Kites and Ice watch on Toucan Sam’s blue-feathered wrist" width="440" height="548" loading="lazy" decoding="async">
+        <figcaption><b>Fig. 1.</b> The Kites &amp; Ice collectibles make the strategy wearable: the prize is the insight you can put on.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Throughline -->
+<section class="sec through" id="throughline" aria-label="The strategic throughline">
+  <div class="wrap">
+    <p class="track"><i data-loop="0"></i>The Strategic Throughline</p>
+    <blockquote class="through-q">
+      <p>The connection was already real. The job was to turn listening into participation, without ever sounding like a brand that just discovered rap.</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- VI. Activation -->
+<section class="sec" id="activation" aria-labelledby="act-h">
+<div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="3"></i>Track VI: The Activation</p>
+      <h2 id="act-h">One Mechanic, Four Touchpoints.</h2>
+    </header>
+  </div>
+  <div class="wrap">
+    <div class="prose act-dek">
+      <p class="lead">Each channel does a distinct job but runs the same play. Integrated means a shared purpose, not a logo on everything.</p>
+      <p>Followed in order, the touchpoints form one path: find the clue on the street, scan into the hunt, guess the lyric, win the piece.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <ol class="journey">
+      <li style="--c:var(--red)"><span class="v">Find</span><h4>Street Art Drops</h4><p>Hide the clue in the culture’s own medium. Local, physical, credible.</p></li>
+      <li style="--c:var(--yellow)"><span class="v">Scan</span><h4>QR Codes on Posters</h4><p>Bridge physical discovery to the digital hunt.</p></li>
+      <li style="--c:var(--cyan)"><span class="v">Guess</span><h4>Instagram and TikTok Sweepstakes</h4><p>Scale participation and reward fluency with exclusives.</p></li>
+      <li style="--c:var(--purple)"><span class="v">Win</span><h4>Kristopher Kites Jewelry</h4><p>Make the insight tangible. The prize is the metaphor.</p></li>
+    </ol>
+  </div>
+
+  <div class="tickers tickers--crew" aria-label="Poster drops">
+    <p class="sr-only">Poster drops by Andre Trenier, Brittney Price, Sentrock, Gonzo247 and Frank Morrison, with jewelry by Kristopher Kites.</p>
+    <div class="tape tape--ink" aria-hidden="true"><div class="tape-track" id="tape-crew"></div></div>
+  </div>
+
+  <div class="fence">
+    <div class="wrap fence-head">
+      <div class="prose paper">
+        <p class="track"><i data-loop="1"></i>Casting the Clue</p>
+        <h3>Credibility Through Collaborators</h3>
+        <p style="margin-top:22px">Who makes the work is part of the message. Commissioning recognized local artists, plus jeweler Kristopher Kites, means the culture speaks for the brand instead of the brand speaking for the culture.</p>
+        <ul class="points">
+          <li style="--bullet:var(--loop-2)"><b>Hyperlocal placement.</b> Spots like the University Ave and MLK Blvd corridor in NYC signal respect for specific neighborhoods, not a generic “urban” gesture.</li>
+        </ul>
+      </div>
+      <blockquote class="quote">
+        <p>“The brush and pen are my mic. Hip-Hop raised me, and Froot Loops fed me.”</p>
+        <footer>Brittney Price, Los Angeles poster artist</footer>
+      </blockquote>
+      <figure class="phone" style="--c:var(--red)">
+        <img class="gif" src="assets/gif_street.gif" alt="the Chicago posters wheatpasted on a street wall" width="340" height="604" loading="lazy" decoding="async">
+        <figcaption>Chicago, in the wild: the Sentrock drop going up on the street.</figcaption>
+      </figure>
+    </div>
+    <ul class="posters">
+      <li class="poster" style="--r:-2.5deg;--y:0px"><div class="pin iris"><img src="assets/poster_nyc.webp" alt="New York poster by Andre Trenier: Toucan Sam in a red cap over a skyline, a bowl of Froot Loops and graffiti lettering" width="599" height="910" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--red)"><b>New York City</b><span>Andre Trenier, @andre.trenier</span></p></li>
+      <li class="poster" style="--r:1.8deg;--y:46px"><div class="pin iris"><img src="assets/poster_la.webp" alt="Los Angeles poster by Brittney Price: a woman in a flowing red dress walking a golden road past a Toucan Sams street sign" width="600" height="898" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--yellow);--rot:2deg"><b>Los Angeles</b><span>Brittney Price, @brittneysprice</span></p></li>
+      <li class="poster" style="--r:-1.2deg;--y:12px"><div class="pin iris"><img src="assets/poster_chi.webp" alt="Chicago poster by Sentrock: a masked character with a Froot Loop chain in front of the skyline, the Loop and a red lowrider" width="599" height="763" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--green)"><b>Chicago</b><span>Joseph Anthony Perez, @sentrock</span></p></li>
+      <li class="poster" style="--r:2.4deg;--y:58px"><div class="pin iris"><img src="assets/poster_hou.webp" alt="Houston poster by Gonzo247: a DJ figure over a stadium and Highway 288, with H-Town graffiti lettering and floating Froot Loops" width="599" height="904" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--cyan);--rot:-1deg"><b>Houston</b><span>Mario Figueroa Jr., @gonzo247</span></p></li>
+      <li class="poster" style="--r:-2deg;--y:20px"><div class="pin iris"><img src="assets/poster_atl.webp" alt="Atlanta poster by Frank Morrison: a girl in a purple tutu and red sneakers before a mint graffiti wall naming Bankhead, Auburn Ave and Ponce de Leon" width="600" height="805" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--purple);--rot:1.5deg"><b>Atlanta</b><span>Frank Morrison, @frankmorrison</span></p></li>
+    </ul>
+  </div>
+
+  <div class="vault" id="prize">
+    <div class="wrap">
+      <div class="vault-head">
+        <div>
+          <p class="track"><i data-loop="3"></i>Win: The Prize</p>
+          <h3>Wearable Proof of the Insight</h3>
+          <p class="vault-dek">Kristopher Kites turned the shout-outs into two one-of-a-kind grand prizes, a necklace and pendant or a watch, set with Toucan Sam-inspired gemstones. Another 100 Kites-designed accessories went out to fans.</p>
+        </div>
+        <img class="kl slap" style="--rot:-4deg" src="assets/kites_logo.webp" alt="Kites &amp; Ice" width="720" height="426" loading="lazy" decoding="async">
+      </div>
+      <div class="vault-grid">
+        <figure class="case">
+          <img class="iris" src="assets/neck_cut.webp" alt="The Kites and Ice necklace: clear puffed links strung with Froot Loops and a swirl pendant in a studded black bezel" width="1100" height="607" loading="lazy" decoding="async">
+          <figcaption><b>The necklace.</b> Clear puffed links strung with Froot Loops, and a swirl pendant in a studded black bezel.</figcaption>
+        </figure>
+        <figure class="case">
+          <img class="iris" src="assets/cuff_cut.webp" alt="The Kites and Ice watch: a jeweled cuff of red, green and blue stones with a purple Froot Loop face around a blue teardrop stone" width="881" height="679" loading="lazy" decoding="async">
+          <figcaption><b>The watch.</b> A jeweled cuff with a Froot Loop face set around a blue teardrop stone.</figcaption>
+        </figure>
+      </div>
+      <div class="maker">
+        <figure class="sticker">
+          <img src="assets/kites_sticker.webp" alt="Kristopher Kites in his studio, smiling in round glasses and a green jacket, wearing a chain with a clear diamond pendant" width="666" height="660" loading="lazy" decoding="async">
+          <figcaption>Kristopher Kites, Chicago jeweler</figcaption>
+        </figure>
+        <blockquote class="kites">
+          <p>“Designing for this campaign, I was inspired by Froot Loops’ playful world, my own childhood nostalgia and the rich legacy of hip-hop.”</p>
+          <footer>Kristopher Kites</footer>
+        </blockquote>
+      </div>
+      <div class="maker-2">
+        <figure class="print">
+          <img src="assets/kites_flash.webp" alt="Flash photo of a man in round amber glasses and a grill holding up a clear chain and pendant" width="760" height="950" loading="lazy" decoding="async">
+          <figcaption>Clear ice, up close.</figcaption>
+        </figure>
+        <figure class="phone" style="--c:var(--purple)">
+          <img class="gif" src="assets/gif_process.gif" alt="Froot Loops boxes, design sheets and a printed prototype of the cuff" width="340" height="604" loading="lazy" decoding="async">
+          <figcaption>From the process video: design sheets, a printed prototype of the cuff and a bowl of the source material.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VII. Proof -->
+<section class="sec" id="proof" aria-labelledby="proof-h">
+  <i class="giant" data-loop="1" aria-hidden="true"></i>
+<div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="0"></i>Track VII: Proof and Reflection</p>
+      <h2 id="proof-h">How I’d Measure It.</h2>
+    </header>
+  </div>
+  <div class="wrap split">
+    <div class="prose">
+      <p class="lead">The scorecard ties back to the diagnosis: relevance and affinity, not just reach.</p>
+      <p>Performance results aren’t public, so this is the standard I’d hold the work to.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="scores">
+      <li><i class="ring" data-loop="0"></i><h3>Relevance</h3><p>Earned mentions and organic creator pickup within hip-hop communities.</p></li>
+      <li><i class="ring" data-loop="3"></i><h3>Affinity</h3><p>Participation depth (guesses, scans, follows) over impressions.</p></li>
+      <li><i class="ring" data-loop="4"></i><h3>Cultural Credibility</h3><p>Whether artists and fans amplified it unprompted. The real test of “authentic.”</p></li>
+    </ul>
+    <p class="note"><b>On the numbers.</b> Public figures on this page come from WK Kellogg Co’s November 10, 2025 release. The 1,000+ count reflects an audit of Lyrics.com that found 1,554 brand mentions across both the “Fruit Loops” and “Froot Loops” spellings, de-duplicated by song. The scorecard above is a framework, not reported results.</p>
+  </div>
+  <img class="flyer" src="assets/flyer_crop.webp" alt="" width="488" height="1114" loading="lazy" decoding="async">
+</section>
+
+<!-- Outro -->
+<section class="sec outro" id="outro" aria-labelledby="outro-h">
+  <div class="wrap">
+    <p class="track"><i data-loop="2"></i>Outro</p>
+    <h2 id="outro-h">What This Case Demonstrates</h2>
+    <ul class="skills">
+      <li><b>Brand Diagnosis</b><span>Reframing the problem as a loss of relevance and affinity</span><a href="#challenge">Track II</a></li>
+      <li><b>Cultural Analysis</b><span>Reading the 1,000-track connection and what it implies</span><a href="#insight">Track III</a></li>
+      <li><b>Creative Briefing</b><span>Insight translated into executable direction</span><a href="#brief">Track IV</a></li>
+      <li><b>Strategic Choice</b><span>Deciding how to activate without cheapening it</span><a href="#leap">Track V</a></li>
+      <li><b>Platform Development</b><span>Follow Your Ears, bent from Follow Your Nose</span><a href="#leap">Track V</a></li>
+      <li><b>Integrated Experience</b><span>One mechanic across four touchpoints</span><a href="#activation">Track VI</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Bonus: Press -->
+<section class="press" id="press" aria-labelledby="press-h">
+  <div class="press-stage">
+    <div class="press-strip">
+      <div class="pp pp-intro">
+        <div class="pp-pad">
+          <p class="track"><i data-loop="1"></i>Bonus Track</p>
+          <h2 id="press-h">Press</h2>
+          <p class="press-dek">Coverage across the ad trades, culture desks and design press, from Chicago to Australia and Spain.</p>
+        </div>
+      </div>
+      <div class="pp pp-lead"><div class="pp-pad lead-slot-m"></div></div>
+      <div class="pp pp-stack" data-screens="4">
+        <div class="pp-inner">
+          <div class="pp-pad pp-stack-grid">
+            <div class="pp-side">
+              <h3>The Coverage</h3>
+              <p>The brand release, then 10 stories that picked it up.</p>
+              <p class="pp-count" aria-hidden="true">02 / 11</p>
+            </div>
+            <div class="lead-slot">
+            <article class="pc pc-lead" style="--c:var(--yellow)">
+              <span class="pk">Brand release</span>
+              <b class="po">WK Kellogg Co</b>
+              <img class="pthumb" data-from="#keyart" alt="" width="1800" height="1012" loading="lazy" decoding="async">
+              <a class="main" href="https://newsroom.wkkellogg.com/2025-11-10-Cereal-in-Culture-Froot-Loops-Taps-Jeweler-Kristopher-Kites-to-Design-One-of-a-Kind-Wearable-Art-Inspired-by-Iconic-Hip-Hop-Lyrics" target="_blank" rel="noopener">Cereal in Culture: Froot Loops Taps Jeweler Kristopher Kites to Design One-of-a-Kind Wearable Art Inspired by Iconic Hip-Hop Lyrics</a>
+              <span class="pd">November 10, 2025, newsroom.wkkellogg.com</span>
+            </article>
+            </div>
+            <div class="deck">
+              <ol class="press-list">
+      <li class="pc" style="--c:var(--red)">
+        <span class="pk">Ad trade</span>
+        <b class="po">Campaign</b>
+        <a class="main" href="https://www.campaignlive.com/article/froot-loops-links-breakfast-beats-hip-hop-inspired-campaign/1939005" target="_blank" rel="noopener">Froot Loops links breakfast to beats with hip-hop-inspired campaign</a>
+        <span class="pd">campaignlive.com, also in <a href="https://www.prweek.com/article/1939004/froot-loops-links-breakfast-beats-hip-hop-inspired-campaign" target="_blank" rel="noopener">PRWeek</a></span>
+      </li>
+      <li class="pc" style="--c:var(--cyan)">
+        <span class="pk">Ad trade</span>
+        <b class="po">The Drum</b>
+        <a class="main" href="https://www.thedrum.com/news/froot-loops-follows-its-ears-into-hip-hop-culture" target="_blank" rel="noopener">Froot Loops is fully embracing its place in hip-hop culture</a>
+        <span class="pd">thedrum.com</span>
+      </li>
+      <li class="pc" style="--c:var(--green)">
+        <span class="pk">Marketing, Australia</span>
+        <b class="po">The Stable</b>
+        <a class="main" href="https://www.thestable.com.au/publicis-kelloggs-froot-loops-makes-its-hip-hop-connection-useful-to-reunite-with-gen-z/" target="_blank" rel="noopener">Publicis: Kellogg’s Froot Loops makes its hip-hop connection useful to reunite with Gen Z</a>
+        <span class="pd">thestable.com.au</span>
+      </li>
+      <li class="pc" style="--c:var(--purple)">
+        <span class="pk">Chicago trade</span>
+        <b class="po">Reel Chicago</b>
+        <a class="main" href="https://reelchicago.com/article/froot-loops-x-chicago-jeweler-turn-hip-hop-lyrics-into-wearable-art/" target="_blank" rel="noopener">Froot Loops x Chicago Jeweler turn Hip-Hop lyrics into wearable art</a>
+        <span class="pd">reelchicago.com</span>
+      </li>
+      <li class="pc" style="--c:var(--red)">
+        <span class="pk">Agency news</span>
+        <b class="po">DesignRush</b>
+        <a class="main" href="https://news.designrush.com/froot-loops-follow-your-ears-hip-hop-kristopher-kites-campaign" target="_blank" rel="noopener">Froot Loops Turns Hip-Hop Name-Drops Into Jewelry With Kristopher Kites</a>
+        <span class="pd">designrush.com</span>
+      </li>
+      <li class="pc" style="--c:var(--yellow)">
+        <span class="pk">Trends</span>
+        <b class="po">Trend Hunter</b>
+        <a class="main" href="https://www.trendhunter.com/trends/follow-your-ears" target="_blank" rel="noopener">Artistic Hip-Hop-Inspired Cereal Campaigns: Froot Loops Launches “Follow Your Ears”</a>
+        <span class="pd">trendhunter.com</span>
+      </li>
+      <li class="pc" style="--c:var(--cyan)">
+        <span class="pk">Marketing</span>
+        <b class="po">ContentGrip</b>
+        <a class="main" href="https://www.contentgrip.com/froot-loops-hip-hop-campaign/" target="_blank" rel="noopener">Froot Loops taps hip-hop nostalgia with a jewelry collab</a>
+        <span class="pd">contentgrip.com</span>
+      </li>
+      <li class="pc" style="--c:var(--green)">
+        <span class="pk">Entertainment</span>
+        <b class="po">The Blast</b>
+        <a class="main" href="https://theblast.com/752625/tiktoks-music-detective-jarred-jermaine-teams-up-with-froot-loops-to-celebrate-1000-hip-hop-shoutouts/" target="_blank" rel="noopener">TikTok’s “Music Detective” Jarred Jermaine Teams Up With Froot Loops</a>
+        <span class="pd">theblast.com</span>
+      </li>
+      <li class="pc" style="--c:var(--purple)">
+        <span class="pk">Entertainment</span>
+        <b class="po">Yahoo Entertainment</b>
+        <a class="main" href="https://www.yahoo.com/entertainment/music/articles/cereal-drip-kristopher-kites-turns-150054046.html" target="_blank" rel="noopener">Cereal Drip: Kristopher Kites Turns Breakfast Nostalgia Into Hip-Hop Bling</a>
+        <span class="pd">yahoo.com</span>
+      </li>
+      <li class="pc" style="--c:var(--red)">
+        <span class="pk">Marketing, Spain</span>
+        <b class="po">Reason Why</b>
+        <a class="main" href="https://www.reasonwhy.es/actualidad/cereales-froot-loops-vinculo-hip-hop-coleccion-joyas" target="_blank" rel="noopener">Los cereales Froot Loops destacan su vínculo con el hip-hop a través de una colección de joyas</a>
+        <span class="pd">reasonwhy.es, in Spanish</span>
+      </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pp pp-award">
+        <div class="pp-pad">
+          <p class="track"><i data-loop="0"></i>The Shorty Awards</p>
+          <p class="aw-star" aria-hidden="true">★</p>
+          <h3 class="aw-title">Winner, Physical and Digital Convergence</h3>
+          <p class="aw-sub">Finalist, Community Engagement. 18th Annual Shorty Awards.</p>
+          <a class="aw-link" href="https://shortyawards.com/18th/froot-loops-fye" target="_blank" rel="noopener">See the entry on shortyawards.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="press-meter" aria-hidden="true"><span class="press-rail"><span class="press-fill"></span></span></div>
+  </div>
+</section>
+</main>
+
+<script>
+(() => {
+  /* Shout-out ticker. These names are confirmed in public campaign coverage.
+     Add more name-droppers from the lyric audit and they flow into the tape. */
+  const NAME_DROPS = ['Flo Milli', 'Cardi B', 'Offset'];
+  const CREW = ['Andre Trenier, NYC', 'Brittney Price, LA', 'Sentrock, Chicago', 'Gonzo247, Houston', 'Frank Morrison, Atlanta', 'Ice by Kristopher Kites'];
+  const COLORS = ['#ff0000', '#ffe700', '#7cff00', '#c900ff', '#00dfff'];
+
+  const root = document.documentElement;
+  const mq = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduce = mq.matches;
+  const TAU = Math.PI * 2;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const rng = a => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const cv = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
+
+  /* ---------- sprites: cereal loops, ice links, chain strips */
+  function makeLoop(color, seed, S = 256) {
+    const c = cv(S, S), x = c.getContext('2d'), rand = rng(seed);
+    const cx = S / 2, cy = S / 2, R = S * .41, r = S * .15;
+    const ph = [rand() * TAU, rand() * TAU, rand() * TAU];
+    const rad = (b, t, amp) => b * (1 + amp * (.6 * Math.sin(3 * t + ph[0]) + .3 * Math.sin(7 * t + ph[1]) + .15 * Math.sin(13 * t + ph[2])));
+    const path = () => {
+      x.beginPath();
+      for (let i = 0; i <= 140; i++) { const t = i / 140 * TAU, k = rad(R, t, .028); i ? x.lineTo(cx + Math.cos(t) * k, cy + Math.sin(t) * k) : x.moveTo(cx + Math.cos(t) * k, cy + Math.sin(t) * k); }
+      x.closePath();
+      for (let i = 0; i <= 90; i++) { const t = -i / 90 * TAU, k = rad(r, t, .07); i ? x.lineTo(cx + Math.cos(t) * k, cy + Math.sin(t) * k) : x.moveTo(cx + Math.cos(t) * k, cy + Math.sin(t) * k); }
+      x.closePath();
+    };
+    x.save(); x.shadowColor = 'rgba(10,18,64,.3)'; x.shadowBlur = S * .05; x.shadowOffsetY = S * .028;
+    path(); x.fillStyle = color; x.fill('evenodd'); x.restore();
+    x.save(); path(); x.clip('evenodd');
+    let g = x.createRadialGradient(cx, cy, r, cx, cy, R);
+    g.addColorStop(0, 'rgba(0,0,0,.34)'); g.addColorStop(.32, 'rgba(255,255,255,.2)'); g.addColorStop(.62, 'rgba(255,255,255,.04)'); g.addColorStop(1, 'rgba(0,0,0,.3)');
+    x.fillStyle = g; x.fillRect(0, 0, S, S);
+    g = x.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
+    g.addColorStop(0, 'rgba(255,255,255,.38)'); g.addColorStop(.5, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(0,0,0,.22)');
+    x.fillStyle = g; x.fillRect(0, 0, S, S);
+    const sc = S / 256;
+    for (let i = 0; i < 1500; i++) {
+      const t = rand() * TAU, d = Math.sqrt(lerp(r * r, R * R, rand()));
+      x.fillStyle = rand() < .5 ? `rgba(255,255,255,${.06 + rand() * .22})` : `rgba(0,0,0,${.05 + rand() * .14})`;
+      x.beginPath(); x.arc(cx + Math.cos(t) * d, cy + Math.sin(t) * d, (.6 + rand() * 1.9) * sc, 0, TAU); x.fill();
+    }
+    for (let i = 0; i < 30; i++) {
+      const t = rand() * TAU, d = Math.sqrt(lerp(r * r, R * R, rand()));
+      x.fillStyle = `rgba(255,255,255,${.6 + rand() * .4})`;
+      x.beginPath(); x.arc(cx + Math.cos(t) * d, cy + Math.sin(t) * d, (.6 + rand()) * sc, 0, TAU); x.fill();
+    }
+    x.restore();
+    return c;
+  }
+  function makeIce(W = 256, H = 184) {
+    const c = cv(W, H), x = c.getContext('2d');
+    const cx = W / 2, cy = H / 2, RX = W * .43, RY = H * .38, rx = RX * .56, ry = RY * .46;
+    const ring = () => { x.beginPath(); x.ellipse(cx, cy, RX, RY, 0, 0, TAU); x.ellipse(cx, cy, rx, ry, 0, 0, TAU, true); };
+    const bar = () => { x.beginPath(); x.roundRect ? x.roundRect(cx - W * .035, cy - ry - 2, W * .07, ry * 2 + 4, W * .03) : x.rect(cx - W * .035, cy - ry - 2, W * .07, ry * 2 + 4); };
+    const glass = () => { const g = x.createLinearGradient(0, cy - RY, 0, cy + RY); g.addColorStop(0, 'rgba(250,252,255,.95)'); g.addColorStop(.42, 'rgba(196,214,246,.62)'); g.addColorStop(.6, 'rgba(150,178,232,.55)'); g.addColorStop(1, 'rgba(238,245,255,.9)'); return g; };
+    x.save(); x.shadowColor = 'rgba(10,18,64,.28)'; x.shadowBlur = W * .05; x.shadowOffsetY = W * .024;
+    ring(); x.fillStyle = glass(); x.fill('evenodd'); bar(); x.fill(); x.restore();
+    x.save(); ring(); x.clip('evenodd');
+    let g = x.createLinearGradient(cx - RX, 0, cx + RX, 0);
+    g.addColorStop(0, 'rgba(0,223,255,.28)'); g.addColorStop(.35, 'rgba(201,0,255,.16)'); g.addColorStop(.65, 'rgba(255,231,0,.16)'); g.addColorStop(1, 'rgba(0,223,255,.26)');
+    x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.lineWidth = W * .02; x.strokeStyle = 'rgba(255,255,255,.75)';
+    x.beginPath(); x.ellipse(cx, cy, (RX + rx) / 2, (RY + ry) / 2, 0, 0, TAU); x.stroke();
+    x.restore();
+    x.lineWidth = Math.max(1.5, W * .008); x.strokeStyle = 'rgba(32,52,112,.55)';
+    x.beginPath(); x.ellipse(cx, cy, RX, RY, 0, 0, TAU); x.stroke();
+    x.beginPath(); x.ellipse(cx, cy, rx, ry, 0, 0, TAU); x.stroke();
+    bar(); x.stroke();
+    x.lineCap = 'round'; x.strokeStyle = 'rgba(255,255,255,.98)'; x.lineWidth = W * .028;
+    x.beginPath(); x.ellipse(cx, cy, RX * .9, RY * .82, 0, Math.PI * 1.08, Math.PI * 1.45); x.stroke();
+    x.lineWidth = W * .018;
+    x.beginPath(); x.ellipse(cx, cy, rx * 1.18, ry * 1.25, 0, Math.PI * .1, Math.PI * .4); x.stroke();
+    const dot = (px, py, rr) => { const gg = x.createRadialGradient(px, py, 0, px, py, rr); gg.addColorStop(0, 'rgba(255,255,255,1)'); gg.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = gg; x.beginPath(); x.arc(px, py, rr, 0, TAU); x.fill(); };
+    dot(cx - RX * .55, cy - RY * .5, W * .06); dot(cx + RX * .62, cy + RY * .35, W * .035);
+    return c;
+  }
+  function makeChain(loops, ice, vertical) {
+    const h = 120, ld = h * .9, iw = h * 1.18, ih = h * .82, step = (ld / 2 + iw / 2) * .86, n = 10;
+    const len = Math.round(step * n);
+    const c = vertical ? cv(h, len) : cv(len, h), x = c.getContext('2d');
+    const draw = (pos, i) => {
+      const isIce = i % 2 === 1;
+      x.save();
+      if (vertical) { x.translate(h / 2, pos); x.rotate(Math.PI / 2); } else { x.translate(pos, h / 2); }
+      if (isIce) x.drawImage(ice, -iw / 2, -ih / 2, iw, ih);
+      else { x.rotate(i * .9); x.drawImage(loops[(i / 2) % 5], -ld / 2, -ld / 2, ld, ld); }
+      x.restore();
+    };
+    for (const pass of [1, 0]) for (let i = 0; i < n; i++) { if (i % 2 !== pass) continue; const p = step * i + step / 2; draw(p - len, i); draw(p, i); draw(p + len, i); }
+    return c;
+  }
+
+  const loopCanvases = COLORS.map((col, i) => makeLoop(col, 11 + i * 101));
+  const iceCanvas = makeIce();
+  const setVar = (name, canvas) => root.style.setProperty(name, `url(${canvas.toDataURL('image/png')})`);
+  loopCanvases.forEach((c, i) => setVar('--loop-' + i, c));
+  setVar('--ice', iceCanvas);
+  setVar('--chain', makeChain(loopCanvases, iceCanvas, false));
+  setVar('--chain-v', makeChain(loopCanvases, iceCanvas, true));
+  document.querySelectorAll('[data-loop]').forEach(el => { el.style.backgroundImage = `var(--loop-${el.dataset.loop})`; });
+
+  /* editorial edition: real cereal loops from the brand artwork, recolored to the palette */
+  const REAL = ['assets/rloop0.webp', 'assets/rloop1.webp', 'assets/rloop2.webp', 'assets/rloop3.webp', 'assets/rloop4.webp'];
+  REAL.forEach((u, i) => root.style.setProperty('--loop-' + i, `url(${u})`));
+  Promise.all(REAL.map(u => new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = u; }))).then(ims => {
+    if (ims.some(x => !x)) return;
+    setVar('--chain', makeChain(ims, iceCanvas, false));
+    setVar('--chain-v', makeChain(ims, iceCanvas, true));
+  });
+
+  /* ---------- tickers */
+  function fillTape(id, label, items) {
+    const track = document.getElementById(id);
+    const group = () => {
+      const g = document.createElement('div'); g.className = 'tape-group';
+      let k = 0;
+      for (let rep = 0; rep < 4; rep++) {
+        [label, ...items].forEach((txt, i) => {
+          const s = document.createElement('span'); s.className = 'tape-item' + (i === 0 ? ' is-label' : ''); s.textContent = txt; g.appendChild(s);
+          const d = document.createElement('i'); d.className = 'tape-dot'; d.style.backgroundImage = `var(--loop-${k++ % 5})`; g.appendChild(d);
+        });
+      }
+      return g;
+    };
+    track.append(group(), group());
+  }
+  fillTape('tape-names', 'Name-dropped by', [...NAME_DROPS, 'and 1,000+ more tracks']);
+  fillTape('tape-crew', 'Poster drops by', CREW);
+
+  /* ---------- necklace placement: the real piece, hung from a point above it */
+  const hero = document.querySelector('.hero'), stage = document.querySelector('.stage');
+  const necklace = document.querySelector('.necklace'), neckImg = necklace.querySelector('img');
+  necklace.style.setProperty('--neck', `url("${neckImg.getAttribute('src')}")`);
+  const lockup = document.querySelector('.lockup'), heroFoot = document.querySelector('.hero-foot');
+  let G = { W: 1, H: 1, wide: true };
+  function buildNecklace() {
+    const W = stage.clientWidth, H = stage.clientHeight, wide = W >= 900;
+    const ratio = (neckImg.naturalWidth && neckImg.naturalHeight) ? neckImg.naturalWidth / neckImg.naturalHeight : 761 / 913;
+    let h, top, cx;
+    if (wide) { h = Math.min(H * .8, W * .46 / ratio); top = H * .1; cx = W * .71; }
+    else {
+      /* phones: hang it over the empty red below the wordmark, clear of the intro text */
+      const sr = stage.getBoundingClientRect(), lb = lockup.getBoundingClientRect(), fb = heroFoot.getBoundingClientRect();
+      top = lb.top - sr.top + lb.height * .56;
+      h = clamp(Math.min(H * .36, fb.top - sr.top - 14 - top, W * .62 / ratio), 140, H * .4);
+      cx = W * .75;
+    }
+    const w = h * ratio;
+    Object.assign(necklace.style, { width: w + 'px', left: (cx - w / 2) + 'px', top: top + 'px' });
+    necklace.style.transformOrigin = `50% ${-h * .3}px`;
+    G = { W, H, wide, h };
+  }
+
+  /* ---------- hero loops at three depths */
+  const heroLoops = [];
+  function buildHeroLoops() {
+    stage.querySelectorAll('.hl').forEach(n => n.remove()); heroLoops.length = 0;
+    const rand = rng(7), W = stage.clientWidth, H = stage.clientHeight, f = clamp(W / 1300, .55, 1.15);
+    const spots = G.wide
+      ? [[.6, .06, 2, 140], [.99, .64, 2, 150], [.36, .14, 0, 34], [.58, .92, 0, 30], [.47, .55, 1, 54], [.42, .84, 1, 60], [.9, .93, 1, 46], [.97, .4, 0, 26], [.24, .5, 0, 22]]
+      : [[1.02, .44, 2, 110], [-.04, .7, 2, 96], [.8, .12, 0, 30], [.14, .5, 0, 24], [.88, .44, 1, 44], [.6, .97, 1, 40], [.3, .4, 0, 20]];
+    spots.forEach(([px, py, depth, size], i) => {
+      const el = document.createElement('i'); el.className = 'hl' + (depth === 2 ? ' near' : ''); el.setAttribute('aria-hidden', 'true');
+      const sz = size * f; el.style.width = el.style.height = sz + 'px';
+      el.style.left = (px * W - sz / 2) + 'px'; el.style.top = (py * H - sz / 2) + 'px';
+      el.style.backgroundImage = `var(--loop-${i % 5})`;
+      if (depth === 2) el.style.filter = 'blur(3px)'; if (depth === 0) el.style.filter = 'blur(1.4px)';
+      stage.appendChild(el);
+      heroLoops.push({ el, speed: [.25, .55, 1.1][depth], rot: rand() * 360, spin: (rand() - .5) * 120 });
+    });
+  }
+
+  const irises = [...document.querySelectorAll('.iris')];
+  const swap = document.querySelector('.swap');
+
+  /* ---------- the drop: one swing on page load, then it hangs still */
+  const S = { y: 0, vy: 0, a: 0, va: 0 };
+  let running = false, lastT = 0;
+  function applyNecklace() {
+    necklace.style.transform = `translate3d(0,${S.y.toFixed(2)}px,0) rotate(${S.a.toFixed(3)}deg)`;
+    
+  }
+  function step(t) {
+    const dt = Math.min(.033, Math.max(.001, (t - lastT) / 1000)); lastT = t;
+    S.vy += (-S.y * 70 - S.vy * 12) * dt; S.y += S.vy * dt;
+    S.va += (-S.a * 38 - S.va * 3.2) * dt; S.a += S.va * dt;
+    if (Math.abs(S.vy) < .4 && Math.abs(S.y) < .4 && Math.abs(S.va) < .03 && Math.abs(S.a) < .03) { S.y = S.a = S.vy = S.va = 0; applyNecklace(); running = false; return; }
+    applyNecklace();
+    requestAnimationFrame(step);
+  }
+  function drop() {
+    S.y = -G.H * 1.05; S.a = G.wide ? -34 : -24; S.vy = 0; S.va = 0; applyNecklace();
+    if (!running) { running = true; lastT = performance.now(); requestAnimationFrame(step); }
+  }
+
+  /* ---------- scroll: hero loops drift off with the hero, panels reveal */
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    framePress();
+    if (reduce) return;
+    const vh = innerHeight, hp = clamp(scrollY / Math.max(1, hero.offsetHeight), 0, 1);
+    for (const h of heroLoops) h.el.style.transform = `translate3d(0,${(-hp * h.speed * vh * .6).toFixed(1)}px,0) rotate(${(h.rot + hp * h.spin).toFixed(1)}deg)`;
+    for (const el of irises) {
+      if (el.classList.contains('open')) continue;
+      const r = el.getBoundingClientRect();
+      const p = clamp((vh * .95 - r.top) / (vh * .6), 0, 1);
+      if (p >= 1) { el.classList.add('open'); continue; }
+      el.style.setProperty('--iris', (8 + easeOut(p) * 66).toFixed(2) + '%');
+    }
+    if (swap) {
+      const r = swap.getBoundingClientRect();
+      swap.classList.toggle('on', r.top < vh * .62);
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+
+  /* ---------- clips: inline MP4s become blob URLs and only play while on screen */
+  const clips = [...document.querySelectorAll('video.clip')];
+  clips.forEach(v => {
+    v.muted = true;
+    const data = v.dataset.src; if (!data) return;
+    const use = url => { v.src = url; if (reduce) { v.controls = true; } else if (v.dataset.vis === '1') v.play().catch(() => {}); };
+    (window.fetch ? fetch(data).then(r => r.blob()).then(b => use(URL.createObjectURL(b))) : Promise.reject()).catch(() => use(data));
+  });
+  if ('IntersectionObserver' in window) {
+    const vio = new IntersectionObserver(es => es.forEach(e => {
+      const v = e.target; v.dataset.vis = e.isIntersecting ? '1' : '0';
+      if (reduce || !v.src) return;
+      if (e.isIntersecting) v.play().catch(() => {}); else v.pause();
+    }), { threshold: .2 });
+    clips.forEach(v => vio.observe(v));
+  } else clips.forEach(v => v.dataset.vis = '1');
+
+  /* ---------- stickers slap on when they arrive */
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' }) : null;
+  document.querySelectorAll('.slap').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+
+
+  /* ---------- press: vertical scroll drives a sideways strip ----------
+     The section is as tall as (strip width - one screen width + one screen height).
+     A full-screen stage is pinned with CSS sticky; the strip slides left by exactly
+     the pixels scrolled. The stack panel is several screens wide; while the strip
+     passes through it, its contents are shifted back by the same amount so they
+     stand still, and that stretch of scroll becomes a 0-1 progress value. */
+  const press = document.querySelector('.press');
+  const pStage = press && press.querySelector('.press-stage'), pStrip = press && press.querySelector('.press-strip');
+  const pPanels = pStrip ? [...pStrip.children] : [];
+  const pStackP = press && press.querySelector('.pp-stack'), pInner = pStackP && pStackP.querySelector('.pp-inner');
+  const pList = press && press.querySelector('.press-list'), pCards = press ? [...press.querySelectorAll('.press-list .pc')] : [];
+  const pLead = press && press.querySelector('.pc-lead'), pLeadD = press && press.querySelector('.lead-slot'), pLeadM = press && press.querySelector('.lead-slot-m');
+  const pFill = press && press.querySelector('.press-fill'), pCount = press && press.querySelector('.pp-count');
+  const REST = pCards.map((c, i) => [-2.4, 1.8, -1.2, 2.6, -2, 1.1, -2.8, 2, -1.5, 2.4, -1.8, 1.4][i % 12]);
+  const P = { vw: 1, travel: 0, L: 0, span: 1 };
+  const two = n => String(n).padStart(2, '0');
+  function setupPress() {
+    if (!press || !pStrip) return;
+    press.classList.add('press--h');
+    const vw = document.documentElement.clientWidth;
+    const small = vw < 900, slot = small ? pLeadM : pLeadD;
+    if (pLead && pLead.parentElement !== slot) slot.appendChild(pLead);
+    press.classList.toggle('press--small', small);
+    pPanels.forEach(el => { el.style.width = (el === pStackP ? (+pStackP.dataset.screens || 4) * vw : vw) + 'px'; });
+    if (pInner) pInner.style.width = vw + 'px';
+    const stripW = pStrip.scrollWidth;
+    P.vw = vw; P.travel = Math.max(0, stripW - vw);
+    P.L = pStackP.offsetLeft; P.span = Math.max(1, pStackP.offsetWidth - vw);
+    press.style.height = (P.travel + innerHeight) + 'px';
+    pCards.forEach((c, i) => { c.style.transform = ''; c.style.zIndex = i + 1; c.style.height = ''; });
+    const deckH = Math.max(...pCards.map(c => c.offsetHeight)), lead = small ? 40 : 64;
+    pList.style.height = (deckH + lead + 6) + 'px';
+    pCards.forEach(c => { c.style.height = deckH + 'px'; c.style.top = lead + 'px'; });
+    framePress();
+  }
+  function framePress() {
+    if (!press || !press.classList.contains('press--h')) return;
+    const x = clamp(-press.getBoundingClientRect().top, 0, P.travel);
+    pStrip.style.transform = `translate3d(${(-x).toFixed(1)}px,0,0)`;
+    const local = clamp(x - P.L, 0, P.span);
+    pInner.style.transform = `translate3d(${local.toFixed(1)}px,0,0)`;
+    const p = local / P.span, N = pCards.length, f = Math.min(N - 1, p * (N - 0.6));
+    pCards.forEach((c, i) => {
+      let tx = 0, ty, rot, sc = 1, op = 1, dim = 0, top = false;
+      if (i === 0 || f >= i) {
+        const d = i === 0 ? f : f - i, dd = Math.min(d, 4);
+        ty = -dd * 15; sc = 1 - dd * .04; rot = REST[i] * (1 - Math.min(d, 1) * .35);
+        dim = Math.min(d, 3) / 3 * .5; op = d > 4 ? clamp(5 - d, 0, 1) : 1; top = d < .5;
+      } else {
+        const a = clamp(f - (i - 1), 0, 1), e = easeOut(a);
+        tx = (1 - e) * P.vw * .55; ty = (1 - e) * 40; rot = REST[i] + (1 - e) * 14; op = a > 0 ? 1 : 0; top = a > .5;
+      }
+      c.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) rotate(${rot.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+      c.style.opacity = op.toFixed(3); c.style.setProperty('--dim', dim.toFixed(3));
+      c.classList.toggle('is-top', top);
+    });
+    if (pFill) pFill.style.width = (P.travel ? x / P.travel * 100 : 0).toFixed(2) + '%';
+    if (pCount) pCount.textContent = `${two(Math.round(f) + 2)} / ${two(N + 1)}`;
+  }
+  if (pStrip) pStrip.addEventListener('focusin', e => {
+    const top = press.getBoundingClientRect().top + scrollY;
+    const c = e.target.closest('.pc'), i = pCards.indexOf(c);
+    let x;
+    if (i >= 0) x = P.L + Math.min(1, i / (pCards.length - 0.6)) * P.span;
+    else { const panel = e.target.closest('.pp'); x = panel === pStackP ? P.L : clamp(panel.offsetLeft, 0, P.travel); }
+    pStage.scrollLeft = 0;
+    window.scrollTo(0, top + x + 1);
+  });
+
+  /* ---------- press lead card borrows the key art already on the page */
+  document.querySelectorAll('img[data-from]').forEach(img => { const src = document.querySelector(img.dataset.from); if (src) img.src = src.getAttribute('src'); });
+
+  /* ---------- setup and motion preference */
+  function settleStatic() {
+    S.y = S.vy = S.a = S.va = 0; applyNecklace();
+    heroLoops.forEach(h => h.el.style.transform = `rotate(${h.rot}deg)`);
+    irises.forEach(el => el.classList.add('open'));
+    if (swap) swap.classList.add('on');
+  }
+  function init(first) {
+    buildNecklace(); buildHeroLoops();
+    setupPress();
+    if (reduce) { settleStatic(); return; }
+    if (first) drop(); else applyNecklace();
+    frame();
+  }
+  init(true);
+  if (!neckImg.complete) neckImg.addEventListener('load', () => buildNecklace(), { once: true });
+  requestAnimationFrame(() => root.classList.add('loaded'));
+  addEventListener('scroll', onScroll, { passive: true });
+  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => init(false), 160); });
+  mq.addEventListener && mq.addEventListener('change', e => { reduce = e.matches; init(false); });
+  addEventListener('load', setupPress);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setupPress);
+})();
+</script>
+</body>
+</html>
