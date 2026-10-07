@@ -1,0 +1,39 @@
+<!-- DJ Portfolio loader: Portfolio cover page.
+     Paste into a Readymag Code widget (Widget Code, Use iFrame off).
+     It pulls the newest commit of the page straight from the GitHub repo,
+     so every push shows up here without touching Readymag.
+     Order it tries: newest commit via jsDelivr, then the main branch via jsDelivr, then GitHub Pages. -->
+<div style="position:fixed;inset:0;z-index:2147483000;background:#B8B2EF">
+  <iframe id="djp-cover"
+          title="Djenaldbeth Louis portfolio"
+          style="display:block;width:100%;height:100%;border:0"
+          allow="autoplay; fullscreen"></iframe>
+</div>
+<script>
+(function () {
+  var REPO = 'manicpixiedigifairy/dj-portfolio', PAGE = 'cover';
+  var PAGES_URL = 'https://manicpixiedigifairy.github.io/dj-portfolio/' + PAGE + '/';
+  var frame = document.getElementById('djp-cover');
+  if (!frame) return;
+
+  function show(base, html) {
+    /* point relative asset paths (assets/...) at the same commit */
+    var tag = '<base href="' + base + '">';
+    html = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, function (m) { return m + tag; }) : tag + html;
+    frame.srcdoc = html;
+  }
+  function load(ref) {
+    var base = 'https://cdn.jsdelivr.net/gh/' + REPO + '@' + ref + '/' + PAGE + '/';
+    return fetch(base + 'index.html', { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('jsDelivr ' + r.status);
+      return r.text();
+    }).then(function (html) { show(base, html); });
+  }
+
+  fetch('https://api.github.com/repos/' + REPO + '/commits/main', { headers: { Accept: 'application/vnd.github+json' } })
+    .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); })
+    .then(function (c) { return load(c.sha); })
+    .catch(function () { return load('main'); })
+    .catch(function () { frame.src = PAGES_URL + '?v=' + Date.now(); });
+})();
+</script>

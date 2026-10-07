@@ -6,6 +6,7 @@ Hosted case study pages for the portfolio. Each page is a self-contained folder 
 
 | Page | Live URL | Readymag loader |
 | --- | --- | --- |
+| Portfolio cover | https://manicpixiedigifairy.github.io/dj-portfolio/cover/ | `loader/readymag-cover.html` |
 | Follow Your Ears (Froot Loops) | https://manicpixiedigifairy.github.io/dj-portfolio/follow-your-ears/ | `loader/readymag-follow-your-ears.html` |
 
 ## How it works
