@@ -830,6 +830,12 @@ figcaption b{font-style:normal}
   .vault-head{grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);gap:clamp(18px,2.5vw,32px)}
   .vault-head .kl{justify-self:start}
 }
+
+/* necklace: no filter on the swinging image (some browsers draw it as a hard offset outline);
+   the glint only runs where the mask is supported, so it can never sweep past the necklace edges */
+.necklace img{filter:none!important}
+.necklace .glint{display:none}
+@supports ((mask-image:url("x")) or (-webkit-mask-image:url("x"))){.necklace .glint{display:block}}
 </style>
 </head>
 <body>
