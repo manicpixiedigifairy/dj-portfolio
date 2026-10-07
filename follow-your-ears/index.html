@@ -795,6 +795,21 @@ figcaption b{font-style:normal}
   #proof h2{line-height:.92}
   #proof .scores{margin-top:clamp(28px,3.2vw,48px)}
 }
+
+/* key KPIs: toucan drawn as the column background so no browser can let it size the row */
+@media (min-width:900px){
+  #proof{grid-template-rows:auto}
+  #proof .proof-text,#proof .proof-art{grid-row:1}
+  #proof .proof-art{background:url(assets/flyer_crop.webp) 50% 0/cover no-repeat}
+  #proof .proof-art .flyer{display:none}
+}
+/* phones: headlines scale with the screen so long words never run off the edge */
+@media (max-width:899px){
+  .sec-head h2,#outro h2,.sec h2{font-size:min(52px,11.5vw);overflow-wrap:break-word}
+  .press-top h2{font-size:min(64px,15vw)}
+  #proof{padding-top:36px}
+  #proof .sec-head{margin-bottom:12px}
+}
 </style>
 </head>
 <body>
@@ -1414,23 +1429,28 @@ figcaption b{font-style:normal}
     /* when width limits the card, center the intro text in the open space under it */
     {
       const tk = document.querySelector('.tickers'), cardBottom = copyTop + h;
-      const regionBottom = tk ? Math.min(stage.clientHeight, tk.getBoundingClientRect().top - stage.getBoundingClientRect().top) - 12 : footTop + heroFoot.offsetHeight;
+      const tr = tk && tk.getBoundingClientRect(), tape = tk && tk.querySelector('.tape');
+      const regionBottom = tk ? Math.min(stage.clientHeight, tr.bottom - (tape ? tape.offsetHeight : 60) - stage.getBoundingClientRect().top) - 16 : footTop + heroFoot.offsetHeight;
       const top = Math.max(cardBottom + gap, cardBottom + (regionBottom - cardBottom - heroFoot.offsetHeight) / 2);
       heroFoot.style.top = Math.round(top) + 'px'; heroFoot.style.bottom = 'auto';
     }
   }
   function buildNecklace() {
+    hero.style.height = ''; hero.style.minHeight = '';
     sizeLockup();
     const W = stage.clientWidth, H = stage.clientHeight, wide = W >= 900;
     const ratio = (neckImg.naturalWidth && neckImg.naturalHeight) ? neckImg.naturalWidth / neckImg.naturalHeight : 761 / 913;
     let h, top, cx;
     if (wide) { h = Math.min(H * .8, W * .46 / ratio); top = H * .1; cx = W * .71; }
     else {
-      /* phones: hang it over the empty red below the wordmark, clear of the intro text */
-      const sr = stage.getBoundingClientRect(), lb = lockup.getBoundingClientRect(), fb = heroFoot.getBoundingClientRect();
-      top = lb.top - sr.top + lb.height * .56;
-      h = clamp(Math.min(H * .36, fb.top - sr.top - 14 - top, W * .62 / ratio), 140, H * .4);
-      cx = W * .75;
+      /* phones: a compact stack. card, necklace hanging off its lower right, then the intro text */
+      const sr = stage.getBoundingClientRect(), lb = lockup.getBoundingClientRect();
+      h = clamp(Math.min(W * .5 / ratio, H * .3), 120, 280);
+      top = lb.bottom - sr.top - h * .42;
+      cx = W - (h * ratio) / 2 - 6;
+      const footTop = Math.round(top + h * .98 + 18);
+      heroFoot.style.top = footTop + 'px'; heroFoot.style.bottom = 'auto';
+      hero.style.height = (footTop + heroFoot.offsetHeight + 64) + 'px'; hero.style.minHeight = '0';
     }
     const w = h * ratio;
     Object.assign(necklace.style, { width: w + 'px', left: (cx - w / 2) + 'px', top: top + 'px' });
@@ -1562,7 +1582,8 @@ figcaption b{font-style:normal}
     pRun.style.marginTop = '';
     const side = pStackP.querySelector('.pp-side'), st = pStage.getBoundingClientRect().top;
     const lSlot = pStackP.querySelector('.lead-slot'), slotR = lSlot && lSlot.offsetParent ? lSlot.getBoundingClientRect() : null;
-    const firstTop = Math.min(side ? side.getBoundingClientRect().top : 1e9, slotR && slotR.height ? slotR.top - 12 : 1e9, pList.getBoundingClientRect().top + lead) - st;
+    const leadM = small && pLead && pLead.getBoundingClientRect().height ? pLead.getBoundingClientRect().top - 12 : 1e9;
+    const firstTop = Math.min(leadM, side ? side.getBoundingClientRect().top : 1e9, slotR && slotR.height ? slotR.top - 12 : 1e9, pList.getBoundingClientRect().top + lead) - st;
     const want = clamp(innerHeight * .05, 28, 56);
     pRun.style.marginTop = -Math.max(0, Math.round(firstTop - want)) + 'px';
     framePress();
