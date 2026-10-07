@@ -373,7 +373,7 @@ figcaption b{font-style:normal}
 .pc--lead .main{font-size:clamp(22px,2vw,28px)}
 .giant{display:none}
 .flyer{position:absolute;z-index:0;right:max(8px,calc((100vw - 1240px) / 2 - 30px));top:5%;height:min(88%,780px);width:auto;pointer-events:none;filter:drop-shadow(0 20px 26px rgba(10,18,64,.18))}
-@media (min-width:900px){#proof .wrap{padding-right:max(var(--gutter),min(30vw,400px))}}
+
 .topbar{justify-content:flex-end}
 /* section heads: small label, large title */
 .sec-head{margin:0 0 clamp(40px,5vw,72px)}
@@ -645,8 +645,6 @@ figcaption b{font-style:normal}
 /* measurement: the toucan fills the frame top to bottom */
 #proof{overflow:hidden}
 @media (min-width:900px){
-  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:auto;aspect-ratio:488/1057;max-width:45vw;object-fit:cover;object-position:50% 0;max-height:none}
-  #proof .wrap{padding-right:calc(var(--fw,min(24vw,340px)) + var(--gutter) * 2)}
 }
 
 /* coverage: lead story on its own, the rest stack beside it at one size */
@@ -736,7 +734,8 @@ figcaption b{font-style:normal}
 #proof .scores h3{margin-bottom:6px}
 
 /* press: a normal section head (same rhythm as Track VI), then the pinned strip */
-.press-top{padding-top:clamp(56px,6.5vw,104px);padding-bottom:clamp(8px,1vw,16px);background:radial-gradient(70% 140% at 0% 0%,rgba(90,200,255,.28),transparent 65%),linear-gradient(180deg,#0B63E5 0%,#1A5CE2 100%)}
+.press-top{position:relative;z-index:6;padding-top:clamp(56px,6.5vw,104px);padding-bottom:clamp(8px,1vw,16px);background:radial-gradient(70% 140% at 0% 0%,rgba(90,200,255,.28),transparent 65%);pointer-events:none}
+.press-top a{pointer-events:auto}
 /* one soft gradient through the header and the pinned stage, no seam */
 .press{background:#1A5CE2}
 .press--h .press-stage{background:radial-gradient(60% 70% at 100% 100%,rgba(122,60,220,.45),transparent 70%),radial-gradient(50% 60% at 15% 85%,rgba(40,120,255,.35),transparent 70%),linear-gradient(180deg,#1A5CE2 0%,#2950DC 45%,#3B43D2 100%)}
@@ -775,6 +774,16 @@ figcaption b{font-style:normal}
   #proof .scores li{container-type:inline-size}
   #proof .scores h3{white-space:nowrap;font-size:min(clamp(26px,2.4vw,38px),10.4cqi)}
 }
+
+/* key KPIs: text centered vertically, toucan column fills the full section height */
+@media (min-width:900px){
+  #proof{display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,21vw,340px);column-gap:clamp(24px,3vw,48px);align-items:center;padding:0}
+  #proof .proof-text{grid-column:1;padding:clamp(44px,4.6vw,70px) 0}
+  #proof .proof-art{grid-column:2;align-self:stretch;position:relative;margin-right:var(--gutter);}
+  #proof .proof-art .flyer{position:absolute;inset:0;top:0;right:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:50% 50%}
+}
+/* hero intro: tighter leading */
+.hero .dek{line-height:1.3}
 </style>
 </head>
 <body>
@@ -1082,6 +1091,7 @@ figcaption b{font-style:normal}
 <!-- VII. Proof -->
 <section class="sec" id="proof" aria-labelledby="proof-h">
   <i class="giant" data-loop="1" aria-hidden="true"></i>
+<div class="proof-text">
 <div class="wrap">
     <header class="sec-head">
       <p class="track"><i data-loop="0"></i>Track VII: Proof and Reflection</p>
@@ -1100,7 +1110,10 @@ figcaption b{font-style:normal}
       <li><i class="ring" data-loop="4"></i><h3>Cultural Credibility</h3><p>Whether artists and fans amplified it unprompted. The real test of “authentic.”</p></li>
     </ul>
   </div>
+</div>
+<div class="proof-art">
   <img class="flyer" src="assets/flyer_crop.webp" alt="" width="488" height="1057" decoding="async">
+</div>
 </section>
 
 <!-- Outro -->
@@ -1383,10 +1396,17 @@ figcaption b{font-style:normal}
     const copyTop = copy.offsetTop + lockup.offsetTop, footTop = heroFoot.offsetTop;
     const gap = clamp(innerHeight * .045, 28, 48);
     const byHeight = footTop - copyTop - gap, byWidth = stage.clientWidth * .42 / (1140 / 1310);
-    const h = Math.round(clamp(Math.min(byHeight, byWidth, 760), 220, 760));
+    const extra = clamp(innerHeight * .05, 24, 56);
+    const h = Math.round(clamp(Math.min(byHeight - extra, byWidth, 760), 220, 760));
     lockup.style.height = h + 'px';
     /* when width limits the card, lift the intro text up to it instead of leaving a gap */
-    if (byHeight - h > 4) { heroFoot.style.top = (copyTop + h + gap) + 'px'; heroFoot.style.bottom = 'auto'; }
+    /* when width limits the card, center the intro text in the open space under it */
+    {
+      const tk = document.querySelector('.tickers'), cardBottom = copyTop + h;
+      const regionBottom = tk ? Math.min(stage.clientHeight, tk.getBoundingClientRect().top - stage.getBoundingClientRect().top) - 12 : footTop + heroFoot.offsetHeight;
+      const top = Math.max(cardBottom + gap, cardBottom + (regionBottom - cardBottom - heroFoot.offsetHeight) / 2);
+      heroFoot.style.top = Math.round(top) + 'px'; heroFoot.style.bottom = 'auto';
+    }
   }
   function buildNecklace() {
     sizeLockup();
@@ -1527,6 +1547,13 @@ figcaption b{font-style:normal}
     const deckH = Math.max(...pCards.map(c => c.offsetHeight)), lead = small ? 40 : 64;
     pList.style.height = (deckH + lead + 6) + 'px';
     pCards.forEach(c => { c.style.height = deckH + 'px'; c.style.top = lead + 'px'; });
+    /* pull the pinned stage up under the headline so the coverage starts right after it */
+    pRun.style.marginTop = '';
+    const side = pStackP.querySelector('.pp-side'), st = pStage.getBoundingClientRect().top;
+    const lSlot = pStackP.querySelector('.lead-slot'), slotR = lSlot && lSlot.offsetParent ? lSlot.getBoundingClientRect() : null;
+    const firstTop = Math.min(side ? side.getBoundingClientRect().top : 1e9, slotR && slotR.height ? slotR.top - 12 : 1e9, pList.getBoundingClientRect().top + lead) - st;
+    const want = clamp(innerHeight * .05, 28, 56);
+    pRun.style.marginTop = -Math.max(0, Math.round(firstTop - want)) + 'px';
     framePress();
   }
   function framePress() {
@@ -1597,18 +1624,8 @@ figcaption b{font-style:normal}
 
   /* ---------- measurement: size the toucan from the section's real height */
   const proofSec = document.querySelector('#proof'), flyer = proofSec && proofSec.querySelector('.flyer');
-  function fitFlyer() {
-    if (!flyer) return;
-    proofSec.style.minHeight = '';
-    if (innerWidth < 900) { proofSec.style.removeProperty('--fw'); return; }
-    /* the toucan's height is the section's height (CSS); its width follows. Reserve that width beside the text */
-    let cur = parseFloat(proofSec.style.getPropertyValue('--fw')) || 0;
-    for (let i = 0; i < 8; i++) {
-      const w = flyer.getBoundingClientRect().width;
-      if (Math.abs(w - cur) < 1) break;
-      proofSec.style.setProperty('--fw', w + 'px'); cur = w;
-    }
-  }
+  function fitFlyer() { /* layout is pure CSS now */ }
+
   if (flyer && !flyer.complete) flyer.addEventListener('load', fitFlyer, { once: true });
   /* refit whenever the section's height changes (fonts, resize, embeds) */
   if (proofSec && 'ResizeObserver' in window) {
