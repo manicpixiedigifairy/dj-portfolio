@@ -645,8 +645,8 @@ figcaption b{font-style:normal}
 /* measurement: the toucan fills the frame top to bottom */
 #proof{overflow:hidden}
 @media (min-width:900px){
-  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:var(--fw,min(30vw,520px));object-fit:cover;object-position:50% 0;max-height:none}
-  #proof .wrap{padding-right:calc(var(--fw,min(36vw,600px)) + var(--gutter) * 2)}
+  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:auto;aspect-ratio:488/1057;max-width:45vw;object-fit:cover;object-position:50% 0;max-height:none}
+  #proof .wrap{padding-right:calc(var(--fw,min(24vw,340px)) + var(--gutter) * 2)}
 }
 
 /* coverage: lead story on its own, the rest stack beside it at one size */
@@ -754,6 +754,21 @@ figcaption b{font-style:normal}
 #proof{padding:clamp(44px,4.6vw,70px) 0}
 #proof .sec-head{margin-bottom:clamp(14px,1.6vw,24px)}
 #proof .scores{margin-top:clamp(22px,2.4vw,34px)}
+
+/* hero: soft shadow under the intro text for legibility */
+.hero .dek{text-shadow:0 1px 2px rgba(4,17,79,.55),0 2px 16px rgba(4,17,79,.4)}
+@media (min-width:900px){.hero-copy{top:clamp(56px,8vh,96px)}}
+
+/* liner notes: logo centered on the full section height */
+@media (min-width:900px){
+  #intro .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,5vw,80px);align-items:center}
+  #intro .sec-head{grid-column:1;grid-row:1}
+  #intro .intro-grid{display:contents}
+  #intro .credits{grid-column:1;grid-row:2}
+  #intro .intro-logo{grid-column:2;grid-row:1 / span 2;align-self:center}
+}
+/* strategic leap: tighter gap between the text and the key art */
+.leap .fig-wide{margin-top:clamp(28px,3vw,44px)}
 </style>
 </head>
 <body>
@@ -1353,7 +1368,22 @@ figcaption b{font-style:normal}
   necklace.style.setProperty('--neck', `url("${neckImg.getAttribute('src')}")`);
   const lockup = document.querySelector('.lockup'), heroFoot = document.querySelector('.hero-foot');
   let G = { W: 1, H: 1, wide: true };
+  /* desktop: the poster card grows into the space above the intro text, leaving a tight, fixed gap */
+  function sizeLockup() {
+    if (!lockup || !heroFoot) return;
+    lockup.style.height = ''; heroFoot.style.top = ''; heroFoot.style.bottom = '';
+    if (stage.clientWidth < 900) return;
+    const copy = lockup.closest('.hero-copy');
+    const copyTop = copy.offsetTop + lockup.offsetTop, footTop = heroFoot.offsetTop;
+    const gap = clamp(innerHeight * .045, 28, 48);
+    const byHeight = footTop - copyTop - gap, byWidth = stage.clientWidth * .42 / (1140 / 1310);
+    const h = Math.round(clamp(Math.min(byHeight, byWidth, 760), 220, 760));
+    lockup.style.height = h + 'px';
+    /* when width limits the card, lift the intro text up to it instead of leaving a gap */
+    if (byHeight - h > 4) { heroFoot.style.top = (copyTop + h + gap) + 'px'; heroFoot.style.bottom = 'auto'; }
+  }
   function buildNecklace() {
+    sizeLockup();
     const W = stage.clientWidth, H = stage.clientHeight, wide = W >= 900;
     const ratio = (neckImg.naturalWidth && neckImg.naturalHeight) ? neckImg.naturalWidth / neckImg.naturalHeight : 761 / 913;
     let h, top, cx;
@@ -1565,18 +1595,13 @@ figcaption b{font-style:normal}
     if (!flyer) return;
     proofSec.style.minHeight = '';
     if (innerWidth < 900) { proofSec.style.removeProperty('--fw'); return; }
-    const ratio = (flyer.naturalWidth && flyer.naturalHeight) ? flyer.naturalWidth / flyer.naturalHeight : 488 / 1057;
-    const cap = innerWidth * 0.5;
-    let w = Math.min(innerWidth * 0.3, 520), capped = false;
+    /* the toucan's height is the section's height (CSS); its width follows. Reserve that width beside the text */
+    let cur = parseFloat(proofSec.style.getPropertyValue('--fw')) || 0;
     for (let i = 0; i < 8; i++) {
-      proofSec.style.setProperty('--fw', w + 'px');
-      const want = proofSec.offsetHeight * ratio;
-      capped = want > cap;
-      const next = Math.min(want, cap);
-      if (Math.abs(next - w) < 1) { w = next; break; }
-      w = next;
+      const w = flyer.getBoundingClientRect().width;
+      if (Math.abs(w - cur) < 1) break;
+      proofSec.style.setProperty('--fw', w + 'px'); cur = w;
     }
-    proofSec.style.setProperty('--fw', w + 'px');
   }
   if (flyer && !flyer.complete) flyer.addEventListener('load', fitFlyer, { once: true });
   /* refit whenever the section's height changes (fonts, resize, embeds) */
