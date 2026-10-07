@@ -694,7 +694,7 @@ figcaption b{font-style:normal}
 
 /* throughline: spoon sticker overlay, out of the flow so the block keeps its height */
 .through{position:relative;overflow:hidden}
-.through .spoon{position:absolute;z-index:0;right:clamp(16px,3vw,64px);top:50%;width:min(40vw,640px);height:auto;max-height:80%;object-fit:contain;transform:translateY(-50%) rotate(-7deg);pointer-events:none;
+.through .spoon{position:absolute;z-index:0;right:0;top:50%;width:min(44vw,720px);height:auto;max-height:84%;object-fit:contain;object-position:100% 50%;transform:translateY(-50%);pointer-events:none;
   filter:drop-shadow(0 2px 0 rgba(10,18,64,.15)) drop-shadow(0 22px 28px rgba(10,18,64,.32))}
 .through .wrap{position:relative;z-index:1}
 @media (max-width:899px){.through .spoon{display:none}}
@@ -723,6 +723,27 @@ figcaption b{font-style:normal}
   .ins-fig .gif{aspect-ratio:auto}
   .ins-fig figcaption{position:absolute;left:0;right:0;top:100%;margin-top:10px;white-space:nowrap}
 }
+
+/* measurement: same rhythm as the challenge, compact body, toucan fills the full height */
+#proof{padding:clamp(52px,5.5vw,84px) 0}
+#proof .sec-head{margin-bottom:clamp(18px,2vw,30px)}
+#proof h2{max-width:none;font-size:clamp(40px,6.2vw,100px)}
+.proof-body .prose{max-width:64ch}
+.proof-body .prose p{margin:0}
+.proof-body .prose p.lead{margin:0 0 .45em;font-size:clamp(20px,1.7vw,25px);line-height:1.4}
+#proof .scores{margin-top:clamp(26px,2.8vw,40px);gap:clamp(20px,2.4vw,36px)}
+#proof .scores .ring{width:44px;height:44px;margin-bottom:10px}
+#proof .scores h3{margin-bottom:6px}
+
+/* press: a normal section head (same rhythm as Track VI), then the pinned strip */
+.press-top{padding-top:clamp(56px,6.5vw,104px);padding-bottom:clamp(40px,4.5vw,72px)}
+.press-top .sec-head{margin-bottom:clamp(18px,2vw,30px)}
+.press-top{max-width:none}
+.press-top .track{color:#fff}
+.press-top h2{margin:0;color:#fff;line-height:1;text-shadow:.035em .045em 0 var(--navy)}
+.press-top .press-dek{margin:0;max-width:62ch;font-family:var(--serif);font-size:clamp(20px,1.7vw,25px);line-height:1.4;color:rgba(255,255,255,.93)}
+.press-run{position:relative}
+.press--h:not(.press--small) .pp-lead{display:none}
 </style>
 </head>
 <body>
@@ -918,7 +939,7 @@ figcaption b{font-style:normal}
 
 <!-- Throughline -->
 <section class="sec through" id="throughline" aria-label="The strategic throughline">
-  <img class="spoon" src="assets/spoon_sticker.webp" alt="" width="1236" height="669" loading="lazy" decoding="async">
+  <img class="spoon" src="assets/spoon_sticker.webp" alt="" width="1218" height="669" loading="lazy" decoding="async">
   <div class="wrap">
     <p class="track"><i data-loop="0"></i>The Strategic Throughline</p>
     <blockquote class="through-q">
@@ -1036,7 +1057,7 @@ figcaption b{font-style:normal}
       <h2 id="proof-h">How I’d Measure It.</h2>
     </header>
   </div>
-  <div class="wrap split">
+  <div class="wrap proof-body">
     <div class="prose">
       <p class="lead">The scorecard ties back to the diagnosis: relevance and affinity, not just reach.</p>
       <p>Performance results aren’t public, so this is the standard I’d hold the work to.</p>
@@ -1070,15 +1091,18 @@ figcaption b{font-style:normal}
 
 <!-- Bonus: Press -->
 <section class="press" id="press" aria-labelledby="press-h">
+  <div class="wrap press-top">
+    <header class="sec-head">
+      <p class="track"><i data-loop="1"></i>Bonus Track</p>
+      <h2 id="press-h">Press</h2>
+    </header>
+    <div class="prose press-dek-wrap">
+      <p class="press-dek">Coverage across the ad trades, culture desks and design press, from Chicago to Australia and Spain.</p>
+    </div>
+  </div>
+  <div class="press-run">
   <div class="press-stage">
     <div class="press-strip">
-      <div class="pp pp-intro">
-        <div class="pp-pad">
-          <p class="track"><i data-loop="1"></i>Bonus Track</p>
-          <h2 id="press-h">Press</h2>
-          <p class="press-dek">Coverage across the ad trades, culture desks and design press, from Chicago to Australia and Spain.</p>
-        </div>
-      </div>
       <div class="pp pp-lead"><div class="pp-pad lead-slot-m"></div></div>
       <div class="pp pp-stack" data-screens="4">
         <div class="pp-inner">
@@ -1175,6 +1199,7 @@ figcaption b{font-style:normal}
       </div>
     </div>
     <div class="press-meter" aria-hidden="true"><span class="press-rail"><span class="press-fill"></span></span></div>
+  </div>
   </div>
 </section>
 </main>
@@ -1432,6 +1457,7 @@ figcaption b{font-style:normal}
   const press = document.querySelector('.press');
   const pStage = press && press.querySelector('.press-stage'), pStrip = press && press.querySelector('.press-strip');
   const pPanels = pStrip ? [...pStrip.children] : [];
+  const pRun = press && press.querySelector('.press-run');
   const pStackP = press && press.querySelector('.pp-stack'), pInner = pStackP && pStackP.querySelector('.pp-inner');
   const pList = press && press.querySelector('.press-list'), pCards = press ? [...press.querySelectorAll('.press-list .pc')] : [];
   const pLead = press && press.querySelector('.pc-lead'), pLeadD = press && press.querySelector('.lead-slot'), pLeadM = press && press.querySelector('.lead-slot-m');
@@ -1451,7 +1477,7 @@ figcaption b{font-style:normal}
     const stripW = pStrip.scrollWidth;
     P.vw = vw; P.travel = Math.max(0, stripW - vw);
     P.L = pStackP.offsetLeft; P.span = Math.max(1, pStackP.offsetWidth - vw);
-    press.style.height = (P.travel + innerHeight) + 'px';
+    pRun.style.height = (P.travel + innerHeight) + 'px';
     pCards.forEach((c, i) => { c.style.transform = ''; c.style.zIndex = i + 1; c.style.height = ''; });
     const deckH = Math.max(...pCards.map(c => c.offsetHeight)), lead = small ? 40 : 64;
     pList.style.height = (deckH + lead + 6) + 'px';
@@ -1460,7 +1486,7 @@ figcaption b{font-style:normal}
   }
   function framePress() {
     if (!press || !press.classList.contains('press--h')) return;
-    const x = clamp(-press.getBoundingClientRect().top, 0, P.travel);
+    const x = clamp(-pRun.getBoundingClientRect().top, 0, P.travel);
     pStrip.style.transform = `translate3d(${(-x).toFixed(1)}px,0,0)`;
     const local = clamp(x - P.L, 0, P.span);
     pInner.style.transform = `translate3d(${local.toFixed(1)}px,0,0)`;
@@ -1483,7 +1509,7 @@ figcaption b{font-style:normal}
     if (pCount) pCount.textContent = `${two(Math.round(f) + 2)} / ${two(N + 1)}`;
   }
   if (pStrip) pStrip.addEventListener('focusin', e => {
-    const top = press.getBoundingClientRect().top + scrollY;
+    const top = pRun.getBoundingClientRect().top + scrollY;
     const c = e.target.closest('.pc'), i = pCards.indexOf(c);
     let x;
     if (i >= 0) x = P.L + Math.min(1, i / (pCards.length - 0.6)) * P.span;
@@ -1521,26 +1547,28 @@ figcaption b{font-style:normal}
     const sec = spoon.parentElement.getBoundingClientRect(), right = parseFloat(getComputedStyle(spoon).right) || 0;
     const room = sec.right - right - (textRight + 48);
     if (room < 200) { spoon.style.display = 'none'; return; }
-    spoon.style.width = Math.min(640, room) + 'px';
+    spoon.style.width = Math.min(720, room) + 'px';
   }
 
   /* ---------- measurement: size the toucan from the section's real height */
   const proofSec = document.querySelector('#proof'), flyer = proofSec && proofSec.querySelector('.flyer');
   function fitFlyer() {
     if (!flyer) return;
-    proofSec.style.minHeight = '';
+    proofSec.style.minHeight = ''; flyer.style.objectFit = '';
     if (innerWidth < 900) { proofSec.style.removeProperty('--fw'); return; }
     const ratio = (flyer.naturalWidth && flyer.naturalHeight) ? flyer.naturalWidth / flyer.naturalHeight : 488 / 1057;
-    const cap = innerWidth * 0.48;
-    let w = Math.min(innerWidth * 0.36, 600);
-    for (let i = 0; i < 6; i++) {
+    const cap = innerWidth * 0.5;
+    let w = Math.min(innerWidth * 0.3, 520), capped = false;
+    for (let i = 0; i < 8; i++) {
       proofSec.style.setProperty('--fw', w + 'px');
-      const next = Math.min(proofSec.offsetHeight * ratio, cap);
+      const want = proofSec.offsetHeight * ratio;
+      capped = want > cap;
+      const next = Math.min(want, cap);
       if (Math.abs(next - w) < 1) { w = next; break; }
       w = next;
     }
     proofSec.style.setProperty('--fw', w + 'px');
-    proofSec.style.minHeight = Math.ceil(w / ratio) + 'px';
+    if (capped) flyer.style.objectFit = 'cover';
   }
   if (flyer && !flyer.complete) flyer.addEventListener('load', fitFlyer, { once: true });
 
