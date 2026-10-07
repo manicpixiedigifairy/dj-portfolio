@@ -695,6 +695,13 @@ figcaption b{font-style:normal}
 .insight-row .prose p.lead{font-size:clamp(22px,1.9vw,28px);line-height:1.4}
 .insight-row .phone--creator{max-width:420px;justify-self:end}
 @media (max-width:899px){.insight-row{grid-template-columns:minmax(0,1fr)}.insight-row .phone--creator{max-width:320px;justify-self:center}}
+
+/* challenge headline on two lines */
+#challenge h2{max-width:none;font-size:clamp(40px,6.2vw,100px)}
+@media (max-width:899px){#challenge h2 br{display:none}}
+/* insight: video centered in its column, row centered */
+.insight-row{align-items:center}
+.insight-row .phone--creator{max-width:340px;justify-self:center}
 </style>
 </head>
 <body>
@@ -780,7 +787,7 @@ figcaption b{font-style:normal}
 <div class="wrap">
     <header class="sec-head">
       <p class="track"><i data-loop="1"></i>Track II: The Challenge</p>
-      <h2 id="challenge-h">Not Lost Awareness. Lost Relevance.</h2>
+      <h2 id="challenge-h">Not Lost Awareness. <br>Lost Relevance.</h2>
     </header>
   </div>
   <div class="wrap split">
