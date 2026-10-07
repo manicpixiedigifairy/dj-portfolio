@@ -1403,7 +1403,7 @@ figcaption b{font-style:normal}
   /* editorial edition: real cereal loops from the brand artwork, recolored to the palette */
   const REAL = ['assets/rloop0.webp', 'assets/rloop1.webp', 'assets/rloop2.webp', 'assets/rloop3.webp', 'assets/rloop4.webp'];
   REAL.forEach((u, i) => root.style.setProperty('--loop-' + i, `url(${u})`));
-  Promise.all(REAL.map(u => new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = u; }))).then(ims => {
+  Promise.all(REAL.map(u => new Promise(r => { const im = new Image(); if (/^https?:/.test(new URL(u, document.baseURI).href)) im.crossOrigin = 'anonymous'; im.onload = () => r(im); im.onerror = () => r(null); im.src = u; }))).then(ims => {
     if (ims.some(x => !x)) return;
     setVar('--chain', makeChain(ims, iceCanvas, false));
     setVar('--chain-v', makeChain(ims, iceCanvas, true));
