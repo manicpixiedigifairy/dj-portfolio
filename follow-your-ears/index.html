@@ -822,6 +822,8 @@ figcaption b{font-style:normal}
 
 /* the dark prize block closes Track VI flush, with no light strip before Key KPIs */
 #activation{padding-bottom:0}
+
+@media (min-width:900px){.leap-cols p.leap-intro{align-self:center;line-height:1.32}}
 </style>
 </head>
 <body>
@@ -1693,12 +1695,28 @@ figcaption b{font-style:normal}
     irises.forEach(el => el.classList.add('open'));
     if (swap) swap.classList.add('on');
   }
+  /* ---------- strategic leap: the left intro grows to fill the same height as the right one */
+  const leapL = document.querySelector('.leap-cols p.leap-intro'), leapR = document.querySelector('.leap-cols div.leap-intro');
+  function fitLeapIntro() {
+    if (!leapL || !leapR) return;
+    leapL.style.fontSize = '';
+    if (innerWidth < 900) return;
+    const target = leapR.offsetHeight;
+    let lo = 18, hi = 40;
+    for (let i = 0; i < 12; i++) {
+      const mid = (lo + hi) / 2;
+      leapL.style.fontSize = mid + 'px';
+      if (leapL.offsetHeight <= target) lo = mid; else hi = mid;
+    }
+    leapL.style.fontSize = lo.toFixed(1) + 'px';
+  }
+
   function init(first) {
     buildNecklace(); buildHeroLoops();
     setupPress();
     fitFlyer();
     alignInsightGif();
-    fitSpoon();
+    fitSpoon(); fitLeapIntro();
     if (reduce) { settleStatic(); return; }
     if (first) drop(); else applyNecklace();
     frame();
@@ -1709,8 +1727,8 @@ figcaption b{font-style:normal}
   addEventListener('scroll', onScroll, { passive: true });
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => init(false), 160); });
   mq.addEventListener && mq.addEventListener('change', e => { reduce = e.matches; init(false); });
-  addEventListener('load', () => { buildNecklace(); setupPress(); fitFlyer(); alignInsightGif(); fitSpoon(); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { buildNecklace(); alignInsightGif(); fitSpoon(); setupPress(); fitFlyer(); });
+  addEventListener('load', () => { buildNecklace(); setupPress(); fitFlyer(); alignInsightGif(); fitSpoon(); fitLeapIntro(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { buildNecklace(); alignInsightGif(); fitSpoon(); setupPress(); fitFlyer(); fitLeapIntro(); });
 })();
 </script>
 </body>
