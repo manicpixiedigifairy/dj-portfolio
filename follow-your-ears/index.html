@@ -1428,10 +1428,11 @@ figcaption b{font-style:normal}
     /* when width limits the card, lift the intro text up to it instead of leaving a gap */
     /* when width limits the card, center the intro text in the open space under it */
     {
-      const tk = document.querySelector('.tickers'), cardBottom = copyTop + h;
-      const tr = tk && tk.getBoundingClientRect(), tape = tk && tk.querySelector('.tape');
-      const regionBottom = tk ? Math.min(stage.clientHeight, tr.bottom - (tape ? tape.offsetHeight : 60) - stage.getBoundingClientRect().top) - 16 : footTop + heroFoot.offsetHeight;
-      const top = Math.max(cardBottom + gap, cardBottom + (regionBottom - cardBottom - heroFoot.offsetHeight) / 2);
+      /* open space runs from the card's navy shadow down to the ticker tape's top edge on the left */
+      const tape = document.querySelector('.tickers .tape'), sr = stage.getBoundingClientRect();
+      const cardBottom = copyTop + h + Math.round(h * .045);
+      const regionBottom = tape ? Math.min(stage.clientHeight, tape.getBoundingClientRect().bottom - tape.offsetHeight - sr.top) : footTop + heroFoot.offsetHeight;
+      const top = Math.max(cardBottom + gap * .6, cardBottom + (regionBottom - cardBottom - heroFoot.offsetHeight) / 2);
       heroFoot.style.top = Math.round(top) + 'px'; heroFoot.style.bottom = 'auto';
     }
   }
@@ -1695,8 +1696,8 @@ figcaption b{font-style:normal}
   addEventListener('scroll', onScroll, { passive: true });
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => init(false), 160); });
   mq.addEventListener && mq.addEventListener('change', e => { reduce = e.matches; init(false); });
-  addEventListener('load', () => { setupPress(); fitFlyer(); alignInsightGif(); fitSpoon(); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { alignInsightGif(); fitSpoon(); setupPress(); fitFlyer(); });
+  addEventListener('load', () => { buildNecklace(); setupPress(); fitFlyer(); alignInsightGif(); fitSpoon(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { buildNecklace(); alignInsightGif(); fitSpoon(); setupPress(); fitFlyer(); });
 })();
 </script>
 </body>
