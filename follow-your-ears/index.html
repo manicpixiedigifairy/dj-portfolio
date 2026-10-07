@@ -836,6 +836,11 @@ figcaption b{font-style:normal}
 .necklace img{filter:none!important}
 .necklace .glint{display:none}
 @supports ((mask-image:url("x")) or (-webkit-mask-image:url("x"))){.necklace .glint{display:block}}
+
+/* leap: once "Ears" lands, the "Nose" word behind it fades out so none of its navy edge peeks out */
+.swap .chrome{transition:opacity .25s .15s}
+.swap.on .chrome{opacity:0}
+.ears{box-shadow:0 0 0 .065em #fff}
 </style>
 </head>
 <body>
