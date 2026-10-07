@@ -703,6 +703,26 @@ figcaption b{font-style:normal}
 @media (min-width:900px){.split--brief .facts{margin-left:clamp(0px,4.5vw,84px)}}
 /* insight: the GIF frame's top lines up with the headline's period (set in script) */
 @media (min-width:900px){.insight-row .phone--creator{align-self:start;position:relative}}
+
+/* challenge, insight and brief share one rhythm: same padding, header gap and headline size */
+#challenge,#insight,#brief{padding:clamp(52px,5.5vw,84px) 0}
+#challenge .sec-head,#insight .sec-head,#brief .sec-head{margin-bottom:clamp(24px,2.6vw,40px)}
+#challenge h2,#insight h2,#brief h2{max-width:none;font-size:clamp(40px,6.2vw,100px)}
+@media (max-width:899px){#insight h2 br,#brief h2 br{display:none}}
+/* insight: header and body on the left, the GIF fills the right at the section's full content height */
+.insight-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.insight-main{display:flex;flex-direction:column;align-items:flex-start;gap:24px;max-width:none}
+.insight-main .prose p.lead{margin:0;font-size:clamp(20px,1.7vw,25px);line-height:1.4}
+.ins-fig{margin:0;max-width:300px;justify-self:center;width:100%}
+@media (min-width:900px){
+  .insight-grid{grid-template-columns:minmax(0,1fr) auto;gap:clamp(32px,4vw,72px);align-items:start}
+  .insight-main{flex-direction:row;align-items:center;gap:clamp(24px,3vw,48px)}
+  .insight-main .prose{max-width:46ch}
+  .insight-main .stat-box{flex:none}
+  .ins-fig{position:relative;max-width:none;width:auto;justify-self:end}
+  .ins-fig .gif{aspect-ratio:auto}
+  .ins-fig figcaption{position:absolute;left:0;right:0;top:100%;margin-top:10px;white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -803,26 +823,58 @@ figcaption b{font-style:normal}
 
 <!-- III. Insight -->
 <section class="sec" id="insight" aria-labelledby="insight-h">
-<div class="wrap">
-    <header class="sec-head">
-      <p class="track"><i data-loop="2"></i>Track III: The Insight</p>
-      <h2 id="insight-h">The Culture Was Already Talking.</h2>
-    </header>
-  </div>
-  <div class="wrap insight-row">
-    <div class="insight-main">
-      <div class="prose">
-        <p class="lead">The brand didn’t need to buy its way into hip-hop. It was already there. Froot Loops shows up in more than 1,000 tracks, where the circular O doubles as slang for chain links, watches and jewelry.</p>
-      </div>
-      <div class="stat-box">
-        <p class="stat-big" aria-label="1,000 plus">1,<i class="o" data-loop="0"></i><i class="o" data-loop="1"></i><i class="o" data-loop="4"></i>+</p>
-        <p class="stat-cap">hip-hop tracks name-drop Froot Loops</p>
+  <div class="wrap insight-grid">
+    <div class="insight-left">
+      <header class="sec-head">
+        <p class="track"><i data-loop="2"></i>Track III: The Insight</p>
+        <h2 id="insight-h">The Culture Was <br>Already Talking.</h2>
+      </header>
+      <div class="insight-main">
+        <div class="prose">
+          <p class="lead">The brand didn’t need to buy its way into hip-hop. It was already there. Froot Loops shows up in more than 1,000 tracks, where the circular O doubles as slang for chain links, watches and jewelry.</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-big" aria-label="1,000 plus">1,<i class="o" data-loop="0"></i><i class="o" data-loop="1"></i><i class="o" data-loop="4"></i>+</p>
+          <p class="stat-cap">hip-hop tracks name-drop Froot Loops</p>
+        </div>
       </div>
     </div>
-    <figure class="phone phone--creator" style="--c:var(--yellow)">
+    <figure class="phone phone--creator ins-fig" style="--c:var(--yellow)">
       <img class="gif" src="assets/gif_creator.gif" alt="Creator video: Froot Loops cereal under the caption Froot Loops has been name dropped in over 1,000 hip hop tracks, then a creator holding up a single loop" width="340" height="604" loading="lazy" decoding="async">
       <figcaption>Creators carried the stat to TikTok.</figcaption>
     </figure>
+  </div>
+</section>
+
+<!-- IV. Brief -->
+<section class="sec brief" id="brief" aria-labelledby="brief-h">
+<div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="4"></i>Track IV: The Creative Brief</p>
+      <h2 id="brief-h">Strategy, Translated <br>Into Direction.</h2>
+    </header>
+  </div>
+  <div class="wrap split split--brief">
+    <div>
+      <p class="brief-dek">The compressed brief handed to creative, and the proof that the insight could move into executable direction.</p>
+      <div class="facts">
+        <h3>Brief Facts</h3>
+        <p class="serv"><b>Serving size</b> 1 lyric<br><b>Servings per campaign</b> 5 cities</p>
+        <dl>
+          <div class="row"><dt>Single-minded proposition</dt><dd>Froot Loops has always been in the music. Now you can follow it.</dd></div>
+          <div class="row"><dt>Role for the audience</dt><dd>Decode the lyric, prove you know the culture, win the artifact.</dd></div>
+          <div class="row"><dt>Guardrails</dt><dd>Celebrate the culture’s craft; never caption or explain it. Local first, always.</dd></div>
+          <div class="row"><dt>Success looks like</dt><dd>Fans treat it as a game they want to win, not an ad they were served.</dd></div>
+        </dl>
+        <p class="ft">Ingredients: one owned catchphrase, five cities, one jeweler, zero explaining.</p>
+      </div>
+    </div>
+    <div class="brief-fig">
+      <figure class="phone phone--cuff" style="--c:var(--cyan)">
+        <img class="gif" src="assets/gif_cuff.gif" alt="the Kites and Ice watch on Toucan Sam’s blue-feathered wrist" width="440" height="548" loading="lazy" decoding="async">
+        <figcaption><b>Fig. 1.</b> The Kites &amp; Ice collectibles make the strategy wearable: the prize is the insight you can put on.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -861,38 +913,6 @@ figcaption b{font-style:normal}
       <picture><source media="(max-width:700px)" srcset="assets/keyart_tall.webp"><img class="iris" id="keyart" src="assets/keyart.webp" alt="Toucan Sam in blue fur wearing a Kristopher Kites necklace of clear links and Froot Loops, with a swirl pendant, beside the Froot Loops and Kites and Ice logos" width="1800" height="1012" loading="lazy" decoding="async"></picture>
       <figcaption><b>Fig. 2.</b> The literal proof of the insight: the Froot Loop reimagined as a gem-set pendant by Chicago jeweler Kristopher Kites.</figcaption>
     </figure>
-  </div>
-</section>
-
-<!-- IV. Brief -->
-<section class="sec brief" id="brief" aria-labelledby="brief-h">
-<div class="wrap">
-    <header class="sec-head">
-      <p class="track"><i data-loop="4"></i>Track IV: The Creative Brief</p>
-      <h2 id="brief-h">Strategy, Translated Into Direction.</h2>
-    </header>
-  </div>
-  <div class="wrap split split--brief">
-    <div>
-      <p class="brief-dek">The compressed brief handed to creative, and the proof that the insight could move into executable direction.</p>
-      <div class="facts">
-        <h3>Brief Facts</h3>
-        <p class="serv"><b>Serving size</b> 1 lyric<br><b>Servings per campaign</b> 5 cities</p>
-        <dl>
-          <div class="row"><dt>Single-minded proposition</dt><dd>Froot Loops has always been in the music. Now you can follow it.</dd></div>
-          <div class="row"><dt>Role for the audience</dt><dd>Decode the lyric, prove you know the culture, win the artifact.</dd></div>
-          <div class="row"><dt>Guardrails</dt><dd>Celebrate the culture’s craft; never caption or explain it. Local first, always.</dd></div>
-          <div class="row"><dt>Success looks like</dt><dd>Fans treat it as a game they want to win, not an ad they were served.</dd></div>
-        </dl>
-        <p class="ft">Ingredients: one owned catchphrase, five cities, one jeweler, zero explaining.</p>
-      </div>
-    </div>
-    <div class="brief-fig">
-      <figure class="phone phone--cuff" style="--c:var(--cyan)">
-        <img class="gif" src="assets/gif_cuff.gif" alt="the Kites and Ice watch on Toucan Sam’s blue-feathered wrist" width="440" height="548" loading="lazy" decoding="async">
-        <figcaption><b>Fig. 1.</b> The Kites &amp; Ice collectibles make the strategy wearable: the prize is the insight you can put on.</figcaption>
-      </figure>
-    </div>
   </div>
 </section>
 
@@ -1472,29 +1492,22 @@ figcaption b{font-style:normal}
     window.scrollTo(0, top + x + 1);
   });
 
-  /* ---------- insight: top of the GIF frame sits on the headline's period */
-  const insFig = document.querySelector('.insight-row .phone--creator'), insH2 = document.querySelector('#insight-h');
+  /* ---------- insight: same height as the challenge; the GIF fills the content height */
+  const insSec = document.querySelector('#insight'), insLeft = document.querySelector('.insight-left'), insImg = document.querySelector('.ins-fig .gif'), chalSec = document.querySelector('#challenge');
   function alignInsightGif() {
-    if (!insFig || !insH2) return;
-    insFig.style.marginTop = ''; insFig.style.justifySelf = ''; insFig.style.maxWidth = '';
+    if (!insSec || !insImg) return;
+    insSec.style.minHeight = ''; insImg.style.height = ''; insImg.style.width = '';
     if (innerWidth < 900) return;
-    const cs = getComputedStyle(insH2), fs = parseFloat(cs.fontSize);
-    const mk = document.createElement('span');
-    mk.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
-    insH2.appendChild(mk); const mr = mk.getBoundingClientRect(); insH2.removeChild(mk);
-    const ctx = document.createElement('canvas').getContext('2d');
-    ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-    const pm = ctx.measureText('.'), asc = pm.actualBoundingBoxAscent || fs * .2;
-    const periodTop = mr.top - asc, periodRight = mr.left;
-    const row = insFig.parentElement.getBoundingClientRect(), rowPad = parseFloat(getComputedStyle(insFig.parentElement).paddingRight) || 0;
-    let fr = insFig.getBoundingClientRect();
-    if (fr.left < periodRight + 48) {
-      insFig.style.justifySelf = 'end';
-      const room = row.right - rowPad - (periodRight + 48);
-      if (room < fr.width) insFig.style.maxWidth = Math.max(220, room) + 'px';
+    const ratio = 340 / 604, cs = getComputedStyle(insSec), pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    const target = chalSec ? chalSec.offsetHeight : 0;
+    let inner = target - pad;
+    for (let i = 0; i < 5; i++) {
+      insImg.style.height = inner + 'px'; insImg.style.width = Math.round(inner * ratio) + 'px';
+      const need = insLeft.offsetHeight;
+      if (need <= inner + 1) break;
+      inner = need;
     }
-    const img = insFig.querySelector('.gif') || insFig;
-    insFig.style.marginTop = (periodTop - img.getBoundingClientRect().top) + 'px';
+    if (target) insSec.style.minHeight = target + 'px';
   }
 
   /* ---------- throughline: the spoon sticker takes only the space beside the quote */
