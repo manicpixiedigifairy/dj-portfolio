@@ -824,6 +824,12 @@ figcaption b{font-style:normal}
 #activation{padding-bottom:0}
 
 @media (min-width:900px){.leap-cols p.leap-intro{align-self:center;line-height:1.32}}
+
+/* prize: logo sits in the watch's column, left edges aligned */
+@media (min-width:900px){
+  .vault-head{grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);gap:clamp(18px,2.5vw,32px)}
+  .vault-head .kl{justify-self:start}
+}
 </style>
 </head>
 <body>
