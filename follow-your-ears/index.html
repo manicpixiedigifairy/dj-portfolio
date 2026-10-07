@@ -645,7 +645,7 @@ figcaption b{font-style:normal}
 /* measurement: the toucan fills the frame top to bottom */
 #proof{overflow:hidden}
 @media (min-width:900px){
-  #proof .flyer{top:clamp(16px,2vw,32px);bottom:clamp(16px,2vw,32px);right:var(--gutter);height:calc(100% - clamp(32px,4vw,64px));width:min(36vw,600px);object-fit:contain;object-position:50% 50%;max-height:none}
+  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:min(36vw,600px);object-fit:contain;object-position:50% 0;max-height:none}
   #proof .wrap{padding-right:calc(min(36vw,600px) + var(--gutter) * 2)}
 }
 
@@ -672,7 +672,7 @@ figcaption b{font-style:normal}
 /* measurement: the toucan fills the frame top to bottom */
 #proof{overflow:hidden}
 @media (min-width:900px){
-  #proof .flyer{top:clamp(16px,2vw,32px);bottom:clamp(16px,2vw,32px);right:var(--gutter);height:calc(100% - clamp(32px,4vw,64px));width:min(36vw,600px);object-fit:contain;object-position:50% 50%;max-height:none}
+  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:min(36vw,600px);object-fit:contain;object-position:50% 0;max-height:none}
   #proof .wrap{padding-right:calc(min(36vw,600px) + var(--gutter) * 2)}
 }
 
@@ -1010,9 +1010,8 @@ figcaption b{font-style:normal}
       <li><i class="ring" data-loop="3"></i><h3>Affinity</h3><p>Participation depth (guesses, scans, follows) over impressions.</p></li>
       <li><i class="ring" data-loop="4"></i><h3>Cultural Credibility</h3><p>Whether artists and fans amplified it unprompted. The real test of “authentic.”</p></li>
     </ul>
-    <p class="note"><b>On the numbers.</b> Public figures on this page come from WK Kellogg Co’s November 10, 2025 release. The 1,000+ count reflects an audit of Lyrics.com that found 1,554 brand mentions across both the “Fruit Loops” and “Froot Loops” spellings, de-duplicated by song. The scorecard above is a framework, not reported results.</p>
   </div>
-  <img class="flyer" src="assets/flyer_crop.webp" alt="" width="488" height="1114" loading="lazy" decoding="async">
+  <img class="flyer" src="assets/flyer_crop.webp" alt="" width="488" height="1057" loading="lazy" decoding="async">
 </section>
 
 <!-- Outro -->
