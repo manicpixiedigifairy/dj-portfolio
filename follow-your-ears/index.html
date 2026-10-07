@@ -769,6 +769,12 @@ figcaption b{font-style:normal}
 }
 /* strategic leap: tighter gap between the text and the key art */
 .leap .fig-wide{margin-top:clamp(28px,3vw,44px)}
+
+/* key KPIs: every title fits one line, so all three descriptions start on the same line */
+@media (min-width:900px){
+  #proof .scores li{container-type:inline-size}
+  #proof .scores h3{white-space:nowrap;font-size:min(clamp(26px,2.4vw,38px),10.4cqi)}
+}
 </style>
 </head>
 <body>
