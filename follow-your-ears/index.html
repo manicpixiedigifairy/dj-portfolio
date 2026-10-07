@@ -645,8 +645,8 @@ figcaption b{font-style:normal}
 /* measurement: the toucan fills the frame top to bottom */
 #proof{overflow:hidden}
 @media (min-width:900px){
-  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:min(36vw,600px);object-fit:contain;object-position:50% 0;max-height:none}
-  #proof .wrap{padding-right:calc(min(36vw,600px) + var(--gutter) * 2)}
+  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:var(--fw,min(36vw,600px));object-fit:contain;object-position:50% 0;max-height:none}
+  #proof .wrap{padding-right:calc(var(--fw,min(36vw,600px)) + var(--gutter) * 2)}
 }
 
 /* coverage: lead story on its own, the rest stack beside it at one size */
@@ -664,17 +664,6 @@ figcaption b{font-style:normal}
   .lead-slot{display:none}
 }
 
-/* edge to edge: every section uses the hero's gutter, no centered column */
-:root{--max:none}
-.press .pp-pad{max-width:none}
-.press-meter{max-width:none}
-.leap .track{max-width:none;margin-left:0;margin-right:0;justify-content:center}
-/* measurement: the toucan fills the frame top to bottom */
-#proof{overflow:hidden}
-@media (min-width:900px){
-  #proof .flyer{top:0;bottom:0;right:var(--gutter);height:100%;width:min(36vw,600px);object-fit:contain;object-position:50% 0;max-height:none}
-  #proof .wrap{padding-right:calc(min(36vw,600px) + var(--gutter) * 2)}
-}
 
 /* liner notes: larger, centered logo */
 @media (min-width:900px){.intro-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center}}
@@ -702,6 +691,18 @@ figcaption b{font-style:normal}
 /* insight: video centered in its column, row centered */
 .insight-row{align-items:center}
 .insight-row .phone--creator{max-width:340px;justify-self:center}
+
+/* throughline: spoon sticker overlay, out of the flow so the block keeps its height */
+.through{position:relative;overflow:hidden}
+.through .spoon{position:absolute;z-index:0;right:clamp(16px,3vw,64px);top:50%;width:min(40vw,640px);height:auto;max-height:80%;object-fit:contain;transform:translateY(-50%) rotate(-7deg);pointer-events:none;
+  filter:drop-shadow(0 2px 0 rgba(10,18,64,.15)) drop-shadow(0 22px 28px rgba(10,18,64,.32))}
+.through .wrap{position:relative;z-index:1}
+@media (max-width:899px){.through .spoon{display:none}}
+
+/* brief: the facts card keeps its tilt, nudged toward center */
+@media (min-width:900px){.split--brief .facts{margin-left:clamp(0px,4.5vw,84px)}}
+/* insight: the GIF frame's top lines up with the headline's period (set in script) */
+@media (min-width:900px){.insight-row .phone--creator{align-self:start;position:relative}}
 </style>
 </head>
 <body>
@@ -897,6 +898,7 @@ figcaption b{font-style:normal}
 
 <!-- Throughline -->
 <section class="sec through" id="throughline" aria-label="The strategic throughline">
+  <img class="spoon" src="assets/spoon_sticker.webp" alt="" width="1236" height="669" loading="lazy" decoding="async">
   <div class="wrap">
     <p class="track"><i data-loop="0"></i>The Strategic Throughline</p>
     <blockquote class="through-q">
@@ -1470,6 +1472,65 @@ figcaption b{font-style:normal}
     window.scrollTo(0, top + x + 1);
   });
 
+  /* ---------- insight: top of the GIF frame sits on the headline's period */
+  const insFig = document.querySelector('.insight-row .phone--creator'), insH2 = document.querySelector('#insight-h');
+  function alignInsightGif() {
+    if (!insFig || !insH2) return;
+    insFig.style.marginTop = ''; insFig.style.justifySelf = ''; insFig.style.maxWidth = '';
+    if (innerWidth < 900) return;
+    const cs = getComputedStyle(insH2), fs = parseFloat(cs.fontSize);
+    const mk = document.createElement('span');
+    mk.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+    insH2.appendChild(mk); const mr = mk.getBoundingClientRect(); insH2.removeChild(mk);
+    const ctx = document.createElement('canvas').getContext('2d');
+    ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const pm = ctx.measureText('.'), asc = pm.actualBoundingBoxAscent || fs * .2;
+    const periodTop = mr.top - asc, periodRight = mr.left;
+    const row = insFig.parentElement.getBoundingClientRect(), rowPad = parseFloat(getComputedStyle(insFig.parentElement).paddingRight) || 0;
+    let fr = insFig.getBoundingClientRect();
+    if (fr.left < periodRight + 48) {
+      insFig.style.justifySelf = 'end';
+      const room = row.right - rowPad - (periodRight + 48);
+      if (room < fr.width) insFig.style.maxWidth = Math.max(220, room) + 'px';
+    }
+    const img = insFig.querySelector('.gif') || insFig;
+    insFig.style.marginTop = (periodTop - img.getBoundingClientRect().top) + 'px';
+  }
+
+  /* ---------- throughline: the spoon sticker takes only the space beside the quote */
+  const spoon = document.querySelector('.through .spoon'), throughQ = document.querySelector('.through-q p');
+  function fitSpoon() {
+    if (!spoon || !throughQ) return;
+    spoon.style.width = ''; spoon.style.display = '';
+    if (innerWidth < 900) return;
+    const r = document.createRange(); r.selectNodeContents(throughQ);
+    let textRight = 0; for (const x of r.getClientRects()) textRight = Math.max(textRight, x.right);
+    const sec = spoon.parentElement.getBoundingClientRect(), right = parseFloat(getComputedStyle(spoon).right) || 0;
+    const room = sec.right - right - (textRight + 48);
+    if (room < 200) { spoon.style.display = 'none'; return; }
+    spoon.style.width = Math.min(640, room) + 'px';
+  }
+
+  /* ---------- measurement: size the toucan from the section's real height */
+  const proofSec = document.querySelector('#proof'), flyer = proofSec && proofSec.querySelector('.flyer');
+  function fitFlyer() {
+    if (!flyer) return;
+    proofSec.style.minHeight = '';
+    if (innerWidth < 900) { proofSec.style.removeProperty('--fw'); return; }
+    const ratio = (flyer.naturalWidth && flyer.naturalHeight) ? flyer.naturalWidth / flyer.naturalHeight : 488 / 1057;
+    const cap = innerWidth * 0.48;
+    let w = Math.min(innerWidth * 0.36, 600);
+    for (let i = 0; i < 6; i++) {
+      proofSec.style.setProperty('--fw', w + 'px');
+      const next = Math.min(proofSec.offsetHeight * ratio, cap);
+      if (Math.abs(next - w) < 1) { w = next; break; }
+      w = next;
+    }
+    proofSec.style.setProperty('--fw', w + 'px');
+    proofSec.style.minHeight = Math.ceil(w / ratio) + 'px';
+  }
+  if (flyer && !flyer.complete) flyer.addEventListener('load', fitFlyer, { once: true });
+
   /* ---------- press lead card borrows the key art already on the page */
   document.querySelectorAll('img[data-from]').forEach(img => { const src = document.querySelector(img.dataset.from); if (src) img.src = src.getAttribute('src'); });
 
@@ -1483,6 +1544,9 @@ figcaption b{font-style:normal}
   function init(first) {
     buildNecklace(); buildHeroLoops();
     setupPress();
+    fitFlyer();
+    alignInsightGif();
+    fitSpoon();
     if (reduce) { settleStatic(); return; }
     if (first) drop(); else applyNecklace();
     frame();
@@ -1493,8 +1557,8 @@ figcaption b{font-style:normal}
   addEventListener('scroll', onScroll, { passive: true });
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => init(false), 160); });
   mq.addEventListener && mq.addEventListener('change', e => { reduce = e.matches; init(false); });
-  addEventListener('load', setupPress);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setupPress);
+  addEventListener('load', () => { setupPress(); fitFlyer(); alignInsightGif(); fitSpoon(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { alignInsightGif(); fitSpoon(); setupPress(); fitFlyer(); });
 })();
 </script>
 </body>
