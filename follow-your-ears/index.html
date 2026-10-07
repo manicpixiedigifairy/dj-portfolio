@@ -810,6 +810,15 @@ figcaption b{font-style:normal}
   #proof{padding-top:36px}
   #proof .sec-head{margin-bottom:12px}
 }
+
+/* strategic leap: both columns share rows, so intros and bullet lists line up */
+@media (min-width:900px){
+  .leap-cols{grid-template-rows:auto auto;row-gap:0}
+  .leap-cols > .prose{display:grid;grid-row:span 2;grid-template-rows:subgrid}
+  .leap-cols .leap-intro{margin:0;align-self:start}
+  .leap-cols .leap-intro h3{margin:0}
+  .leap-cols .points{margin:clamp(24px,2.4vw,36px) 0 0;align-self:start}
+}
 </style>
 </head>
 <body>
@@ -978,16 +987,17 @@ figcaption b{font-style:normal}
     </h2>
     <div class="leap-cols">
       <div class="prose">
-        <p class="lead" style="margin-top:24px">The platform earns its power by bending an owned brand asset instead of inventing a new one. Toucan Sam’s 60-year catchphrase pivots one sense over, from nose to ears.</p>
-        <p>It signals the shift (we’re listening to culture now) while staying unmistakably Froot Loops.</p>
+        <p class="lead leap-intro">The platform earns its power by bending an owned brand asset instead of inventing a new one. Toucan Sam’s 60-year catchphrase pivots one sense over, from nose to ears.</p>
         <ul class="points">
           <li style="--bullet:var(--loop-1)"><b>Continuity buys permission.</b> A heritage brand can enter new territory credibly when it remains recognizably itself.</li>
           <li style="--bullet:var(--loop-2)"><b>A new sense, a new role.</b> Moving from “Follow Your Nose” to “Follow Your Ears” connects the brand to music and culture in an organic, believable way.</li>
         </ul>
       </div>
       <div class="prose">
-        <h3 style="margin-top:24px">Participation Over Broadcast</h3>
+        <div class="leap-intro">
+        <h3>Participation Over Broadcast</h3>
         <p style="margin-top:18px">Authenticity came from making people act, not watch. The risk with borrowed culture is looking like a tourist. The answer was a discovery mechanic, guess the lyric, that rewards fluency in the culture instead of lecturing about it.</p>
+        </div>
         <ul class="points">
           <li style="--bullet:var(--loop-0)"><b>One job everywhere.</b> Every touchpoint hides a clue, invites a guess and rewards the knowing.</li>
           <li style="--bullet:var(--loop-3)"><b>Host, not claimant.</b> Participation lets the brand convene the culture instead of appropriating it.</li>
