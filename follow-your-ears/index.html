@@ -688,6 +688,13 @@ figcaption b{font-style:normal}
 #challenge{padding:clamp(52px,5.5vw,84px) 0}
 .sec-head{margin-bottom:clamp(28px,3.4vw,52px)}
 .fence{padding:clamp(56px,6.5vw,96px) 0}
+
+/* insight: text, then the stat box, on the left; bigger video on the right */
+.insight-row{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start}
+.insight-main{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(28px,3vw,44px);max-width:640px}
+.insight-row .prose p.lead{font-size:clamp(22px,1.9vw,28px);line-height:1.4}
+.insight-row .phone--creator{max-width:420px;justify-self:end}
+@media (max-width:899px){.insight-row{grid-template-columns:minmax(0,1fr)}.insight-row .phone--creator{max-width:320px;justify-self:center}}
 </style>
 </head>
 <body>
@@ -795,12 +802,14 @@ figcaption b{font-style:normal}
     </header>
   </div>
   <div class="wrap insight-row">
-    <div class="stat-box">
-      <p class="stat-big" aria-label="1,000 plus">1,<i class="o" data-loop="0"></i><i class="o" data-loop="1"></i><i class="o" data-loop="4"></i>+</p>
-      <p class="stat-cap">hip-hop tracks name-drop Froot Loops</p>
-    </div>
-    <div class="prose">
-      <p class="lead">The brand didn’t need to buy its way into hip-hop. It was already there. Froot Loops shows up in more than 1,000 tracks, where the circular O doubles as slang for chain links, watches and jewelry.</p>
+    <div class="insight-main">
+      <div class="prose">
+        <p class="lead">The brand didn’t need to buy its way into hip-hop. It was already there. Froot Loops shows up in more than 1,000 tracks, where the circular O doubles as slang for chain links, watches and jewelry.</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-big" aria-label="1,000 plus">1,<i class="o" data-loop="0"></i><i class="o" data-loop="1"></i><i class="o" data-loop="4"></i>+</p>
+        <p class="stat-cap">hip-hop tracks name-drop Froot Loops</p>
+      </div>
     </div>
     <figure class="phone phone--creator" style="--c:var(--yellow)">
       <img class="gif" src="assets/gif_creator.gif" alt="Creator video: Froot Loops cereal under the caption Froot Loops has been name dropped in over 1,000 hip hop tracks, then a creator holding up a single loop" width="340" height="604" loading="lazy" decoding="async">
