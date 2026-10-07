@@ -11,8 +11,8 @@ Hosted case study pages for the portfolio. Each page is a self-contained folder 
 ## How it works
 
 1. `follow-your-ears/index.html` is the full page. Its images and GIFs live in `follow-your-ears/assets/`.
-2. GitHub Pages publishes the `main` branch, usually within a minute of a push.
-3. The Readymag Code widget holds the loader block. It opens the published page full screen and adds a timestamp to the address, so visitors always get the newest version.
+2. The Readymag Code widget holds the loader block. On each visit it asks GitHub for the newest commit on `main`, then loads that exact version of the page through jsDelivr (a free CDN that serves public GitHub repos), so a push shows up on the next visit. GitHub Pages does not need to be turned on.
+3. If GitHub's API is unavailable, the loader falls back to the `main` branch on jsDelivr (can lag a few hours), then to GitHub Pages if it is enabled.
 
 ## Set up in Readymag (one time)
 
