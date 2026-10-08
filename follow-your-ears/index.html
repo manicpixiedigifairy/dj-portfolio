@@ -848,7 +848,7 @@ figcaption b{font-style:normal}
 /* "scroll for more" above the progress bar; it bows out once the award panel arrives */
 .press-hint{display:block;margin:0 0 10px 2px;font-family:var(--label);font-weight:700;font-size:clamp(13px,1vw,16px);letter-spacing:.04em;color:#fff;
   transition:opacity .35s,transform .35s;animation:hintNudge 1.8s ease-in-out infinite}
-.press-hint::after{content:" \2192";display:inline-block}
+.press-hint::after{content:"\2192";display:inline-block;margin-left:.4em}
 @keyframes hintNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 .press--end .press-hint{opacity:0;transform:translateY(6px);animation:none}
 .press-meter{flex-direction:column;align-items:flex-start;gap:0}
