@@ -841,6 +841,9 @@ figcaption b{font-style:normal}
 .swap .chrome{transition:opacity .25s .15s}
 .swap.on .chrome{opacity:0}
 .ears{box-shadow:0 0 0 .065em #fff}
+
+/* froot loop confetti over the award panel */
+.press-stage .confetti{position:absolute;inset:0;width:100%;height:100%;z-index:6;pointer-events:none;opacity:0}
 </style>
 </head>
 <body>
@@ -1412,10 +1415,12 @@ figcaption b{font-style:normal}
   document.querySelectorAll('[data-loop]').forEach(el => { el.style.backgroundImage = `var(--loop-${el.dataset.loop})`; });
 
   /* editorial edition: real cereal loops from the brand artwork, recolored to the palette */
+  let confettiSprites = null;
   const REAL = ['assets/rloop0.webp', 'assets/rloop1.webp', 'assets/rloop2.webp', 'assets/rloop3.webp', 'assets/rloop4.webp'];
   REAL.forEach((u, i) => root.style.setProperty('--loop-' + i, `url(${u})`));
   Promise.all(REAL.map(u => new Promise(r => { const im = new Image(); if (/^https?:/.test(new URL(u, document.baseURI).href)) im.crossOrigin = 'anonymous'; im.onload = () => r(im); im.onerror = () => r(null); im.src = u; }))).then(ims => {
     if (ims.some(x => !x)) return;
+    confettiSprites = ims;
     setVar('--chain', makeChain(ims, iceCanvas, false));
     setVar('--chain-v', makeChain(ims, iceCanvas, true));
   });
@@ -1621,6 +1626,44 @@ figcaption b{font-style:normal}
     pRun.style.marginTop = -Math.max(0, Math.round(firstTop - want)) + 'px';
     framePress();
   }
+  /* ---------- Froot Loop confetti over the Shorty Awards panel */
+  let confettiFired = false, confettiRun = 0;
+  const confettiCv = document.createElement('canvas');
+  confettiCv.className = 'confetti'; confettiCv.setAttribute('aria-hidden', 'true');
+  if (pStage) pStage.appendChild(confettiCv);
+  function burstConfetti() {
+    if (reduce || !pStage) return;
+    const sprites = confettiSprites || [];
+    const dpr = Math.min(2, devicePixelRatio || 1), W = pStage.clientWidth, H = pStage.clientHeight;
+    confettiCv.width = W * dpr; confettiCv.height = H * dpr;
+    const ctx = confettiCv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const parts = [], n = W < 700 ? 70 : 130, size = W < 700 ? [16, 34] : [20, 46];
+    const add = (x, y, vx, vy) => parts.push({ x, y, vx, vy, r: Math.random() * 6.28, vr: (Math.random() - .5) * 9,
+      s: size[0] + Math.random() * (size[1] - size[0]), tilt: Math.random() * 6.28, vt: 2 + Math.random() * 4, k: (Math.random() * 5) | 0, life: 0 });
+    for (let i = 0; i < n * .35; i++) add(-20, H * (.7 + Math.random() * .3), 6 + Math.random() * 10, -(14 + Math.random() * 10));      // left cannon
+    for (let i = 0; i < n * .35; i++) add(W + 20, H * (.7 + Math.random() * .3), -(6 + Math.random() * 10), -(14 + Math.random() * 10)); // right cannon
+    for (let i = 0; i < n * .3; i++) add(Math.random() * W, -40 - Math.random() * H * .5, (Math.random() - .5) * 2, 2 + Math.random() * 3); // rain
+    const run = ++confettiRun; let last = performance.now();
+    confettiCv.style.opacity = '1';
+    (function tick(t) {
+      if (run !== confettiRun) return;
+      const dt = Math.min(.033, (t - last) / 1000) * 60; last = t;
+      ctx.clearRect(0, 0, W, H);
+      let alive = 0;
+      for (const q of parts) {
+        q.life += dt; q.vy += .26 * dt; q.vx *= Math.pow(.985, dt); q.vy = Math.min(q.vy, 9);
+        q.x += q.vx * dt + Math.sin(q.life * .05 + q.tilt) * .6; q.y += q.vy * dt; q.r += q.vr * .01 * dt; q.tilt += q.vt * .01 * dt;
+        if (q.y > H + 60) continue; alive++;
+        const sx = Math.abs(Math.cos(q.tilt)) * .7 + .3;
+        ctx.save(); ctx.translate(q.x, q.y); ctx.rotate(q.r); ctx.scale(sx, 1);
+        const im = sprites[q.k];
+        if (im) ctx.drawImage(im, -q.s / 2, -q.s / 2, q.s, q.s);
+        else { ctx.strokeStyle = COLORS[q.k]; ctx.lineWidth = q.s * .28; ctx.beginPath(); ctx.arc(0, 0, q.s * .32, 0, 6.29); ctx.stroke(); }
+        ctx.restore();
+      }
+      if (alive) requestAnimationFrame(tick); else { ctx.clearRect(0, 0, W, H); confettiCv.style.opacity = '0'; }
+    })(last);
+  }
   function framePress() {
     if (!press || !press.classList.contains('press--h')) return;
     const x = clamp(-pRun.getBoundingClientRect().top, 0, P.travel);
@@ -1644,6 +1687,9 @@ figcaption b{font-style:normal}
     });
     if (pFill) pFill.style.width = (P.travel ? x / P.travel * 100 : 0).toFixed(2) + '%';
     if (pCount) pCount.textContent = `${two(Math.round(f) + 2)} / ${two(N + 1)}`;
+    /* the award panel lands: Froot Loop confetti, once per arrival */
+    if (P.travel && x >= P.travel - 2) { if (!confettiFired) { confettiFired = true; burstConfetti(); } }
+    else if (x < P.travel - P.vw * .5) confettiFired = false;
   }
   if (pStrip) pStrip.addEventListener('focusin', e => {
     const top = pRun.getBoundingClientRect().top + scrollY;
