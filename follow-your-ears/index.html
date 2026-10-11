@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Follow Your Ears | Froot Loops case study, editorial edition</title>
-<meta name="description" content="How Froot Loops turned 1,000+ hip-hop name-drops into a participatory brand platform. A strategy case study.">
+<meta name="description" content="Renewing Froot Loops’ connection to hip-hop through fan discovery, generating 1.9B+ earned and social impressions. A strategy case study.">
 <script>document.documentElement.className='js';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -854,6 +854,96 @@ figcaption b{font-style:normal}
 .press-meter{flex-direction:column;align-items:flex-start;gap:0}
 .press-meter .press-rail{flex:none;width:100%}
 .press-hint{margin-left:4px}
+
+/* ================= VIII. results ================= */
+.results{background:var(--yellow);color:var(--ink);padding:clamp(52px,5.5vw,84px) 0}
+.results .track{color:var(--ink)}
+.results h2{font-size:clamp(40px,6.2vw,100px);max-width:none;margin:0}
+.results .sec-head{margin-bottom:clamp(24px,3vw,44px)}
+.res-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,26px)}
+.res{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-height:clamp(150px,13vw,200px);padding:clamp(18px,2vw,28px);
+  background:var(--paper);border:3px solid var(--ink);border-radius:clamp(18px,2vw,26px);box-shadow:8px 8px 0 var(--c,var(--cyan))}
+.res:nth-child(2){transform:rotate(-1.2deg)}
+.res:nth-child(3){transform:rotate(1deg)}
+.res:nth-child(4){transform:rotate(.8deg)}
+.res:nth-child(5){transform:rotate(-1deg)}
+.res-num{display:block;font-family:var(--display);font-weight:400;font-size:clamp(44px,4.8vw,78px);line-height:.9;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.res-cap{font-family:var(--serif);font-size:clamp(16px,1.25vw,19px);line-height:1.35;color:var(--ink-2)}
+.res--lead{grid-column:span 2;grid-row:span 2;background:var(--ink);color:#fff;box-shadow:10px 10px 0 var(--cyan);transform:rotate(-1.4deg)}
+.res--lead .res-num{font-size:clamp(96px,13vw,210px);color:var(--yellow);text-shadow:.04em .05em 0 var(--red)}
+.res--lead .res-cap{font-size:clamp(20px,1.8vw,28px);color:rgba(255,255,255,.92);max-width:20ch}
+.res-unit{display:block;margin-top:-.1em;font-family:var(--display);font-size:clamp(40px,4.6vw,76px);line-height:1;color:var(--yellow);text-shadow:.04em .05em 0 var(--red)}
+.res--lead .res-num + .res-unit{margin-bottom:auto}
+.res--lead{justify-content:flex-start}
+.res--lead .res-cap{margin-top:auto}
+@media (max-width:899px){
+  .res-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .res--lead{grid-column:1 / -1;grid-row:auto}
+}
+@media (max-width:520px){
+  .res-grid{grid-template-columns:minmax(0,1fr)}
+  .res,.res--lead{transform:none}
+  .res--lead .res-num{font-size:clamp(84px,26vw,120px)}
+  .res-unit{font-size:clamp(34px,11vw,48px)}
+}
+
+/* results lead card: centered, sized to fill the card */
+.res--lead{container-type:inline-size;justify-content:center;align-items:center;text-align:center;gap:0;padding:clamp(18px,2.2vw,32px)}
+.res--lead .res-num{font-size:min(32cqi,210px);line-height:.86}
+.res--lead .res-unit{font-size:min(12.5cqi,84px);margin:.02em 0 0}
+.res--lead .res-num + .res-unit{margin-bottom:0}
+.res--lead .res-cap{margin:clamp(12px,1.6vw,22px) auto 0;max-width:24ch;font-size:min(4.2cqi,28px)}
+@media (max-width:520px){.res--lead .res-num{font-size:34cqi}.res--lead .res-unit{font-size:13cqi}.res--lead .res-cap{font-size:max(17px,5cqi)}}
+
+@media (min-width:900px){
+  .res-grid{grid-template-columns:minmax(0,1.15fr) repeat(2,minmax(0,1fr))}
+  .res--lead{grid-column:1;grid-row:1 / span 2;container-type:size;padding:clamp(14px,1.4vw,22px)}
+  .res--lead .res-num{font-size:min(58cqi,57cqh)}
+  .res--lead .res-unit{font-size:min(22cqi,21.5cqh)}
+  .res--lead .res-cap{font-size:max(15px,min(5.8cqi,5.4cqh));margin-top:3cqh;max-width:26ch}
+}
+
+/* ================= out of home: street wall between Key KPIs and Results ================= */
+.ooh{background:var(--navy);color:#fff;padding:clamp(48px,5vw,80px) 0;overflow:hidden}
+.ooh .track{color:#fff;border-color:rgba(255,255,255,.6);margin-bottom:clamp(20px,2.4vw,34px)}
+.ooh-wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1.2fr 1fr 1fr 1.2fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(10px,1.3vw,20px);aspect-ratio:2.35/1}
+.ooh-wall li{position:relative;margin:0;overflow:hidden;border-radius:4px;background:#0b1a5e;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.ooh-wall li.tall{grid-row:span 2}
+.ooh-wall img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.ooh-wall li:hover img{transform:scale(1.04)}
+.ooh-wall li:nth-child(1){transform:rotate(-1deg)}
+.ooh-wall li:nth-child(4){transform:rotate(.8deg)}
+.ooh-wall li:nth-child(6){transform:rotate(1deg)}
+.ooh-tag{position:absolute;left:12px;bottom:12px;padding:5px 11px 6px;border-radius:999px;font-family:var(--label);font-weight:700;font-size:clamp(13px,1vw,16px);line-height:1;letter-spacing:.02em;color:var(--ink);background:var(--yellow);box-shadow:3px 3px 0 var(--red)}
+.ooh-tag.c{background:var(--cyan)}.ooh-tag.g{background:var(--green)}
+/* paste-up: each photo lands like a fresh wheatpaste the first time the wall scrolls in */
+.js .ooh-wall li{opacity:0;translate:0 18px;scale:1.03;transition:opacity .55s ease,translate .7s cubic-bezier(.2,.8,.2,1),scale .7s cubic-bezier(.2,.8,.2,1)}
+.js .ooh-wall.in li{opacity:1;translate:0 0;scale:1}
+.ooh-wall.in li:nth-child(2){transition-delay:.08s}.ooh-wall.in li:nth-child(3){transition-delay:.16s}
+.ooh-wall.in li:nth-child(4){transition-delay:.24s}.ooh-wall.in li:nth-child(5){transition-delay:.32s}.ooh-wall.in li:nth-child(6){transition-delay:.4s}
+@media (prefers-reduced-motion:reduce){.js .ooh-wall li{opacity:1;translate:none;scale:none;transition:none}.ooh-wall li:hover img{transform:none}}
+@media (min-width:900px){
+  .ooh-wall li:nth-child(1){grid-area:1/1/3/2}.ooh-wall li:nth-child(2){grid-area:1/2}.ooh-wall li:nth-child(3){grid-area:1/3}
+  .ooh-wall li:nth-child(4){grid-area:2/2}.ooh-wall li:nth-child(5){grid-area:2/3}.ooh-wall li:nth-child(6){grid-area:1/4/3/5}
+}
+@media (max-width:899px){
+  .ooh-wall{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;aspect-ratio:auto}
+  .ooh-wall li{aspect-ratio:1/1}
+  .ooh-wall li.tall{grid-row:auto;aspect-ratio:4/5}
+  .ooh-wall li:nth-child(1){order:1}.ooh-wall li:nth-child(6){order:2}
+  .ooh-wall li:nth-child(2){order:3}.ooh-wall li:nth-child(3){order:4}.ooh-wall li:nth-child(4){order:5}.ooh-wall li:nth-child(5){order:6}
+  .ooh-tag{left:8px;bottom:8px;font-size:12px;padding:4px 9px 5px}
+}
+
+/* ================= copy v2 (Write Copy notes) ================= */
+.nw{white-space:nowrap}
+.hero .dek.dek--head{font-family:var(--display);font-weight:400;font-size:clamp(24px,2.3vw,36px);line-height:1.12;letter-spacing:0;text-wrap:balance}
+@media (max-width:899px){.hero .dek.dek--head{font-size:clamp(22px,6.2vw,30px)}}
+#challenge .split>.prose:only-child{grid-column:1 / -1;max-width:60ch}
+.act-close{margin:clamp(40px,4.5vw,64px) auto 0;max-width:34ch;text-align:center;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(24px,2.3vw,34px);line-height:1.22;color:#fff;text-wrap:balance}
+.res-quote{margin:clamp(40px,4.5vw,68px) 0 0;max-width:62ch;padding-left:clamp(18px,2vw,28px);border-left:6px solid var(--red)}
+.res-quote p{margin:0;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(22px,2vw,30px);line-height:1.26;color:var(--ink);text-wrap:pretty}
+.res-quote footer{margin-top:14px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--ink-2)}
 </style>
 </head>
 <body>
@@ -884,7 +974,7 @@ figcaption b{font-style:normal}
 
     <div class="hero-foot">
       <div>
-        <p class="dek">We helped Froot Loops turn its long-standing connection to hip-hop into an interactive campaign designed to rebuild brand relevance and affinity. This transformative strategy made a cultural footnote into a platform the audience could experience.</p>
+        <p class="dek dek--head">Renewing Froot Loops’ Connection to <span class="nw">Hip-Hop</span> Through Fan Discovery, Generating <span class="nw">1.9 Billion+</span> Earned and Social Impressions</p>
       </div>
     </div>
   </div>
@@ -904,11 +994,11 @@ figcaption b{font-style:normal}
     </header>
     <div class="intro-grid">
       <dl class="credits">
-        <div><dt>Role</dt><dd>Associate Strategy Director, from brand diagnosis to creative brief</dd></div>
+        <div><dt>Role</dt><dd>Associate Strategy Director. Developed the strategic direction, briefed the creative team, and supported creative development.</dd></div>
         <div><dt>Brand</dt><dd>WK Kellogg Co, Froot Loops</dd></div>
-        <div><dt>Challenge</dt><dd>Rebuild cultural relevance and affinity for a heritage brand</dd></div>
+        <div><dt>Objective</dt><dd>Renew cultural relevance and strengthen brand affinity</dd></div>
         <div><dt>Idea</dt><dd>Follow Your Ears: activate the brand’s existing place in hip-hop</dd></div>
-        <div><dt>Scope</dt><dd>Platform and integrated activation across five cities</dd></div>
+        <div><dt>Scope</dt><dd>Integrated activation across 176 locations in five cities</dd></div>
       </dl>
       <img class="intro-logo" src="assets/fl_logo.webp" alt="Kellogg’s Froot Loops" width="900" height="771" loading="lazy" decoding="async">
     </div>
@@ -923,11 +1013,12 @@ figcaption b{font-style:normal}
     </div>
     <ol class="tl">
           <li><a href="#challenge"><span class="n">II</span><span class="t">The Challenge</span><small>Not lost awareness. Lost relevance.</small></a></li>
-          <li><a href="#insight"><span class="n">III</span><span class="t">The Insight</span><small>The culture was already talking.</small></a></li>
+          <li><a href="#insight"><span class="n">III</span><span class="t">The Insight</span><small>Discovery is embedded in hip-hop culture.</small></a></li>
           <li><a href="#brief"><span class="n">IV</span><span class="t">The Creative Brief</span><small>Strategy, translated into direction.</small></a></li>
-          <li><a href="#leap"><span class="n">V</span><span class="t">The Strategic Leap</span><small>From Follow Your Nose to Follow Your Ears.</small></a></li>
-          <li><a href="#activation"><span class="n">VI</span><span class="t">The Activation</span><small>One mechanic, four touchpoints.</small></a></li>
+          <li><a href="#leap"><span class="n">V</span><span class="t">The Creative Expression</span><small>From Follow Your Nose to Follow Your Ears.</small></a></li>
+          <li><a href="#activation"><span class="n">VI</span><span class="t">The Activation</span><small>176 locations, five cities, one invitation.</small></a></li>
           <li><a href="#proof"><span class="n">VII</span><span class="t">Proof and Reflection</span><small>The scorecard I’d hold it to.</small></a></li>
+          <li><a href="#results"><span class="n">VIII</span><span class="t">The Results</span><small>Two weeks, by the numbers.</small></a></li>
           <li><a href="#outro"><span class="n">Outro</span><span class="t">What This Case Demonstrates</span><small>Each move, mapped to the skill it proves.</small></a></li>
           <li><a href="#press"><span class="n">Bonus</span><span class="t">Press</span><small>The coverage, and the award.</small></a></li>
     </ol>
@@ -943,11 +1034,8 @@ figcaption b{font-style:normal}
     </header>
   </div>
   <div class="wrap split">
-    <div class="side">
-      <p class="callout">Not “nobody knows us,” but “we’ve stopped mattering to the people and culture that once claimed us.”</p>
-    </div>
     <div class="prose">
-      <p class="lead">Froot Loops was never short on recognition. Everyone knows Toucan Sam. The erosion was emotional and cultural: a heritage cereal drifting from a brand people choose today toward a childhood memory.</p>
+      <p class="lead">Froot Loops had an existing cultural asset: decades of references in hip-hop lyrics. But that history alone didn’t establish a clear role for the brand in hip-hop today. The challenge was defining how Froot Loops could activate that connection credibly and give fans a reason to engage.</p>
     </div>
   </div>
 </section>
@@ -958,11 +1046,11 @@ figcaption b{font-style:normal}
     <div class="insight-left">
       <header class="sec-head">
         <p class="track"><i data-loop="2"></i>Track III: The Insight</p>
-        <h2 id="insight-h">The Culture Was <br>Already Talking.</h2>
+        <h2 id="insight-h">Discovery Is Embedded <br>in Hip-Hop Culture.</h2>
       </header>
       <div class="insight-main">
         <div class="prose">
-          <p class="lead">The brand didn’t need to buy its way into hip-hop. It was already there. Froot Loops shows up in more than 1,000 tracks, where the circular O doubles as slang for chain links, watches and jewelry.</p>
+          <p class="lead">Hip-hop fans discover and engage with the culture on their own terms. Froot Loops’ lyrical references offered an opportunity to tap into that behavior: fans who recognized the bars could feel seen for their knowledge, while others could discover the connection for themselves.</p>
         </div>
         <div class="stat-box">
           <p class="stat-big" aria-label="1,000 plus">1,<i class="o" data-loop="0"></i><i class="o" data-loop="1"></i><i class="o" data-loop="4"></i>+</p>
@@ -972,7 +1060,6 @@ figcaption b{font-style:normal}
     </div>
     <figure class="phone phone--creator ins-fig" style="--c:var(--yellow)">
       <img class="gif" src="assets/gif_creator.gif" alt="Creator video: Froot Loops cereal under the caption Froot Loops has been name dropped in over 1,000 hip hop tracks, then a creator holding up a single loop" width="340" height="604" loading="lazy" decoding="async">
-      <figcaption>Creators carried the stat to TikTok.</figcaption>
     </figure>
   </div>
 </section>
@@ -990,20 +1077,17 @@ figcaption b{font-style:normal}
       <p class="brief-dek">The compressed brief handed to creative, and the proof that the insight could move into executable direction.</p>
       <div class="facts">
         <h3>Brief Facts</h3>
-        <p class="serv"><b>Serving size</b> 1 lyric<br><b>Servings per campaign</b> 5 cities</p>
         <dl>
-          <div class="row"><dt>Single-minded proposition</dt><dd>Froot Loops has always been in the music. Now you can follow it.</dd></div>
-          <div class="row"><dt>Role for the audience</dt><dd>Decode the lyric, prove you know the culture, win the artifact.</dd></div>
-          <div class="row"><dt>Guardrails</dt><dd>Celebrate the culture’s craft; never caption or explain it. Local first, always.</dd></div>
-          <div class="row"><dt>Success looks like</dt><dd>Fans treat it as a game they want to win, not an ad they were served.</dd></div>
+          <div class="row"><dt>Single-minded proposition</dt><dd>Froot Loops is part of hip-hop’s lyrical history.</dd></div>
+          <div class="row"><dt>Strategic direction</dt><dd>Let fans discover that connection for themselves.</dd></div>
+          <div class="row"><dt>Insight</dt><dd>Hip-hop fans move through culture as explorers, discovering music and references for themselves and shaping their own experience.</dd></div>
+          <div class="row"><dt>Success looks like</dt><dd>Fans recognize Froot Loops’ connection to hip-hop and feel invited to engage with the brand on their own terms.</dd></div>
         </dl>
-        <p class="ft">Ingredients: one owned catchphrase, five cities, one jeweler, zero explaining.</p>
       </div>
     </div>
     <div class="brief-fig">
       <figure class="phone phone--cuff" style="--c:var(--cyan)">
         <img class="gif" src="assets/gif_cuff.gif" alt="the Kites and Ice watch on Toucan Sam’s blue-feathered wrist" width="440" height="548" loading="lazy" decoding="async">
-        <figcaption><b>Fig. 1.</b> The Kites &amp; Ice collectibles make the strategy wearable: the prize is the insight you can put on.</figcaption>
       </figure>
     </div>
   </div>
@@ -1012,7 +1096,7 @@ figcaption b{font-style:normal}
 <!-- V. Strategic leap -->
 <section class="sec leap" id="leap" aria-labelledby="leap-h">
   <div class="wrap">
-    <p class="track"><i data-loop="4"></i>Track V: The Strategic Leap</p>
+    <p class="track"><i data-loop="4"></i>Track V: The Creative Expression</p>
     <h2 class="leap-title" id="leap-h" aria-label="From Follow Your Nose to Follow Your Ears">
       <span class="chrome" data-text="Follow Your" aria-hidden="true">Follow Your</span>
       <span class="swap" aria-hidden="true">
@@ -1022,7 +1106,7 @@ figcaption b{font-style:normal}
     </h2>
     <div class="leap-cols">
       <div class="prose">
-        <p class="lead leap-intro">The platform earns its power by bending an owned brand asset instead of inventing a new one. Toucan Sam’s 60-year slogan, “Follow Your Nose,” pivots one sense over.</p>
+        <p class="lead leap-intro">Working with the creative team, we reimagined Froot Loops’ iconic “Follow Your Nose” as “Follow Your Ears.” By reinterpreting a recognizable brand asset, we made the invitation unmistakably Froot Loops while giving fans a new way to explore its lyrical history.</p>
         <ul class="points">
           <li style="--bullet:var(--loop-1)"><b>Continuity = permission.</b> A brand can enter new territory when it remains recognizably itself.</li>
           <li style="--bullet:var(--loop-2)"><b>A new sense + role.</b> Moving from “nose” to “ears” connects the brand to music and culture.</li>
@@ -1030,8 +1114,8 @@ figcaption b{font-style:normal}
       </div>
       <div class="prose">
         <div class="leap-intro">
-        <h3>Participation Over Broadcast</h3>
-        <p style="margin-top:18px">Authenticity came from making people act, not watch. The risk with borrowed culture is looking like a tourist. The answer was a discovery mechanic, guess the lyric, that rewards fluency in the culture instead of lecturing about it.</p>
+        <h3>Lyrics Became Clues</h3>
+        <p style="margin-top:18px">Lyrical references became tangible clues: local artists interpreted them through city-specific street art, while Kristopher Kites transformed them into custom jewelry. Connected through social and influencer participation, these expressions invited fans to uncover the references themselves, putting their knowledge to work and discovering something new.</p>
         </div>
         <ul class="points">
           <li style="--bullet:var(--loop-0)"><b>One job everywhere.</b> Every touchpoint hides a clue, invites a guess and rewards the knowing.</li>
@@ -1043,7 +1127,6 @@ figcaption b{font-style:normal}
   <div class="wrap fig-wide">
     <figure>
       <picture><source media="(max-width:700px)" srcset="assets/keyart_tall.webp"><img class="iris" id="keyart" src="assets/keyart.webp" alt="Toucan Sam in blue fur wearing a Kristopher Kites necklace of clear links and Froot Loops, with a swirl pendant, beside the Froot Loops and Kites and Ice logos" width="1800" height="1012" loading="lazy" decoding="async"></picture>
-      <figcaption><b>Fig. 2.</b> The literal proof of the insight: the Froot Loop reimagined as a gem-set pendant by Chicago jeweler Kristopher Kites.</figcaption>
     </figure>
   </div>
 </section>
@@ -1069,7 +1152,7 @@ figcaption b{font-style:normal}
   </div>
   <div class="wrap">
     <div class="prose act-dek">
-      <p class="lead">Each channel does a distinct job but runs the same play. Integrated means a shared purpose, not a logo on everything.</p>
+      <p class="lead">Across 176 locations in five cities, local artists turned Froot Loops’ lyrical references into original street-art posters. Each poster offered a clue and a QR code, inviting fans to connect the art to the music.</p>
       <p>Followed in order, the touchpoints form one path: find the clue on the street, scan into the hunt, guess the lyric, win the piece.</p>
     </div>
   </div>
@@ -1077,13 +1160,13 @@ figcaption b{font-style:normal}
     <ol class="journey">
       <li style="--c:var(--red)"><span class="v">Find</span><h4>Street Art Drops</h4><p>Hide the clue in the culture’s own medium. Local, physical, credible.</p></li>
       <li style="--c:var(--yellow)"><span class="v">Scan</span><h4>QR Codes on Posters</h4><p>Bridge physical discovery to the digital hunt.</p></li>
-      <li style="--c:var(--cyan)"><span class="v">Guess</span><h4>Instagram and TikTok Sweepstakes</h4><p>Scale participation and reward fluency with exclusives.</p></li>
+      <li style="--c:var(--cyan)"><span class="v">Guess</span><h4>Social and Creator Participation</h4><p>Creators invited their audiences to identify the references and enter the giveaway.</p></li>
       <li style="--c:var(--purple)"><span class="v">Win</span><h4>Kristopher Kites Jewelry</h4><p>Make the insight tangible. The prize is the metaphor.</p></li>
     </ol>
   </div>
 
   <div class="tickers tickers--crew" aria-label="Poster drops">
-    <p class="sr-only">Poster drops by Andre Trenier, Brittney Price, Sentrock, Gonzo247 and Frank Morrison, with jewelry by Kristopher Kites.</p>
+    <p class="sr-only">Poster drops by Andre Trenier, Brittney Price, Joseph Anthony Perez, Mario Figueroa Jr. and Frank Morrison, with jewelry by Kristopher Kites.</p>
     <div class="tape tape--ink" aria-hidden="true"><div class="tape-track" id="tape-crew"></div></div>
   </div>
 
@@ -1094,7 +1177,7 @@ figcaption b{font-style:normal}
         <h3>Credibility Through Collaborators</h3>
         <p style="margin-top:22px">Who makes the work is part of the message. Commissioning recognized local artists, plus jeweler Kristopher Kites, means the culture speaks for the brand instead of the brand speaking for the culture.</p>
         <ul class="points">
-          <li style="--bullet:var(--loop-2)"><b>Hyperlocal placement.</b> Spots like the University Ave and MLK Blvd corridor in NYC signal respect for specific neighborhoods, not a generic “urban” gesture.</li>
+          <li style="--bullet:var(--loop-2)"><b>Hyperlocal placement.</b> 176 locations chosen city by city, so each poster spoke to its own neighborhood.</li>
         </ul>
       </div>
       <blockquote class="quote">
@@ -1103,14 +1186,13 @@ figcaption b{font-style:normal}
       </blockquote>
       <figure class="phone" style="--c:var(--red)">
         <img class="gif" src="assets/gif_street.gif" alt="the Chicago posters wheatpasted on a street wall" width="340" height="604" loading="lazy" decoding="async">
-        <figcaption>Chicago, in the wild: the Sentrock drop going up on the street.</figcaption>
       </figure>
     </div>
     <ul class="posters">
       <li class="poster" style="--r:-2.5deg;--y:0px"><div class="pin iris"><img src="assets/poster_nyc.webp" alt="New York poster by Andre Trenier: Toucan Sam in a red cap over a skyline, a bowl of Froot Loops and graffiti lettering" width="599" height="910" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--red)"><b>New York City</b><span>Andre Trenier, @andre.trenier</span></p></li>
       <li class="poster" style="--r:1.8deg;--y:46px"><div class="pin iris"><img src="assets/poster_la.webp" alt="Los Angeles poster by Brittney Price: a woman in a flowing red dress walking a golden road past a Toucan Sams street sign" width="600" height="898" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--yellow);--rot:2deg"><b>Los Angeles</b><span>Brittney Price, @brittneysprice</span></p></li>
-      <li class="poster" style="--r:-1.2deg;--y:12px"><div class="pin iris"><img src="assets/poster_chi.webp" alt="Chicago poster by Sentrock: a masked character with a Froot Loop chain in front of the skyline, the Loop and a red lowrider" width="599" height="763" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--green)"><b>Chicago</b><span>Joseph Anthony Perez, @sentrock</span></p></li>
-      <li class="poster" style="--r:2.4deg;--y:58px"><div class="pin iris"><img src="assets/poster_hou.webp" alt="Houston poster by Gonzo247: a DJ figure over a stadium and Highway 288, with H-Town graffiti lettering and floating Froot Loops" width="599" height="904" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--cyan);--rot:-1deg"><b>Houston</b><span>Mario Figueroa Jr., @gonzo247</span></p></li>
+      <li class="poster" style="--r:-1.2deg;--y:12px"><div class="pin iris"><img src="assets/poster_chi.webp" alt="Chicago poster by Joseph Anthony Perez: a masked character with a Froot Loop chain in front of the skyline, the Loop and a red lowrider" width="599" height="763" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--green)"><b>Chicago</b><span>Joseph Anthony Perez, @sentrock</span></p></li>
+      <li class="poster" style="--r:2.4deg;--y:58px"><div class="pin iris"><img src="assets/poster_hou.webp" alt="Houston poster by Mario Figueroa Jr.: a DJ figure over a stadium and Highway 288, with H-Town graffiti lettering and floating Froot Loops" width="599" height="904" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--cyan);--rot:-1deg"><b>Houston</b><span>Mario Figueroa Jr., @gonzo247</span></p></li>
       <li class="poster" style="--r:-2deg;--y:20px"><div class="pin iris"><img src="assets/poster_atl.webp" alt="Atlanta poster by Frank Morrison: a girl in a purple tutu and red sneakers before a mint graffiti wall naming Bankhead, Auburn Ave and Ponce de Leon" width="600" height="805" loading="lazy" decoding="async"></div><p class="pcap slap" style="--c:var(--purple);--rot:1.5deg"><b>Atlanta</b><span>Frank Morrison, @frankmorrison</span></p></li>
     </ul>
   </div>
@@ -1121,40 +1203,37 @@ figcaption b{font-style:normal}
         <div>
           <p class="track"><i data-loop="3"></i>Win: The Prize</p>
           <h3>Wearable Proof of the Insight</h3>
-          <p class="vault-dek">Kristopher Kites turned the shout-outs into two one-of-a-kind grand prizes, a necklace and pendant or a watch, set with Toucan Sam-inspired gemstones. Another 100 Kites-designed accessories went out to fans.</p>
+          <p class="vault-dek">Kristopher Kites brought the lyrics into wearable form through two one-of-a-kind jewelry pieces and 100 custom charms. The jewelry appeared on social without explanation, inviting fans to identify the references for a chance to win.</p>
+          <p class="vault-dek">Creators Jarred Jermaine, WYDJohnny, Nick Fry, Goodboy Noah, Dwayne Molock (The Cat Rapper), Khleo Thomas, Malik McIntyre, and Zay extended the experience on social, inviting their audiences to identify the lyrical references and enter the jewelry giveaway.</p>
         </div>
         <img class="kl slap" style="--rot:-4deg" src="assets/kites_logo.webp" alt="Kites &amp; Ice" width="720" height="426" loading="lazy" decoding="async">
       </div>
       <div class="vault-grid">
         <figure class="case">
           <img class="iris" src="assets/neck_cut.webp" alt="The Kites and Ice necklace: clear puffed links strung with Froot Loops and a swirl pendant in a studded black bezel" width="1100" height="607" loading="lazy" decoding="async">
-          <figcaption><b>The necklace.</b> Clear puffed links strung with Froot Loops, and a swirl pendant in a studded black bezel.</figcaption>
         </figure>
         <figure class="case">
           <img class="iris" src="assets/cuff_cut.webp" alt="The Kites and Ice watch: a jeweled cuff of red, green and blue stones with a purple Froot Loop face around a blue teardrop stone" width="881" height="679" loading="lazy" decoding="async">
-          <figcaption><b>The watch.</b> A jeweled cuff with a Froot Loop face set around a blue teardrop stone.</figcaption>
         </figure>
       </div>
       <div class="maker">
         <figure class="sticker">
           <img src="assets/kites_sticker.webp" alt="Kristopher Kites in his studio, smiling in round glasses and a green jacket, wearing a chain with a clear diamond pendant" width="666" height="660" loading="lazy" decoding="async">
-          <figcaption>Kristopher Kites, Chicago jeweler</figcaption>
         </figure>
         <blockquote class="kites">
-          <p>“Designing for this campaign, I was inspired by Froot Loops’ playful world, my own childhood nostalgia and the rich legacy of hip-hop.”</p>
+          <p>“Designing for this campaign, I was inspired by Froot Loops’ playful world, my own childhood nostalgia and the rich legacy of hip-hop. For me it was important to pull them all together to create colourful, cultural, bold moments.”</p>
           <footer>Kristopher Kites</footer>
         </blockquote>
       </div>
       <div class="maker-2">
         <figure class="print">
           <img src="assets/kites_flash.webp" alt="Flash photo of a man in round amber glasses and a grill holding up a clear chain and pendant" width="760" height="950" loading="lazy" decoding="async">
-          <figcaption>Clear ice, up close.</figcaption>
         </figure>
         <figure class="phone" style="--c:var(--purple)">
           <img class="gif" src="assets/gif_process.gif" alt="Froot Loops boxes, design sheets and a printed prototype of the cuff" width="340" height="604" loading="lazy" decoding="async">
-          <figcaption>From the process video: design sheets, a printed prototype of the cuff and a bowl of the source material.</figcaption>
         </figure>
       </div>
+      <p class="act-close">The experience was designed to reward recognition while leaving room for discovery. If you already knew, you felt seen. If you didn’t, you had a way in.</p>
     </div>
   </div>
 </section>
@@ -1187,6 +1266,57 @@ figcaption b{font-style:normal}
 </div>
 </section>
 
+<!-- Out of home: the poster drops on the street -->
+<section class="ooh" id="ooh" aria-labelledby="ooh-h">
+  <div class="wrap">
+    <p class="track" id="ooh-h"><i data-loop="3"></i>Out of Home: 176 Locations, Five Cities</p>
+    <ul class="ooh-wall">
+      <li class="tall"><img src="assets/ooh_chi.webp" alt="Chicago Follow Your Ears posters wheatpasted on a brick wall, art by Joseph Anthony Perez" width="662" height="826" loading="lazy" decoding="async"><span class="ooh-tag">Chicago</span></li>
+      <li><img src="assets/ooh_nyc_a.webp" alt="A passerby walks past a wall of New York Follow Your Ears posters" width="971" height="640" loading="lazy" decoding="async"><span class="ooh-tag c">New York</span></li>
+      <li><img src="assets/ooh_nyc_b.webp" alt="New York posters pasted beside street art as a woman walks by" width="664" height="534" loading="lazy" decoding="async"><span class="ooh-tag c">New York</span></li>
+      <li><img src="assets/ooh_atl_a.webp" alt="Atlanta Follow Your Ears posters on a blue building along a sidewalk" width="714" height="537" loading="lazy" decoding="async"><span class="ooh-tag g">Atlanta</span></li>
+      <li><img src="assets/ooh_nyc_c.webp" alt="A commuter passes New York posters above a graffiti wall" width="624" height="537" loading="lazy" decoding="async"><span class="ooh-tag c">New York</span></li>
+      <li class="tall"><img src="assets/ooh_atl_b.webp" alt="A full run of Atlanta posters across a graffiti covered wall" width="663" height="884" loading="lazy" decoding="async"><span class="ooh-tag g">Atlanta</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- VIII. Results -->
+<section class="sec results" id="results" aria-labelledby="results-h">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="track"><i data-loop="1"></i>Track VIII: The Results</p>
+      <h2 id="results-h">What It Delivered.</h2>
+    </header>
+    <ul class="res-grid">
+      <li class="res res--lead" style="--c:var(--cyan)">
+        <b class="res-num" data-to="1.9" data-dec="1">1.9</b><span class="res-unit">billion+</span>
+        <span class="res-cap">Earned and social impressions in two weeks</span>
+      </li>
+      <li class="res" style="--c:var(--red)">
+        <b class="res-num" data-to="99" data-suf="%">99%</b>
+        <span class="res-cap">Of coverage carried key campaign messaging</span>
+      </li>
+      <li class="res" style="--c:var(--green)">
+        <b class="res-num" data-to="20" data-pre="+" data-suf="%">+20%</b>
+        <span class="res-cap">Influencer engagement above benchmarks</span>
+      </li>
+      <li class="res" style="--c:var(--purple)">
+        <b class="res-num" data-to="48.3" data-dec="1" data-pre="+" data-suf="%">+48.3%</b>
+        <span class="res-cap">Share of voice across earned and social</span>
+      </li>
+      <li class="res" style="--c:var(--cyan)">
+        <b class="res-num" data-to="0.24" data-dec="2" data-pre="$">$0.24</b>
+        <span class="res-cap">Cost per thousand impressions (CPM)</span>
+      </li>
+    </ul>
+    <blockquote class="res-quote">
+      <p>“The genre has been shouting out the cereal brand for years, and instead of exploiting that, it chose to celebrate it. It’s refreshing to see a 60-year-old cereal giant dropping jewelry instead of another limited-edition flavor. It tells me that creativity for brands isn’t limited to their industry.”</p>
+      <footer>Roberto Orosa, DesignRush</footer>
+    </blockquote>
+  </div>
+</section>
+
 <!-- Outro -->
 <section class="sec outro" id="outro" aria-labelledby="outro-h">
   <div class="wrap">
@@ -1196,9 +1326,9 @@ figcaption b{font-style:normal}
       <li><b>Brand Diagnosis</b><span>Reframing the problem as a loss of relevance and affinity</span><a href="#challenge">Track II</a></li>
       <li><b>Cultural Analysis</b><span>Reading the 1,000-track connection and what it implies</span><a href="#insight">Track III</a></li>
       <li><b>Creative Briefing</b><span>Insight translated into executable direction</span><a href="#brief">Track IV</a></li>
-      <li><b>Strategic Choice</b><span>Deciding how to activate without cheapening it</span><a href="#leap">Track V</a></li>
-      <li><b>Platform Development</b><span>Follow Your Ears, bent from Follow Your Nose</span><a href="#leap">Track V</a></li>
-      <li><b>Integrated Experience</b><span>One mechanic across four touchpoints</span><a href="#activation">Track VI</a></li>
+      <li><b>Strategic Direction</b><span>Letting fans discover the connection for themselves</span><a href="#brief">Track IV</a></li>
+      <li><b>Creative Development</b><span>Briefing and supporting the team behind Follow Your Ears</span><a href="#leap">Track V</a></li>
+      <li><b>Integrated Experience</b><span>One invitation across 176 locations in five cities</span><a href="#activation">Track VI</a></li>
     </ul>
   </div>
 </section>
@@ -1323,7 +1453,7 @@ figcaption b{font-style:normal}
   /* Shout-out ticker. These names are confirmed in public campaign coverage.
      Add more name-droppers from the lyric audit and they flow into the tape. */
   const NAME_DROPS = ['Flo Milli', 'Cardi B', 'Offset'];
-  const CREW = ['Andre Trenier, NYC', 'Brittney Price, LA', 'Sentrock, Chicago', 'Gonzo247, Houston', 'Frank Morrison, Atlanta', 'Ice by Kristopher Kites'];
+  const CREW = ['Andre Trenier, NYC', 'Brittney Price, LA', 'Joseph Anthony Perez, Chicago', 'Mario Figueroa Jr., Houston', 'Frank Morrison, Atlanta', 'Ice by Kristopher Kites'];
   const COLORS = ['#ff0000', '#ffe700', '#7cff00', '#c900ff', '#00dfff'];
 
   const root = document.documentElement;
@@ -1587,9 +1717,26 @@ figcaption b{font-style:normal}
     clips.forEach(v => vio.observe(v));
   } else clips.forEach(v => v.dataset.vis = '1');
 
+  /* ---------- results: numbers count up the first time they come into view */
+  const resNums = [...document.querySelectorAll('.res-num[data-to]')];
+  function countUp(el) {
+    const to = parseFloat(el.dataset.to), dec = +(el.dataset.dec || 0), pre = el.dataset.pre || '', suf = el.dataset.suf || '';
+    const t0 = performance.now(), dur = 1400;
+    (function tick(t) {
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = pre + (to * e).toFixed(dec) + suf;
+      if (k < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  if ('IntersectionObserver' in window && resNums.length) {
+    const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { countUp(e.target); rio.unobserve(e.target); } }), { threshold: .6 });
+    resNums.forEach(el => rio.observe(el));
+  }
+
   /* ---------- stickers slap on when they arrive */
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' }) : null;
   document.querySelectorAll('.slap').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+  document.querySelectorAll('.ooh-wall').forEach(el => io ? io.observe(el) : el.classList.add('in'));
 
 
   /* ---------- press: vertical scroll drives a sideways strip ----------
