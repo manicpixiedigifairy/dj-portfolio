@@ -944,6 +944,18 @@ figcaption b{font-style:normal}
 .res-quote{margin:clamp(40px,4.5vw,68px) 0 0;max-width:62ch;padding-left:clamp(18px,2vw,28px);border-left:6px solid var(--red)}
 .res-quote p{margin:0;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(22px,2vw,30px);line-height:1.26;color:var(--ink);text-wrap:pretty}
 .res-quote footer{margin-top:14px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--ink-2)}
+
+/* creative execution write-up at the end of Track V */
+.leap .exec{margin-top:clamp(56px,6vw,96px)}
+.leap .exec .track{justify-content:flex-start}
+.exec-lead{margin:0 0 clamp(22px,2.6vw,36px);font-family:var(--display);font-size:clamp(30px,3.4vw,52px);line-height:1.05;color:#fff;text-shadow:.035em .045em 0 var(--navy)}
+.exec-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.2vw,32px)}
+.exec-grid li{background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:clamp(18px,1.8vw,26px);padding:clamp(20px,2vw,30px);box-shadow:8px 8px 0 var(--c)}
+.exec-grid h3{margin:0 0 10px;font-family:var(--display);font-weight:400;font-size:clamp(24px,2.1vw,32px);line-height:1.05;color:var(--ink)}
+.exec-grid p{margin:0;font-family:var(--serif);font-size:clamp(17px,1.2vw,19px);line-height:1.5;color:var(--ink-2)}
+@media (max-width:899px){.exec-grid{grid-template-columns:minmax(0,1fr)}}
+/* activation: no headline, so the intro sits right under the label */
+#activation .sec-head .track{margin-bottom:clamp(14px,1.6vw,22px)}
 </style>
 </head>
 <body>
@@ -1016,9 +1028,10 @@ figcaption b{font-style:normal}
           <li><a href="#insight"><span class="n">III</span><span class="t">The Insight</span><small>Discovery is embedded in hip-hop culture.</small></a></li>
           <li><a href="#brief"><span class="n">IV</span><span class="t">The Creative Brief</span><small>Strategy, translated into direction.</small></a></li>
           <li><a href="#leap"><span class="n">V</span><span class="t">The Creative Expression</span><small>From Follow Your Nose to Follow Your Ears.</small></a></li>
-          <li><a href="#activation"><span class="n">VI</span><span class="t">The Activation</span><small>176 locations, five cities, one invitation.</small></a></li>
-          <li><a href="#proof"><span class="n">VII</span><span class="t">Proof and Reflection</span><small>The scorecard I’d hold it to.</small></a></li>
-          <li><a href="#results"><span class="n">VIII</span><span class="t">The Results</span><small>Two weeks, by the numbers.</small></a></li>
+          <li><a href="#throughline"><span class="n">VI</span><span class="t">The Strategic Throughline</span><small>The connection was already real.</small></a></li>
+          <li><a href="#activation"><span class="n">VII</span><span class="t">The Activation</span><small>176 locations, five cities, one invitation.</small></a></li>
+          <li><a href="#proof"><span class="n">VIII</span><span class="t">Proof and Reflection</span><small>The scorecard I’d hold it to.</small></a></li>
+          <li><a href="#results"><span class="n">IX</span><span class="t">The Results</span><small>Two weeks, by the numbers.</small></a></li>
           <li><a href="#outro"><span class="n">Outro</span><span class="t">What This Case Demonstrates</span><small>Each move, mapped to the skill it proves.</small></a></li>
           <li><a href="#press"><span class="n">Bonus</span><span class="t">Press</span><small>The coverage, and the award.</small></a></li>
     </ol>
@@ -1034,6 +1047,9 @@ figcaption b{font-style:normal}
     </header>
   </div>
   <div class="wrap split">
+    <div class="side">
+      <p class="callout">Not “nobody knows us,” but “we’ve stopped mattering to the people and culture that once claimed us.”</p>
+    </div>
     <div class="prose">
       <p class="lead">Froot Loops had an existing cultural asset: decades of references in hip-hop lyrics. But that history alone didn’t establish a clear role for the brand in hip-hop today. The challenge was defining how Froot Loops could activate that connection credibly and give fans a reason to engage.</p>
     </div>
@@ -1129,13 +1145,22 @@ figcaption b{font-style:normal}
       <picture><source media="(max-width:700px)" srcset="assets/keyart_tall.webp"><img class="iris" id="keyart" src="assets/keyart.webp" alt="Toucan Sam in blue fur wearing a Kristopher Kites necklace of clear links and Froot Loops, with a swirl pendant, beside the Froot Loops and Kites and Ice logos" width="1800" height="1012" loading="lazy" decoding="async"></picture>
     </figure>
   </div>
+  <div class="wrap exec" aria-labelledby="exec-h">
+    <p class="track" id="exec-h"><i data-loop="2"></i>The Creative Execution</p>
+    <p class="exec-lead">Lyrical References Became Tangible Clues.</p>
+    <ul class="exec-grid">
+      <li style="--c:var(--red)"><h3>Street Art</h3><p>Local artists in five cities interpreted the lyrics through city-specific street art: Andre Trenier, Brittney Price, Joseph Anthony Perez, Mario Figueroa Jr. and Frank Morrison.</p></li>
+      <li style="--c:var(--yellow)"><h3>Custom Jewelry</h3><p>Kristopher Kites transformed the lyrics into two one-of-a-kind jewelry pieces, a pendant necklace and a watch, and 100 custom charms.</p></li>
+      <li style="--c:var(--green)"><h3>Social Participation</h3><p>Connected through social and influencer participation, the clues invited fans to uncover the references themselves, putting their knowledge to work and discovering something new.</p></li>
+    </ul>
+  </div>
 </section>
 
 <!-- Throughline -->
 <section class="sec through" id="throughline" aria-label="The strategic throughline">
   <img class="spoon" src="assets/spoon_sticker.webp" alt="" width="1218" height="669" loading="lazy" decoding="async">
   <div class="wrap">
-    <p class="track"><i data-loop="0"></i>The Strategic Throughline</p>
+    <p class="track"><i data-loop="0"></i>Track VI: The Strategic Throughline</p>
     <blockquote class="through-q">
       <p>The connection was already real. The job was to turn listening into participation, without ever sounding like a brand that just discovered rap.</p>
     </blockquote>
@@ -1146,8 +1171,8 @@ figcaption b{font-style:normal}
 <section class="sec" id="activation" aria-labelledby="act-h">
 <div class="wrap">
     <header class="sec-head">
-      <p class="track"><i data-loop="3"></i>Track VI: The Activation</p>
-      <h2 id="act-h">One Mechanic, Four Touchpoints.</h2>
+      <p class="track"><i data-loop="3"></i>Track VII: The Activation</p>
+      <h2 class="sr-only" id="act-h">The Activation</h2>
     </header>
   </div>
   <div class="wrap">
@@ -1203,7 +1228,7 @@ figcaption b{font-style:normal}
         <div>
           <p class="track"><i data-loop="3"></i>Win: The Prize</p>
           <h3>Wearable Proof of the Insight</h3>
-          <p class="vault-dek">Kristopher Kites brought the lyrics into wearable form through two one-of-a-kind jewelry pieces and 100 custom charms. The jewelry appeared on social without explanation, inviting fans to identify the references for a chance to win.</p>
+          <p class="vault-dek">Kristopher Kites brought the lyrics into wearable form through two one-of-a-kind jewelry pieces, a pendant necklace and a watch, and 100 custom charms. The jewelry appeared on social without explanation, inviting fans to identify the references for a chance to win.</p>
           <p class="vault-dek">Creators Jarred Jermaine, WYDJohnny, Nick Fry, Goodboy Noah, Dwayne Molock (The Cat Rapper), Khleo Thomas, Malik McIntyre, and Zay extended the experience on social, inviting their audiences to identify the lyrical references and enter the jewelry giveaway.</p>
         </div>
         <img class="kl slap" style="--rot:-4deg" src="assets/kites_logo.webp" alt="Kites &amp; Ice" width="720" height="426" loading="lazy" decoding="async">
@@ -1244,7 +1269,7 @@ figcaption b{font-style:normal}
 <div class="proof-text">
 <div class="wrap">
     <header class="sec-head">
-      <p class="track"><i data-loop="0"></i>Track VII: Proof and Reflection</p>
+      <p class="track"><i data-loop="0"></i>Track VIII: Proof and Reflection</p>
       <h2 id="proof-h">Key KPIs</h2>
     </header>
   </div>
@@ -1285,7 +1310,7 @@ figcaption b{font-style:normal}
 <section class="sec results" id="results" aria-labelledby="results-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="track"><i data-loop="1"></i>Track VIII: The Results</p>
+      <p class="track"><i data-loop="1"></i>Track IX: The Results</p>
       <h2 id="results-h">What It Delivered.</h2>
     </header>
     <ul class="res-grid">
@@ -1328,7 +1353,7 @@ figcaption b{font-style:normal}
       <li><b>Creative Briefing</b><span>Insight translated into executable direction</span><a href="#brief">Track IV</a></li>
       <li><b>Strategic Direction</b><span>Letting fans discover the connection for themselves</span><a href="#brief">Track IV</a></li>
       <li><b>Creative Development</b><span>Briefing and supporting the team behind Follow Your Ears</span><a href="#leap">Track V</a></li>
-      <li><b>Integrated Experience</b><span>One invitation across 176 locations in five cities</span><a href="#activation">Track VI</a></li>
+      <li><b>Integrated Experience</b><span>One invitation across 176 locations in five cities</span><a href="#activation">Track VII</a></li>
     </ul>
   </div>
 </section>
