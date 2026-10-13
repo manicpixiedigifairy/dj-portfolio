@@ -8,6 +8,7 @@ Hosted case study pages for the portfolio. Each page is a self-contained folder 
 | --- | --- | --- |
 | Portfolio cover | https://manicpixiedigifairy.github.io/dj-portfolio/cover/ | `loader/readymag-cover.html` |
 | Follow Your Ears (Froot Loops) | https://manicpixiedigifairy.github.io/dj-portfolio/follow-your-ears/ | `loader/readymag-follow-your-ears.html` |
+| Hot Girl Swim × Walmart | https://manicpixiedigifairy.github.io/dj-portfolio/hot-girl-swim/ | `loader/readymag-hot-girl-swim.html` |
 
 ## How it works
 
