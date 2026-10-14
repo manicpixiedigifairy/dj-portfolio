@@ -1,37 +1,26 @@
-<!-- DJ Portfolio loader: Hot Girl Swim x Walmart case study.
-     Paste into a Readymag Code widget (Widget Code, Use iFrame off).
-     It pulls the newest commit of the page straight from the GitHub repo,
-     so every push shows up here without touching Readymag.
-     Order it tries: newest commit via jsDelivr, then the main branch via jsDelivr, then GitHub Pages. -->
-<div style="position:fixed;inset:0;z-index:2147483000;background:#0C1636">
-  <iframe id="djp-hot-girl-swim"
-          title="Hot Girl Swim x Walmart case study"
-          style="display:block;width:100%;height:100%;border:0"
-          allow="autoplay; fullscreen"></iframe>
-</div>
+<!-- Hot Girl Swim x Walmart case study for Readymag.
+     Paste into a Code widget (Use iFrame off). It places the page full screen on top of
+     Readymag's own scaling, so phones get the real mobile layout instead of a shrunken desktop. -->
+<div id="hgs-anchor"></div>
 <script>
 (function () {
-  var REPO = 'manicpixiedigifairy/dj-portfolio', PAGE = 'hot-girl-swim';
-  var PAGES_URL = 'https://manicpixiedigifairy.github.io/dj-portfolio/' + PAGE + '/';
-  var frame = document.getElementById('djp-hot-girl-swim');
-  if (!frame) return;
-
-  function show(base, html) {
-    /* point asset paths at the same commit; no <base> tag, so the page's shape masks keep working */
-    frame.srcdoc = html.replace(/(["'(])assets\//g, '$1' + base + 'assets/');
+  var SRC = 'https://manicpixiedigifairy.github.io/dj-portfolio/hot-girl-swim/';
+  var anchor = document.getElementById('hgs-anchor');
+  var f = document.getElementById('hgs-frame');
+  if (!f) {
+    f = document.createElement('iframe');
+    f.id = 'hgs-frame';
+    f.src = SRC;
+    f.title = 'Hot Girl Swim x Walmart case study';
+    f.allow = 'autoplay; fullscreen';
+    f.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100dvh;border:0;margin:0;z-index:2147483000;background:#0C1636';
+    document.body.appendChild(f);
   }
-  function load(ref) {
-    var base = 'https://cdn.jsdelivr.net/gh/' + REPO + '@' + ref + '/' + PAGE + '/';
-    return fetch(base + 'index.html', { cache: 'no-store' }).then(function (r) {
-      if (!r.ok) throw new Error('jsDelivr ' + r.status);
-      return r.text();
-    }).then(function (html) { show(base, html); });
-  }
-
-  fetch('https://api.github.com/repos/' + REPO + '/commits/main', { headers: { Accept: 'application/vnd.github+json' } })
-    .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); })
-    .then(function (c) { return load(c.sha); })
-    .catch(function () { return load('main'); })
-    .catch(function () { frame.src = PAGES_URL + '?v=' + Date.now(); });
+  var html = document.documentElement, prev = html.style.overflow;
+  html.style.overflow = 'hidden';
+  /* if Readymag swaps to another page, take the case study down with it */
+  var watch = setInterval(function () {
+    if (!document.body.contains(anchor)) { clearInterval(watch); f.remove(); html.style.overflow = prev; }
+  }, 500);
 })();
 </script>
