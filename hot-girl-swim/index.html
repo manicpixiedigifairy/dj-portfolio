@@ -43,7 +43,7 @@
   --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
   --type:"Courier Prime","Courier New",monospace;
   --g:clamp(16px,4vw,56px);
-  --sec:clamp(76px,8.5vw,136px);
+  --sec:clamp(52px,5.4vw,88px);
   --h2:clamp(48px,6.6vw,108px);
   --iri:conic-gradient(from 210deg,#F7D7E6,#D8CCF6,#BFE3F2,#CFF2E4,#F8EBC8,#F7D7E6);
 }
@@ -190,7 +190,7 @@ a{color:inherit}
 .pc:nth-child(3){padding-top:clamp(130px,10vw,150px)}
 /* objects react to the mouse: they lean toward the cursor across the page and shy away up close */
 .pc .pc-art,.cut img{translate:var(--mx,0) var(--my,0);rotate:var(--mr,0deg);scale:var(--ms,1);transition:translate .6s cubic-bezier(.2,.8,.3,1),rotate .6s cubic-bezier(.2,.8,.3,1),scale .5s cubic-bezier(.3,1.6,.5,1)}
-.pc:hover .pc-art{--ms:1.12}
+
 .pc .flv{margin:0 0 8px;font-family:var(--type);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
 .pc h3{margin:0 0 14px;font-family:var(--display);font-weight:400;font-size:clamp(32px,2.7vw,46px);line-height:1}
 .pc p:last-child{margin:0}
@@ -253,11 +253,11 @@ a{color:inherit}
 .arch:nth-child(even){transform:translateY(-34px)}
 
 /* ================= VII. runway ================= */
-.runway{background:linear-gradient(180deg,var(--abyss) 0%,#13224A 100%);color:var(--foam);padding-top:calc(var(--sec) * .5)}
+.runway{background:linear-gradient(180deg,var(--abyss) 0%,#13224A 100%);color:var(--foam);padding-top:0}
 .runway .label{color:var(--glass)}
 .run-hero{position:relative;margin:0 var(--g);border-radius:clamp(22px,2.4vw,36px);overflow:hidden;aspect-ratio:16/9;box-shadow:0 30px 60px rgba(0,0,0,.45)}
 .run-hero img{width:100%;height:100%;object-fit:cover}
-.run-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,5vw,96px);align-items:end;margin:clamp(44px,5vw,80px) 0 clamp(30px,3.4vw,52px)}
+.run-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,5vw,96px);align-items:end;margin:0 0 clamp(4px,1vw,12px)}
 .run-head .prose{color:rgba(251,248,243,.88)}
 .strip{position:relative;overflow-x:auto;overflow-y:hidden;padding:clamp(60px,6vw,90px) 0 clamp(50px,5vw,80px);scrollbar-width:thin;scrollbar-color:var(--slate) transparent;cursor:grab}
 .strip:active{cursor:grabbing}
@@ -338,10 +338,11 @@ a{color:inherit}
 /* footer */
 .foot{position:relative;overflow:hidden;isolation:isolate;background:var(--abyss);color:var(--foam);padding:clamp(60px,7vw,110px) var(--g) clamp(30px,3vw,44px)}
 .foot .squig{opacity:.25}
-.foot .lockup{position:relative;z-index:1;width:min(100%,560px);margin:0 0 clamp(36px,4vw,64px)}
-.foot-in{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.foot .lockup{position:relative;z-index:1;display:block;width:min(100%,560px);margin:0 auto clamp(36px,4vw,64px)}
+.foot-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:clamp(28px,3vw,44px)}
 .foot .wm{font-family:var(--display);font-size:clamp(66px,11vw,190px);line-height:.86;color:var(--foam)}
-.endcard{flex:none;width:clamp(240px,26vw,400px);aspect-ratio:1/1.1}
+.endcard-wrap{position:relative;width:clamp(300px,42vw,620px);filter:drop-shadow(0 0 28px rgba(195,220,238,.45)) drop-shadow(0 30px 50px rgba(0,0,0,.45))}
+.endcard{width:100%;aspect-ratio:1/1.1}
 .endcard img{object-position:50% 30%}
 .foot a{font-family:var(--type);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:12px 20px 13px;border-radius:999px;background:var(--foam);color:var(--ink);white-space:nowrap}
 
@@ -396,7 +397,7 @@ a{color:inherit}
   .social td::before{content:attr(data-l);color:rgba(251,248,243,.65)}
   .skills li{grid-template-columns:minmax(0,1fr);gap:6px}
   .skills a{justify-self:start;margin-top:4px}
-  .foot-in{flex-direction:column;align-items:flex-start}
+  .foot-in{flex-direction:column;align-items:center}
   .cut.hide-m{display:none}
   .hero .cut[style*='left:40%']{display:none}
 }
@@ -617,7 +618,6 @@ a{color:inherit}
       <figure class="col-img rv"><img src="assets/c_teaser.webp" alt="Launch teaser: the Walmart spark and Hot Girl Summer logo over a purple bikini strap with a butterfly charm, dated 5.19.25" width="800" height="1422" loading="lazy" decoding="async"></figure>
     </div>
   </div>
-  <span class="cut hide-m" style="--w:clamp(70px,6vw,110px);right:2%;top:8%;--r:10deg;--t:8s"><img src="assets/t_shell_pearls.webp" alt="" width="189" height="224" loading="lazy"></span>
 </section>
 
 <!-- V. Creative direction -->
@@ -672,7 +672,7 @@ a{color:inherit}
   <div class="strip" id="strip" tabindex="0" aria-label="Runway photos, scroll sideways">
     <div class="strip-inner">
       <div class="strip-track">
-        <figure><img src="assets/p_walk.webp" alt="Megan Thee Stallion posing on the runway in silver" width="1000" height="1333" loading="lazy" decoding="async"></figure>
+        <figure><img style="object-position:50% 0" src="assets/p_walk2.webp" alt="Megan Thee Stallion posing on the runway in silver" width="1000" height="1333" loading="lazy" decoding="async"></figure>
         <figure><img src="assets/p_pink.webp" alt="A model in a pink shell-detail bikini on the runway" width="800" height="1080" loading="lazy" decoding="async"></figure>
         <figure class="w"><img src="assets/g_finale.gif" alt="Megan Thee Stallion leading the finale with arms raised" width="520" height="390" loading="lazy" decoding="async"></figure>
         <figure><img src="assets/p_runway_tee.webp" alt="A model in a pink rhinestone Hot Girl Summer crop tee and orange bottoms" width="900" height="1350" loading="lazy" decoding="async"></figure>
@@ -694,8 +694,6 @@ a{color:inherit}
 
 <!-- VIII. Launch -->
 <section class="sec launch" id="launch" aria-labelledby="launch-h">
-  <span class="cut hide-m" style="--w:clamp(100px,9vw,150px);right:4%;top:1.5%;--r:12deg;--t:7.5s"><img src="assets/o_shell_top.webp" alt="" width="420" height="279" loading="lazy"></span>
-  <span class="cut hide-m" style="--w:clamp(90px,7.5vw,130px);right:17%;top:1.2%;--r:-6deg;--t:8.5s;--d:-3s"><img src="assets/o_shell_bottom.webp" alt="" width="420" height="339" loading="lazy"></span>
   <div class="wrap">
     <div class="launch-head">
       <div><h2 class="h2" id="launch-h">Into the <i>Culture.</i></h2></div>
@@ -765,7 +763,7 @@ a{color:inherit}
   <svg class="squig" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path stroke-width="56" d="M-60 120 C 140 20, 330 60, 300 180 S 560 340, 680 200 S 900 20, 1060 120 S 1240 380, 1500 260"/></svg>
   <img class="lockup" src="assets/logo_lockup.webp" alt="Walmart and Hot Girl Summer by Megan Thee Stallion" width="1200" height="225" loading="lazy" decoding="async">
   <div class="foot-in">
-    <div class="endcard masked mask-p2"><img src="assets/g_profile.gif" alt="Megan Thee Stallion in a silver top sticking her tongue out" width="380" height="475" loading="lazy" decoding="async"></div>
+    <div class="endcard-wrap"><div class="endcard masked mask-p2"><img src="assets/g_profile.gif" alt="Megan Thee Stallion in a silver top sticking her tongue out" width="380" height="475" loading="lazy" decoding="async"></div></div>
     <a href="#top">Back to the Surface</a>
   </div>
 </footer>
@@ -792,22 +790,25 @@ a{color:inherit}
     var mx = -1e4, my = -1e4, pending = false;
     var react = function () {
       pending = false;
-      var cx = innerWidth / 2, cy = innerHeight / 2;
-      reactive.forEach(function (el, i) {
-        var r = el.getBoundingClientRect();
-        if (r.bottom < -100 || r.top > innerHeight + 100) return;
-        var ex = r.left + r.width / 2, ey = r.top + r.height / 2;
-        var depth = 10 + (i % 4) * 5;
-        var x = (mx - cx) / cx * depth, y = (my - cy) / cy * depth;
-        var dx = ex - mx, dy = ey - my, d = Math.sqrt(dx * dx + dy * dy) || 1, R = 240;
-        if (d < R) { var f = Math.pow(1 - d / R, 2) * 38; x += dx / d * f; y += dy / d * f; }
-        el.style.setProperty('--mx', x.toFixed(1) + 'px');
-        el.style.setProperty('--my', y.toFixed(1) + 'px');
-        el.style.setProperty('--mr', (x * .45).toFixed(1) + 'deg');
+      reactive.forEach(function (el) {
+        var b = el.getBoundingClientRect(), ox = el._x || 0, oy = el._y || 0;
+        var r = { left: b.left - ox, right: b.right - ox, top: b.top - oy, bottom: b.bottom - oy, width: b.width, height: b.height };
+        var over = mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom;
+        if (!over) {
+          if (el._on) { el._on = false; el._x = el._y = 0; el.style.setProperty('--mx', '0px'); el.style.setProperty('--my', '0px'); el.style.setProperty('--mr', '0deg'); el.style.setProperty('--ms', '1'); }
+          return;
+        }
+        el._on = true;
+        var nx = (mx - (r.left + r.width / 2)) / (r.width / 2), ny = (my - (r.top + r.height / 2)) / (r.height / 2);
+        el._x = -nx * 14; el._y = -ny * 14;
+        el.style.setProperty('--mx', el._x.toFixed(1) + 'px');
+        el.style.setProperty('--my', el._y.toFixed(1) + 'px');
+        el.style.setProperty('--mr', (nx * 10).toFixed(1) + 'deg');
+        el.style.setProperty('--ms', '1.1');
       });
     };
     document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; if (!pending) { pending = true; requestAnimationFrame(react); } }, { passive: true });
-    document.addEventListener('mouseleave', function () { reactive.forEach(function (el) { el.style.setProperty('--mx', '0px'); el.style.setProperty('--my', '0px'); el.style.setProperty('--mr', '0deg'); }); });
+    document.addEventListener('mouseleave', function () { reactive.forEach(function (el) { el._on = false; el._x = el._y = 0; el.style.setProperty('--mx', '0px'); el.style.setProperty('--my', '0px'); el.style.setProperty('--mr', '0deg'); el.style.setProperty('--ms', '1'); }); });
   }
   /* hero cutouts drift at different depths as you scroll */
   var par = [].slice.call(document.querySelectorAll('.par'));
