@@ -824,11 +824,15 @@ a{color:inherit}
     var chal = document.getElementById('challenge'), nextH = chal.nextElementSibling && (chal.nextElementSibling.querySelector('.wrap') || chal.nextElementSibling.querySelector('h2'));
     var balance = function () {
       if (!nextH) return;
-      opp.style.marginTop = '26px';
-      for (var k = 0; k < 4; k++) {
-        var o = opp.getBoundingClientRect(), above = o.top - opp.previousElementSibling.getBoundingClientRect().bottom, below = nextH.getBoundingClientRect().top - o.bottom;
-        var m = parseFloat(opp.style.marginTop) + (below - above) / 2;
-        opp.style.marginTop = Math.max(26, m).toFixed(0) + 'px';
+      /* equal gaps: lead > middle paragraph > card > next section */
+      var mid = opp.previousElementSibling, lead = mid && mid.previousElementSibling;
+      if (lead) lead.style.marginBottom = '0px';
+      var g = 40;
+      for (var k = 0; k < 8; k++) {
+        if (mid) mid.style.marginTop = g.toFixed(1) + 'px';
+        opp.style.marginTop = g.toFixed(1) + 'px';
+        var below = nextH.getBoundingClientRect().top - opp.getBoundingClientRect().bottom;
+        g = Math.max(22, (g + below) / 2);
       }
     };
     balance(); window.addEventListener('load', balance); window.addEventListener('resize', function () { setTimeout(balance, 150); });
